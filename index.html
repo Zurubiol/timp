@@ -4,29 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>TIMP Studio Premium | Produção de Vídeos Profissionais</title>
+  <title>TIMP Studio Premium | Vídeos Profissionais para Empresas</title>
 
-  <meta name="description" content="A TIMP Studio Premium é especializada na produção de vídeos institucionais, comerciais e conteúdo estratégico para empresas. Solicite um orçamento rápido via WhatsApp.">
+  <meta name="description" content="A TIMP Studio Premium produz vídeos institucionais, comerciais e estratégicos para empresas. Solicite orçamento rápido pelo WhatsApp." />
 
   <style>
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: #111;
-      background: #ffffff;
+      background: #fff;
       line-height: 1.6;
     }
 
     section {
-      padding: 80px 20px;
+      padding: 90px 20px;
       max-width: 1100px;
       margin: auto;
       text-align: center;
     }
 
+    .hero {
+      padding-top: 120px;
+    }
+
+    .logo {
+      max-width: 260px;
+      margin-bottom: 40px;
+    }
+
     h1 {
       font-size: 42px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     h2 {
@@ -42,38 +51,39 @@
 
     .btn {
       display: inline-block;
-      margin-top: 30px;
+      margin-top: 35px;
       padding: 16px 34px;
       background: #000;
       color: #fff;
       text-decoration: none;
-      font-size: 18px;
       border-radius: 6px;
+      font-size: 18px;
       transition: 0.3s;
     }
 
     .btn:hover {
-      background: #222;
+      opacity: 0.85;
     }
 
     .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      background: #f7f7f7;
     }
 
-    .service {
-      border: 1px solid #ddd;
-      padding: 30px;
-      border-radius: 8px;
+    .services ul {
+      list-style: none;
+      padding: 0;
+      font-size: 18px;
+    }
+
+    .services li {
+      margin: 12px 0;
     }
 
     footer {
-      background: #111;
+      background: #000;
       color: #fff;
+      padding: 40px 20px;
       text-align: center;
-      padding: 30px 20px;
       font-size: 14px;
     }
   </style>
@@ -82,16 +92,22 @@
 <body>
 
   <!-- HERO -->
-  <section>
-    <h1>TIMP Studio Premium</h1>
-    <p>Produção de vídeos profissionais para empresas</p>
+  <section class="hero">
+    <img src="logo-timp.jpg" alt="TIMP Studio Premium" class="logo">
 
-    <a
+    <h1>TIMP Studio Premium</h1>
+
+    <p>
+      Produção de vídeos profissionais que fortalecem marcas,
+      comunicam com clareza e aumentam resultados.
+    </p>
+
+    <a 
       class="btn"
-      href="https://api.whatsapp.com/send?phone=5514991856520&text=Olá,%20vi%20o%20site%20da%20TIMP%20Studio%20Premium%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20produção%20de%20vídeo."
+      href="https://api.whatsapp.com/send?phone=5514991856520&text=Olá! Gostaria de solicitar um orçamento de vídeo."
       target="_blank"
     >
-      Pedir orçamento
+      Pedir orçamento no WhatsApp
     </a>
   </section>
 
@@ -100,50 +116,29 @@
     <h2>Sobre a TIMP</h2>
     <p>
       A TIMP Studio Premium é especializada na criação de vídeos institucionais,
-      comerciais e conteúdo estratégico para marcas que buscam autoridade,
-      presença digital e resultados reais.
+      comerciais e conteúdos estratégicos para empresas que desejam se destacar,
+      gerar autoridade e converter mais oportunidades através do vídeo.
     </p>
   </section>
 
   <!-- SERVIÇOS -->
-  <section>
+  <section class="services">
     <h2>Serviços</h2>
-
-    <div class="services">
-      <div class="service">
-        <h3>Vídeos Institucionais</h3>
-        <p>Apresente sua empresa com profissionalismo, clareza e impacto.</p>
-      </div>
-
-      <div class="service">
-        <h3>Vídeos Comerciais</h3>
-        <p>Conteúdos persuasivos para anúncios, lançamentos e campanhas.</p>
-      </div>
-
-      <div class="service">
-        <h3>Conteúdo Estratégico</h3>
-        <p>Vídeos pensados para redes sociais, tráfego pago e posicionamento.</p>
-      </div>
-    </div>
+    <ul>
+      <li>🎬 Vídeos institucionais</li>
+      <li>📢 Vídeos comerciais e publicitários</li>
+      <li>📱 Conteúdo para redes sociais</li>
+      <li>🏢 Vídeos corporativos e treinamentos</li>
+      <li>🚀 Vídeos estratégicos para marketing</li>
+    </ul>
   </section>
 
-  <!-- CTA FINAL -->
-  <section>
-    <h2>Vamos produzir seu vídeo?</h2>
-    <p>Entre em contato agora e receba um orçamento rápido pelo WhatsApp.</p>
-
-    <a
-      class="btn"
-      href="https://api.whatsapp.com/send?phone=5514991856520&text=Olá,%20gostaria%20de%20falar%20sobre%20um%20projeto%20de%20vídeo%20para%20minha%20empresa."
-      target="_blank"
-    >
-      Falar no WhatsApp
-    </a>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- RODAPÉ -->
   <footer>
-    © 2025 TIMP Studio Premium • Produção de vídeos profissionais
+    <p>
+      © 2025 TIMP Studio Premium<br>
+      Produção de vídeos profissionais para empresas
+    </p>
   </footer>
 
 </body>
