@@ -8,175 +8,118 @@
 
   <style>
     :root{
-      --bg: #0b0b0b;
-      --card: rgba(255,255,255,0.05);
-      --card2: rgba(255,255,255,0.07);
-      --border: rgba(255,255,255,0.10);
-      --border2: rgba(255,255,255,0.18);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.70);
-      --muted2: rgba(255,255,255,0.55);
+      --bg:#0b0b0b;
+      --card:rgba(255,255,255,.05);
+      --card2:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.7);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.06), transparent 55%),
-                  radial-gradient(900px 500px at 90% 25%, rgba(255,255,255,0.05), transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:radial-gradient(1200px 600px at 10% 10%,rgba(255,255,255,.06),transparent 55%),
+                 radial-gradient(900px 500px at 90% 25%,rgba(255,255,255,.05),transparent 55%),
+                 var(--bg);
+      color:var(--text);
+      line-height:1.6;
     }
 
-    .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+    .container{width:90%;max-width:1100px;margin:auto}
 
+    /* HEADER */
     header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(10,10,10,0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position:sticky;top:0;z-index:50;
+      background:rgba(10,10,10,.75);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.08)
     }
 
     .header-wrap{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 16px;
-      padding: 14px 0;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;gap:16px
     }
 
-    /* LOGO */
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-    }
+    /* LOGO COM FUNDO */
+    .brand{display:flex;align-items:center;gap:14px}
 
     .brand-logo{
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
+      width:52px;height:52px;
+      border-radius:14px;
+      background:rgba(255,255,255,.92);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 20px rgba(0,0,0,.4)
     }
 
     .brand-logo img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 6px;
+      width:100%;height:100%;
+      object-fit:contain;
+      padding:6px
     }
 
-    .brand-text h1{
-      font-size: 22px;
-      margin: 0;
-      letter-spacing: 0.6px;
-    }
-
-    .brand-text small{
-      font-size: 12px;
-      color: var(--muted2);
-    }
+    .brand-text h1{font-size:22px;letter-spacing:.6px}
+    .brand-text small{font-size:12px;color:var(--muted)}
 
     nav a{
-      color: var(--muted);
-      text-decoration:none;
-      margin-left:14px;
-      font-size:14px;
+      color:var(--muted);text-decoration:none;
+      margin-left:14px;font-size:14px
     }
+    nav a:hover{color:#fff}
 
-    nav a:hover{ color: var(--text); }
+    section{padding:76px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    h2{font-size:42px;line-height:1.1;margin:10px 0}
+    .sub{color:var(--muted);max-width:720px}
 
-    section{ padding: 72px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
-    .kicker{ font-size:12px; letter-spacing:0.16em; color:var(--muted2); }
-    h2{ font-size:36px; margin:10px 0; }
-    .sub{ color:var(--muted); max-width:720px; }
-
+    /* HERO */
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap:20px;
+      grid-template-columns:1.3fr .7fr;
+      gap:24px
     }
 
-    .cta-row{
-      display:flex;
-      gap:12px;
-      margin-top:24px;
-      flex-wrap:wrap;
-    }
+    .cta-row{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
 
     .btn{
-      padding:12px 16px;
+      padding:12px 18px;
       border-radius:14px;
       border:1px solid var(--border);
-      background:rgba(255,255,255,0.05);
-      color:var(--text);
-      text-decoration:none;
-      font-weight:700;
-      transition:.2s;
+      background:rgba(255,255,255,.06);
+      color:#fff;text-decoration:none;font-weight:700;
+      transition:.2s
     }
-
-    .btn:hover{
-      background:rgba(255,255,255,0.08);
-      transform:translateY(-2px);
-    }
-
-    .btn.primary{
-      background:rgba(255,255,255,0.12);
-    }
+    .btn:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+    .btn.primary{background:rgba(255,255,255,.16)}
 
     .hero-card{
-      padding:20px;
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,0.04);
+      padding:22px;border-radius:18px;
+      background:var(--card2);
+      border:1px solid var(--border)
     }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-top:28px;
-    }
-
-    .card{
-      padding:18px;
-      border-radius:16px;
-      border:1px solid var(--border);
-      background:var(--card);
-    }
-
+    /* CONTATO */
     .contato-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-top:28px;
+      gap:18px;margin-top:28px
     }
 
     .contact-card{
-      padding:20px;
-      border-radius:16px;
-      border:1px solid var(--border);
+      padding:22px;border-radius:16px;
       background:var(--card);
-      text-decoration:none;
-      color:var(--text);
+      border:1px solid var(--border);
+      text-decoration:none;color:#fff
     }
 
     footer{
-      padding:32px;
-      text-align:center;
-      color:var(--muted2);
+      padding:34px 0;text-align:center;
+      color:var(--muted)
     }
 
     @media(max-width:900px){
-      .hero-grid,.grid-3,.contato-grid{ grid-template-columns:1fr; }
-      nav{ display:none; }
+      .hero-grid,.contato-grid{grid-template-columns:1fr}
+      nav{display:none}
+      h2{font-size:34px}
     }
   </style>
 </head>
@@ -198,10 +141,6 @@
 
       <nav>
         <a href="#inicio">Início</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#depoimentos">Depoimentos</a>
         <a href="#contato">Contato</a>
       </nav>
     </div>
@@ -209,40 +148,49 @@
 </header>
 
 <main>
-  <section id="inicio">
-    <div class="container hero-grid">
-      <div>
-        <div class="kicker">TIMP DO BRASIL</div>
-        <h2>Atendimento rápido e direto.<br>Fale com a TIMP agora.</h2>
-        <p class="sub">Clique no WhatsApp e fale conosco.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="https://wa.me/5514991856520" target="_blank">WhatsApp</a>
-          <a class="btn" href="#contato">Ver Contato</a>
-          <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar E-mail</a>
-        </div>
-      </div>
 
-      <div class="hero-card">
-        <strong>Contato oficial</strong><br><br>
-        WhatsApp: (14) 99185-6520<br>
-        E-mail: timpdobrasil@gmail.com<br>
-        Cidade: Bauru - SP
+<section id="inicio">
+  <div class="container hero-grid">
+    <div>
+      <div class="kicker">TIMP DO BRASIL</div>
+      <h2>Atendimento rápido e direto.<br>Fale com a TIMP agora.</h2>
+      <p class="sub">Clique no WhatsApp e fale conosco.</p>
+
+      <div class="cta-row">
+        <a class="btn primary" href="https://wa.me/5514991856520" target="_blank">WhatsApp</a>
+        <a class="btn" href="#contato">Ver Contato</a>
+        <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar E-mail</a>
       </div>
     </div>
-  </section>
 
-  <section id="contato">
-    <div class="container">
-      <h2>Contato</h2>
-      <p class="sub">Atendimento rápido e direto.</p>
+    <div class="hero-card">
+      <strong>Contato oficial</strong><br><br>
+      WhatsApp: (14) 99185-6520<br>
+      E-mail: timpdobrasil@gmail.com<br>
+      Cidade: Bauru - SP
+    </div>
+  </div>
+</section>
 
-      <div class="contato-grid">
-        <a class="contact-card" href="https://wa.me/5514991856520" target="_blank">WhatsApp<br>(14) 99185-6520</a>
-        <a class="contact-card" href="mailto:timpdobrasil@gmail.com">E-mail<br>timpdobrasil@gmail.com</a>
-        <div class="contact-card">Cidade<br>Bauru - SP</div>
+<section id="contato">
+  <div class="container">
+    <h2>Contato</h2>
+    <p class="sub">Atendimento rápido e direto.</p>
+
+    <div class="contato-grid">
+      <a class="contact-card" href="https://wa.me/5514991856520" target="_blank">
+        WhatsApp<br>(14) 99185-6520
+      </a>
+      <a class="contact-card" href="mailto:timpdobrasil@gmail.com">
+        E-mail<br>timpdobrasil@gmail.com
+      </a>
+      <div class="contact-card">
+        Cidade<br>Bauru - SP
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 </main>
 
 <footer>
