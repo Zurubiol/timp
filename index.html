@@ -66,4 +66,358 @@
       margin-left: 14px;
       font-size: 14px;
     }
-    nav a:hover{ color: var(--
+    nav a:hover{ color: var(--text); }
+
+    /* SECTIONS */
+    section{ padding: 70px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .kicker{ color: var(--muted2); letter-spacing: 0.16em; font-size: 12px; text-transform: uppercase; }
+    h2{ font-size: 34px; margin: 10px 0 10px; }
+    p.sub{ color: var(--muted); max-width: 720px; }
+
+    /* HERO */
+    .hero{
+      padding: 78px 0 72px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .hero h2{ font-size: 44px; line-height: 1.1; }
+    .hero p{
+      margin-top: 14px;
+      color: var(--muted);
+      max-width: 720px;
+      font-size: 16px;
+    }
+    .cta-row{
+      display:flex;
+      gap: 12px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      text-decoration:none;
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+      border-color: var(--border2);
+    }
+    .btn.primary{
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .hero-card{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      border-radius: 18px;
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    .hero-card .mini{
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill{
+      display:inline-block;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      width: fit-content;
+    }
+
+    /* GRID CARDS */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+    .card{
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      background: var(--card2);
+      border-color: var(--border2);
+    }
+    .card h3{ font-size: 16px; margin-bottom: 8px; }
+    .card p{ color: var(--muted); font-size: 14px; }
+
+    /* PORTFOLIO PLACEHOLDER */
+    .portfolio-note{
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CONTATO */
+    .contato-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+    .contact-card{
+      display:block;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      text-decoration:none;
+      color: var(--text);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .contact-card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .contact-title{ font-weight: 800; margin-bottom: 10px; }
+    .contact-info{ font-size: 16px; opacity: 0.95; word-break: break-word; }
+    .contact-cta{ margin-top: 12px; font-weight: 800; opacity: 0.9; }
+    .static:hover{ transform:none; cursor: default; }
+
+    /* FOOTER */
+    footer{
+      padding: 34px 0;
+      text-align:center;
+      color: var(--muted2);
+    }
+
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .contato-grid{ grid-template-columns: 1fr; }
+      .hero h2{ font-size: 36px; }
+      nav{ display:none; } /* simplifica no mobile */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="header-wrap">
+        <div class="brand">
+          <h1>TIMP do Brasil</h1>
+          <small>Bauru - SP • Atendimento em todo o Brasil</small>
+        </div>
+        <nav>
+          <a href="#inicio">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#portfolio">Portfólio</a>
+          <a href="#depoimentos">Depoimentos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- INÍCIO / HERO -->
+    <section id="inicio" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker">TIMP DO BRASIL</div>
+            <h2>Atendimento rápido e direto.<br/>Fale com a TIMP agora.</h2>
+            <p>
+              Soluções com presença, credibilidade e um contato fácil.
+              Clique no WhatsApp e fale conosco.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn primary" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="btn" href="#contato">Ver Contato</a>
+              <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar E-mail</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <span class="pill">Contato oficial</span>
+            <div class="mini">
+              <strong>WhatsApp:</strong> (14) 99185-6520<br/>
+              <strong>E-mail:</strong> timpdobrasil@gmail.com<br/>
+              <strong>Cidade:</strong> Bauru - SP
+            </div>
+            <a class="btn primary" href="#contato">Abrir opções de contato →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="container">
+        <div class="kicker">Sobre</div>
+        <h2>Quem somos</h2>
+        <p class="sub">
+          A TIMP do Brasil atua com foco em atendimento claro, objetivo e profissional.
+          Aqui você encontra um canal direto para falar conosco e acompanhar nossos trabalhos.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Agilidade</h3>
+            <p>Atendimento rápido para facilitar seu processo e tirar dúvidas sem enrolação.</p>
+          </div>
+          <div class="card">
+            <h3>Confiança</h3>
+            <p>Comunicação direta, transparente e com foco em solução.</p>
+          </div>
+          <div class="card">
+            <h3>Atuação</h3>
+            <p>Base em Bauru - SP e atendimento em todo o Brasil.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+      <div class="container">
+        <div class="kicker">Serviços</div>
+        <h2>O que entregamos</h2>
+        <p class="sub">
+          (Aqui você pode ajustar depois com os serviços reais da TIMP — eu deixei pronto para editar.)
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Serviço 1</h3>
+            <p>Descrição curta e objetiva do serviço principal da TIMP.</p>
+          </div>
+          <div class="card">
+            <h3>Serviço 2</h3>
+            <p>Outra linha de atuação — foco em clareza e benefício para o cliente.</p>
+          </div>
+          <div class="card">
+            <h3>Serviço 3</h3>
+            <p>Mais um serviço — pode ser suporte, consultoria, instalação, etc.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFÓLIO -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="kicker">Portfólio</div>
+        <h2>Trabalhos e resultados</h2>
+        <p class="sub">
+          Aqui vamos colocar os vídeos incorporados (YouTube). Quando você me mandar os links,
+          eu já deixo tudo bonito e organizado.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Projeto / Vídeo 1</h3>
+            <p>Espaço reservado para incorporar vídeo e descrição do projeto.</p>
+          </div>
+          <div class="card">
+            <h3>Projeto / Vídeo 2</h3>
+            <p>Espaço reservado para incorporar vídeo e descrição do projeto.</p>
+          </div>
+          <div class="card">
+            <h3>Projeto / Vídeo 3</h3>
+            <p>Espaço reservado para incorporar vídeo e descrição do projeto.</p>
+          </div>
+        </div>
+
+        <p class="portfolio-note">
+          ✅ Próximo passo do portfólio: você me envia 3 links de vídeos do YouTube (um por linha) e eu coloco aqui.
+        </p>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+      <div class="container">
+        <div class="kicker">Depoimentos</div>
+        <h2>O que dizem sobre a TIMP</h2>
+        <p class="sub">
+          Quando você me mandar os depoimentos (texto ou nome/empresa), eu coloco aqui com visual premium.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Cliente 1</h3>
+            <p>“Depoimento curto destacando a qualidade do atendimento e resultado.”</p>
+          </div>
+          <div class="card">
+            <h3>Cliente 2</h3>
+            <p>“Depoimento curto reforçando confiança, entrega e rapidez.”</p>
+          </div>
+          <div class="card">
+            <h3>Cliente 3</h3>
+            <p>“Depoimento curto falando de experiência e satisfação.”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="container">
+        <div class="kicker">Contato</div>
+        <h2>Fale com a TIMP</h2>
+        <p class="sub">Atendimento rápido e direto. Use o WhatsApp (número único) ou e-mail.</p>
+
+        <div class="contato-grid">
+          <a class="contact-card" href="https://wa.me/5514991856520" target="_blank" rel="noopener">
+            <div class="contact-title">WhatsApp</div>
+            <div class="contact-info">(14) 99185-6520</div>
+            <div class="contact-cta">Abrir conversa →</div>
+          </a>
+
+          <a class="contact-card" href="mailto:timpdobrasil@gmail.com">
+            <div class="contact-title">E-mail</div>
+            <div class="contact-info">timpdobrasil@gmail.com</div>
+            <div class="contact-cta">Enviar e-mail →</div>
+          </a>
+
+          <div class="contact-card static">
+            <div class="contact-title">Cidade</div>
+            <div class="contact-info">Bauru - SP</div>
+            <div class="contact-cta">Atendimento em todo o Brasil</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © TIMP do Brasil — Todos os direitos reservados
+    </div>
+  </footer>
+</body>
+</html>
