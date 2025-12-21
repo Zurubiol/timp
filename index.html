@@ -4,173 +4,66 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TIMP do Brasil</title>
+  <meta name="description" content="TIMP do Brasil — soluções com atendimento rápido. Fale conosco pelo WhatsApp." />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+    :root{
+      --bg: #0b0b0b;
+      --card: rgba(255,255,255,0.05);
+      --card2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.10);
+      --border2: rgba(255,255,255,0.18);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.55);
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #0f0f0f;
-      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.06), transparent 55%),
+                  radial-gradient(900px 500px at 90% 25%, rgba(255,255,255,0.05), transparent 55%),
+                  var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-    }
+    .container { width: 90%; max-width: 1100px; margin: 0 auto; }
 
-    header {
-      padding: 24px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    /* HEADER */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10,10,10,0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-
-    header h1 {
-      font-size: 28px;
-      letter-spacing: 1px;
-    }
-
-    nav {
-      margin-top: 10px;
-    }
-
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      margin-right: 16px;
-      opacity: 0.85;
-    }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
-    section {
-      padding: 64px 0;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    .sub {
-      opacity: 0.85;
-      max-width: 520px;
-      margin-bottom: 32px;
-    }
-
-    /* CONTATO */
-    .contato-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .header-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       gap: 16px;
+      padding: 14px 0;
     }
-
-    .card {
-      padding: 20px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+    }
+    .brand h1{
+      font-size: 22px;
+      letter-spacing: 0.6px;
+      margin: 0;
+    }
+    .brand small{
+      color: var(--muted2);
+      font-size: 12px;
+    }
+    nav a{
+      color: var(--muted);
       text-decoration: none;
-      color: #ffffff;
-      transition: all .2s ease;
+      margin-left: 14px;
+      font-size: 14px;
     }
-
-    .card:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.2);
-    }
-
-    .card-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .card-info {
-      font-size: 16px;
-    }
-
-    .card-cta {
-      margin-top: 14px;
-      font-weight: bold;
-      opacity: 0.9;
-    }
-
-    .card-static:hover {
-      transform: none;
-      cursor: default;
-    }
-
-    footer {
-      padding: 32px 0;
-      text-align: center;
-      opacity: 0.6;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    @media (max-width: 900px) {
-      .contato-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="container">
-      <h1>TIMP do Brasil</h1>
-      <nav>
-        <a href="#contato">Contato</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-
-    <!-- CONTATO -->
-    <section id="contato">
-      <div class="container">
-        <h2>Contato</h2>
-        <p class="sub">Fale com a TIMP. Atendimento rápido e direto.</p>
-
-        <div class="contato-grid">
-          <a class="card" href="https://wa.me/5514991856520" target="_blank" rel="noopener">
-            <div class="card-title">WhatsApp</div>
-            <div class="card-info">(14) 99185-6520</div>
-            <div class="card-cta">Abrir conversa →</div>
-          </a>
-
-          <a class="card" href="mailto:timpdobrasil@gmail.com">
-            <div class="card-title">E-mail</div>
-            <div class="card-info">timpdobrasil@gmail.com</div>
-            <div class="card-cta">Enviar e-mail →</div>
-          </a>
-
-          <div class="card card-static">
-            <div class="card-title">Cidade</div>
-            <div class="card-info">Bauru - SP</div>
-            <div class="card-cta">Atendimento em todo o Brasil</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container">
-      © TIMP do Brasil — Todos os direitos reservados
-    </div>
-  </footer>
-
-</body>
-</html>
+    nav a:hover{ color: var(--
