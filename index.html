@@ -4,266 +4,104 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TIMP do Brasil</title>
-  <meta name="description" content="TIMP do Brasil — atendimento rápido e direto. Fale conosco pelo WhatsApp." />
 
   <style>
     :root{
       --bg:#0b0b0b;
-      --card:rgba(255,255,255,.05);
-      --card2:rgba(255,255,255,.09);
-      --border:rgba(255,255,255,.14);
-      --text:rgba(255,255,255,.95);
-      --muted:rgba(255,255,255,.7);
+      --text:#f5f5f5;
+      --muted:#bdbdbd;
+      --border:rgba(255,255,255,.15);
+      --card:rgba(255,255,255,.08);
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
 
     body{
       font-family:Arial,Helvetica,sans-serif;
-      background:
-        radial-gradient(1200px 600px at 10% 10%,rgba(255,255,255,.06),transparent 55%),
-        radial-gradient(900px 500px at 90% 25%,rgba(255,255,255,.05),transparent 55%),
-        var(--bg);
+      background:var(--bg);
       color:var(--text);
       line-height:1.6;
     }
 
-    .container{width:90%;max-width:1180px;margin:auto}
+    .container{
+      max-width:1180px;
+      width:90%;
+      margin:auto;
+    }
 
     /* HEADER */
     header{
       position:sticky;
       top:0;
       z-index:50;
-      background:rgba(10,10,10,.78);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(255,255,255,.08)
+      background:rgba(10,10,10,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
 
     .header-wrap{
       display:flex;
-      align-items:center;
       justify-content:space-between;
+      align-items:center;
       padding:18px 0;
-      gap:20px
+      gap:20px;
     }
 
-    /* LOGO – MARCA FORTE */
+    /* LOGO FORTE */
     .brand{
       display:flex;
       align-items:center;
-      gap:20px
+      gap:18px;
     }
 
     .brand-logo{
-      width:88px;           /* 🔥 logo grande */
-      height:88px;          /* 🔥 logo grande */
+      width:110px;
+      height:110px;
       border-radius:22px;
-      background:rgba(255,255,255,.96);
+      background:#ffffff;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:
-        0 10px 30px rgba(0,0,0,.45),
-        inset 0 0 0 1px rgba(0,0,0,.08);
+      box-shadow:0 12px 32px rgba(0,0,0,.55);
     }
 
     .brand-logo img{
       width:100%;
       height:100%;
       object-fit:contain;
-      padding:10px;
+      padding:8px;
     }
 
     .brand-text h1{
-      font-size:24px;
-      letter-spacing:.8px;
+      font-size:26px;
+      letter-spacing:.6px;
     }
 
     .brand-text small{
       font-size:13px;
-      color:var(--muted)
+      color:var(--muted);
     }
 
     nav a{
       color:var(--muted);
+      margin-left:18px;
       text-decoration:none;
-      margin-left:16px;
       font-size:14px;
     }
     nav a:hover{color:#fff}
 
-    /* SEÇÕES */
+    /* HERO */
     section{
-      padding:84px 0;
-      border-bottom:1px solid rgba(255,255,255,.06)
+      padding:90px 0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.4fr .6fr;
+      gap:36px;
     }
 
     h2{
       font-size:46px;
-      line-height:1.08;
-      margin-bottom:14px
-    }
-
-    .sub{
-      color:var(--muted);
-      max-width:760px
-    }
-
-    /* HERO */
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.35fr .65fr;
-      gap:32px
-    }
-
-    .cta-row{
-      display:flex;
-      gap:14px;
-      margin-top:28px;
-      flex-wrap:wrap
-    }
-
-    .btn{
-      padding:14px 20px;
-      border-radius:16px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.06);
-      color:#fff;
-      text-decoration:none;
-      font-weight:800;
-      transition:.2s
-    }
-
-    .btn:hover{
-      background:rgba(255,255,255,.12);
-      transform:translateY(-2px)
-    }
-
-    .btn.primary{
-      background:rgba(255,255,255,.2)
-    }
-
-    .hero-card{
-      padding:26px;
-      border-radius:20px;
-      background:var(--card2);
-      border:1px solid var(--border)
-    }
-
-    /* CONTATO */
-    .contato-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-      margin-top:32px
-    }
-
-    .contact-card{
-      padding:26px;
-      border-radius:18px;
-      background:var(--card);
-      border:1px solid var(--border);
-      text-decoration:none;
-      color:#fff;
-      font-weight:600
-    }
-
-    footer{
-      padding:38px 0;
-      text-align:center;
-      color:var(--muted)
-    }
-
-    /* MOBILE */
-    @media(max-width:900px){
-      .hero-grid,.contato-grid{grid-template-columns:1fr}
-      nav{display:none}
-      h2{font-size:36px}
-
-      .brand-logo{
-        width:72px;
-        height:72px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <div class="container">
-    <div class="header-wrap">
-
-      <div class="brand">
-        <div class="brand-logo">
-          <img src="logo-timp.png" alt="Logo TIMP do Brasil">
-        </div>
-        <div class="brand-text">
-          <h1>TIMP do Brasil</h1>
-          <small>Bauru - SP • Atendimento em todo o Brasil</small>
-        </div>
-      </div>
-
-      <nav>
-        <a href="#inicio">Início</a>
-        <a href="#contato">Contato</a>
-      </nav>
-
-    </div>
-  </div>
-</header>
-
-<main>
-
-<section id="inicio">
-  <div class="container hero-grid">
-
-    <div>
-      <h2>Atendimento rápido e direto.<br>Fale com a TIMP agora.</h2>
-      <p class="sub">Clique no WhatsApp e fale conosco.</p>
-
-      <div class="cta-row">
-        <a class="btn primary" href="https://wa.me/5514991856520" target="_blank">WhatsApp</a>
-        <a class="btn" href="#contato">Ver Contato</a>
-        <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar E-mail</a>
-      </div>
-    </div>
-
-    <div class="hero-card">
-      <strong>Contato oficial</strong><br><br>
-      WhatsApp: (14) 99185-6520<br>
-      E-mail: timpdobrasil@gmail.com<br>
-      Cidade: Bauru - SP
-    </div>
-
-  </div>
-</section>
-
-<section id="contato">
-  <div class="container">
-    <h2>Contato</h2>
-    <p class="sub">Atendimento rápido e direto.</p>
-
-    <div class="contato-grid">
-      <a class="contact-card" href="https://wa.me/5514991856520" target="_blank">
-        WhatsApp<br>(14) 99185-6520
-      </a>
-      <a class="contact-card" href="mailto:timpdobrasil@gmail.com">
-        E-mail<br>timpdobrasil@gmail.com
-      </a>
-      <div class="contact-card">
-        Cidade<br>Bauru - SP
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  © TIMP do Brasil — Todos os direitos reservados
-</footer>
-
-</body>
-</html>
+      li
