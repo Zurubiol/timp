@@ -4,19 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TIMP do Brasil</title>
-  <meta name="description" content="TIMP do Brasil — soluções com atendimento rápido. Fale conosco pelo WhatsApp." />
+  <meta name="description" content="TIMP do Brasil — atendimento rápido e direto. Fale conosco pelo WhatsApp." />
 
   <style>
     :root{
       --bg:#0b0b0b;
       --card:rgba(255,255,255,.05);
-      --card2:rgba(255,255,255,.08);
-      --border:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
+      --card2:rgba(255,255,255,.09);
+      --border:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.95);
       --muted:rgba(255,255,255,.7);
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
+
     body{
       font-family:Arial,Helvetica,sans-serif;
       background:
@@ -27,15 +28,15 @@
       line-height:1.6;
     }
 
-    .container{width:90%;max-width:1100px;margin:auto}
+    .container{width:90%;max-width:1180px;margin:auto}
 
     /* HEADER */
     header{
       position:sticky;
       top:0;
       z-index:50;
-      background:rgba(10,10,10,.75);
-      backdrop-filter:blur(10px);
+      background:rgba(10,10,10,.78);
+      backdrop-filter:blur(12px);
       border-bottom:1px solid rgba(255,255,255,.08)
     }
 
@@ -43,106 +44,109 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:14px 0;
-      gap:18px
+      padding:18px 0;
+      gap:20px
     }
 
-    /* LOGO AJUSTADA */
+    /* LOGO – MARCA FORTE */
     .brand{
       display:flex;
       align-items:center;
-      gap:16px
+      gap:20px
     }
 
     .brand-logo{
-      width:64px;          /* 🔹 tamanho ajustado */
-      height:64px;         /* 🔹 tamanho ajustado */
-      border-radius:16px;
-      background:rgba(255,255,255,.95);
+      width:88px;           /* 🔥 logo grande */
+      height:88px;          /* 🔥 logo grande */
+      border-radius:22px;
+      background:rgba(255,255,255,.96);
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 8px 24px rgba(0,0,0,.45)
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.45),
+        inset 0 0 0 1px rgba(0,0,0,.08);
     }
 
     .brand-logo img{
       width:100%;
       height:100%;
       object-fit:contain;
-      padding:8px           /* 🔹 respiro interno */
+      padding:10px;
     }
 
     .brand-text h1{
-      font-size:22px;
-      letter-spacing:.6px
+      font-size:24px;
+      letter-spacing:.8px;
     }
 
     .brand-text small{
-      font-size:12px;
+      font-size:13px;
       color:var(--muted)
     }
 
     nav a{
       color:var(--muted);
       text-decoration:none;
-      margin-left:14px;
-      font-size:14px
+      margin-left:16px;
+      font-size:14px;
     }
     nav a:hover{color:#fff}
 
+    /* SEÇÕES */
     section{
-      padding:76px 0;
+      padding:84px 0;
       border-bottom:1px solid rgba(255,255,255,.06)
     }
 
     h2{
-      font-size:42px;
-      line-height:1.1;
-      margin:10px 0
+      font-size:46px;
+      line-height:1.08;
+      margin-bottom:14px
     }
 
     .sub{
       color:var(--muted);
-      max-width:720px
+      max-width:760px
     }
 
     /* HERO */
     .hero-grid{
       display:grid;
-      grid-template-columns:1.3fr .7fr;
-      gap:26px
+      grid-template-columns:1.35fr .65fr;
+      gap:32px
     }
 
     .cta-row{
       display:flex;
-      gap:12px;
-      margin-top:26px;
+      gap:14px;
+      margin-top:28px;
       flex-wrap:wrap
     }
 
     .btn{
-      padding:12px 18px;
-      border-radius:14px;
+      padding:14px 20px;
+      border-radius:16px;
       border:1px solid var(--border);
       background:rgba(255,255,255,.06);
       color:#fff;
       text-decoration:none;
-      font-weight:700;
+      font-weight:800;
       transition:.2s
     }
 
     .btn:hover{
-      background:rgba(255,255,255,.1);
+      background:rgba(255,255,255,.12);
       transform:translateY(-2px)
     }
 
     .btn.primary{
-      background:rgba(255,255,255,.16)
+      background:rgba(255,255,255,.2)
     }
 
     .hero-card{
-      padding:22px;
-      border-radius:18px;
+      padding:26px;
+      border-radius:20px;
       background:var(--card2);
       border:1px solid var(--border)
     }
@@ -151,34 +155,35 @@
     .contato-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-top:28px
+      gap:20px;
+      margin-top:32px
     }
 
     .contact-card{
-      padding:22px;
-      border-radius:16px;
+      padding:26px;
+      border-radius:18px;
       background:var(--card);
       border:1px solid var(--border);
       text-decoration:none;
-      color:#fff
+      color:#fff;
+      font-weight:600
     }
 
     footer{
-      padding:34px 0;
+      padding:38px 0;
       text-align:center;
       color:var(--muted)
     }
 
+    /* MOBILE */
     @media(max-width:900px){
       .hero-grid,.contato-grid{grid-template-columns:1fr}
       nav{display:none}
-      h2{font-size:34px}
+      h2{font-size:36px}
 
-      /* LOGO NO MOBILE */
       .brand-logo{
-        width:56px;
-        height:56px;
+        width:72px;
+        height:72px;
       }
     }
   </style>
@@ -189,6 +194,7 @@
 <header>
   <div class="container">
     <div class="header-wrap">
+
       <div class="brand">
         <div class="brand-logo">
           <img src="logo-timp.png" alt="Logo TIMP do Brasil">
@@ -203,6 +209,7 @@
         <a href="#inicio">Início</a>
         <a href="#contato">Contato</a>
       </nav>
+
     </div>
   </div>
 </header>
@@ -211,6 +218,7 @@
 
 <section id="inicio">
   <div class="container hero-grid">
+
     <div>
       <h2>Atendimento rápido e direto.<br>Fale com a TIMP agora.</h2>
       <p class="sub">Clique no WhatsApp e fale conosco.</p>
@@ -228,6 +236,7 @@
       E-mail: timpdobrasil@gmail.com<br>
       Cidade: Bauru - SP
     </div>
+
   </div>
 </section>
 
