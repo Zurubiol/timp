@@ -15,7 +15,9 @@
   --text:#f5f5f5;
   --muted:#bdbdbd;
 }
+
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:
@@ -25,85 +27,82 @@ body{
   color:var(--text);
   line-height:1.6;
 }
-.container{width:90%;max-width:1200px;margin:auto}
 
-/* HEADER */
+.container{
+  width:90%;
+  max-width:1280px;
+  margin:auto;
+}
+
+/* HEADER COM LOGO GIGANTE */
 header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(10,10,10,.9);
+  background:rgba(10,10,10,.92);
   backdrop-filter:blur(10px);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
+
 .header-wrap{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:18px 0;
+  padding:26px 0;
   gap:24px;
 }
 
-/* BRAND */
-.brand{
-  display:flex;
-  align-items:center;
-  gap:18px;
+.brand img{
+  height:110px;       /* LOGO GRANDE */
+  width:auto;
+  display:block;
 }
-.brand-logo{
-  width:96px;
-  height:96px;
-  background:#fff;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.45);
-}
-.brand-logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  padding:6px;
-}
-.brand-text h1{font-size:24px;letter-spacing:.6px}
-.brand-text small{font-size:13px;color:var(--muted)}
 
+/* NAV */
 nav a{
   color:var(--muted);
   margin-left:18px;
   text-decoration:none;
   font-size:14px;
+  font-weight:600;
 }
 nav a:hover{color:#fff}
 
-/* SECTIONS */
+/* SEÇÕES */
 section{
-  padding:96px 0;
+  padding:110px 0;
   border-bottom:1px solid rgba(255,255,255,.06);
 }
+
 h2{
-  font-size:46px;
+  font-size:52px;
   line-height:1.1;
-  margin-bottom:12px;
+  margin-bottom:16px;
 }
-.sub{color:var(--muted);max-width:760px}
+
+.sub{
+  color:var(--muted);
+  max-width:820px;
+  font-size:18px;
+}
 
 /* HERO */
 .hero-grid{
   display:grid;
-  grid-template-columns:1.4fr .6fr;
-  gap:36px;
+  grid-template-columns:1.5fr .5fr;
+  gap:40px;
 }
+
 .cta-row{
   display:flex;
-  gap:14px;
-  margin-top:28px;
+  gap:16px;
+  margin-top:34px;
   flex-wrap:wrap;
 }
+
 .btn{
-  padding:14px 22px;
-  border-radius:16px;
+  padding:16px 26px;
+  border-radius:18px;
   background:var(--card);
   border:1px solid var(--border);
   color:#fff;
@@ -115,23 +114,26 @@ h2{
   background:rgba(255,255,255,.18);
   transform:translateY(-2px);
 }
+
 .hero-card{
-  padding:28px;
-  border-radius:22px;
+  padding:32px;
+  border-radius:26px;
   background:var(--card);
   border:1px solid var(--border);
+  font-size:16px;
 }
 
-/* GRID */
+/* GRID PADRÃO */
 .grid-3{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  margin-top:32px;
+  gap:28px;
+  margin-top:36px;
 }
+
 .card{
-  padding:26px;
-  border-radius:22px;
+  padding:30px;
+  border-radius:26px;
   background:var(--card);
   border:1px solid var(--border);
 }
@@ -140,32 +142,39 @@ h2{
 .contato-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  margin-top:32px;
+  gap:28px;
+  margin-top:36px;
 }
+
 .contact-card{
-  padding:26px;
-  border-radius:22px;
+  padding:30px;
+  border-radius:26px;
   background:var(--card);
   border:1px solid var(--border);
   color:#fff;
   text-decoration:none;
+  font-weight:700;
 }
 
 /* FOOTER */
 footer{
-  padding:42px 0;
+  padding:50px 0;
   text-align:center;
   color:var(--muted);
   background:var(--bg2);
+  font-size:14px;
 }
 
 /* RESPONSIVO */
 @media(max-width:900px){
   nav{display:none}
-  .hero-grid,.grid-3,.contato-grid{grid-template-columns:1fr}
-  h2{font-size:36px}
-  .brand-logo{width:76px;height:76px}
+  .hero-grid,
+  .grid-3,
+  .contato-grid{
+    grid-template-columns:1fr;
+  }
+  h2{font-size:38px}
+  .brand img{height:72px}
 }
 </style>
 </head>
@@ -175,13 +184,7 @@ footer{
 <header>
   <div class="container header-wrap">
     <div class="brand">
-      <div class="brand-logo">
-        <img src="logo-timp.jpeg" alt="TIMP Studio Premium">
-      </div>
-      <div class="brand-text">
-        <h1>TIMP do Brasil</h1>
-        <small>Bauru - SP • Atendimento em todo o Brasil</small>
-      </div>
+      <img src="logo-timp.jpeg" alt="TIMP Studio Premium">
     </div>
 
     <nav>
@@ -202,9 +205,10 @@ footer{
     <div>
       <h2>Atendimento rápido e direto.<br>Fale com a TIMP agora.</h2>
       <p class="sub">
-        Soluções com presença, credibilidade e um contato fácil.
-        Clique no WhatsApp e fale conosco.
+        Soluções audiovisuais com presença, credibilidade e contato fácil.
+        Clique no WhatsApp e fale conosco agora mesmo.
       </p>
+
       <div class="cta-row">
         <a class="btn" href="https://wa.me/5514991856520" target="_blank">WhatsApp</a>
         <a class="btn" href="#contato">Ver Contato</a>
@@ -216,7 +220,8 @@ footer{
       <strong>Contato oficial</strong><br><br>
       WhatsApp: (14) 99185-6520<br>
       E-mail: timpdobrasil@gmail.com<br>
-      Cidade: Bauru - SP
+      Cidade: Bauru - SP<br>
+      Atendimento em todo o Brasil
     </div>
   </div>
 </section>
@@ -225,12 +230,15 @@ footer{
   <div class="container">
     <h2>Quem somos</h2>
     <p class="sub">
-      A TIMP do Brasil atua com foco em atendimento claro, objetivo e profissional.
+      A TIMP do Brasil é um estúdio premium focado em soluções audiovisuais,
+      atendimento direto e comunicação clara. Atuamos com profissionalismo,
+      agilidade e qualidade em todo o Brasil.
     </p>
+
     <div class="grid-3">
-      <div class="card">Atendimento ágil e direto</div>
-      <div class="card">Comunicação clara e profissional</div>
-      <div class="card">Atuação em todo o Brasil</div>
+      <div class="card">Atendimento rápido e humano</div>
+      <div class="card">Qualidade premium em produção</div>
+      <div class="card">Compromisso com resultado</div>
     </div>
   </div>
 </section>
@@ -238,10 +246,14 @@ footer{
 <section id="servicos">
   <div class="container">
     <h2>Serviços</h2>
+    <p class="sub">
+      Estrutura completa para projetos audiovisuais e institucionais.
+    </p>
+
     <div class="grid-3">
-      <div class="card">Produção audiovisual</div>
-      <div class="card">Conteúdo institucional</div>
-      <div class="card">Projetos sob medida</div>
+      <div class="card">Produção de vídeos profissionais</div>
+      <div class="card">Conteúdo institucional e comercial</div>
+      <div class="card">Projetos personalizados</div>
     </div>
   </div>
 </section>
@@ -249,10 +261,14 @@ footer{
 <section id="portfolio">
   <div class="container">
     <h2>Portfólio</h2>
+    <p class="sub">
+      Espaço reservado para apresentação de vídeos e projetos realizados.
+    </p>
+
     <div class="grid-3">
-      <div class="card">Projeto / Vídeo 1</div>
-      <div class="card">Projeto / Vídeo 2</div>
-      <div class="card">Projeto / Vídeo 3</div>
+      <div class="card">Projeto / Vídeo 01</div>
+      <div class="card">Projeto / Vídeo 02</div>
+      <div class="card">Projeto / Vídeo 03</div>
     </div>
   </div>
 </section>
@@ -260,10 +276,14 @@ footer{
 <section id="depoimentos">
   <div class="container">
     <h2>Depoimentos</h2>
+    <p class="sub">
+      O que nossos clientes dizem sobre a TIMP.
+    </p>
+
     <div class="grid-3">
       <div class="card">“Atendimento rápido e profissional.”</div>
-      <div class="card">“Excelente qualidade e confiança.”</div>
-      <div class="card">“Voltaria a contratar sem pensar duas vezes.”</div>
+      <div class="card">“Qualidade acima da média.”</div>
+      <div class="card">“Empresa séria e confiável.”</div>
     </div>
   </div>
 </section>
@@ -271,6 +291,10 @@ footer{
 <section id="contato">
   <div class="container">
     <h2>Contato</h2>
+    <p class="sub">
+      Fale com a TIMP. Atendimento direto, rápido e sem burocracia.
+    </p>
+
     <div class="contato-grid">
       <a class="contact-card" href="https://wa.me/5514991856520" target="_blank">
         WhatsApp<br>(14) 99185-6520
