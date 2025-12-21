@@ -1,77 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TIMP Studio Premium | Produção de Vídeos Profissionais</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description" content="Produção de vídeos profissionais que fortalecem marcas, aumentam autoridade e geram resultados reais para empresas.">
+  <title>TIMP Studio Premium | Produção de Vídeos Profissionais</title>
+  <meta name="description" content="A TIMP Studio Premium é especializada na produção de vídeos institucionais, comerciais e conteúdo estratégico para empresas. Peça um orçamento no WhatsApp." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph (preview ao compartilhar) -->
+  <meta property="og:title" content="TIMP Studio Premium" />
+  <meta property="og:description" content="Produção de vídeos profissionais que fortalecem marcas, aumentam autoridade e geram resultados reais para empresas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="logo-timp.png" />
+
+  <!-- Ícone (opcional; aqui usando o próprio logo) -->
+  <link rel="icon" href="logo-timp.png" />
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #111;
+    :root{
+      --text:#111;
+      --muted:#444;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --border:#eaeaea;
+      --btn:#111;
+      --btnText:#fff;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
     }
 
-    section {
-      max-width: 1100px;
+    *{ box-sizing: border-box; }
+
+    body{
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    .wrap{
+      max-width: 980px;
       margin: 0 auto;
-      padding: 80px 20px;
+      padding: 80px 20px 60px;
       text-align: center;
     }
 
-    img {
-      max-width: 360px;
-      width: 100%;
-      margin-bottom: 40px;
+    .logo{
+      width: min(520px, 90vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 28px;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.12));
+      border-radius: 12px;
     }
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
+    h1{
+      margin: 10px 0 10px;
+      font-size: clamp(30px, 4vw, 46px);
+      letter-spacing: .2px;
     }
 
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 700px;
-      margin: 0 auto 40px;
+    .subtitle{
+      max-width: 780px;
+      margin: 0 auto 26px;
+      color: var(--muted);
+      font-size: clamp(16px, 2.2vw, 18px);
     }
 
-    a.button {
+    .cta{
       display: inline-block;
-      background: #000;
-      color: #fff;
-      padding: 16px 30px;
-      border-radius: 6px;
+      margin-top: 10px;
+      padding: 16px 28px;
+      background: var(--btn);
+      color: var(--btnText);
       text-decoration: none;
-      font-size: 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .cta:hover{ transform: translateY(-2px); opacity: .95; }
+
+    .info{
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--muted);
     }
 
-    a.button:hover {
-      opacity: 0.85;
+    .card{
+      margin: 40px auto 0;
+      max-width: 860px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 18px;
+      box-shadow: 0 6px 22px rgba(0,0,0,.05);
+      text-align: left;
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .item{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 12px;
+      background: #fff;
+    }
+    .item strong{ display: block; margin-bottom: 4px; }
+
+    footer{
+      margin-top: 40px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    @media (max-width: 720px){
+      .wrap{ padding: 60px 16px 50px; }
+      .card{ text-align: left; }
+      .grid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
+  <main class="wrap">
+    <!-- Logo -->
+    <img class="logo" src="logo-timp.png" alt="TIMP Studio Premium" />
 
-  <section>
-    <img src="logo-timp.jpeg" alt="TIMP Studio Premium">
-
+    <!-- Título -->
     <h1>TIMP Studio Premium</h1>
 
-    <p>
-      Produção de vídeos profissionais que fortalecem marcas,
-      aumentam autoridade e geram resultados reais para empresas.
+    <!-- Texto principal -->
+    <p class="subtitle">
+      Produção de vídeos profissionais que fortalecem marcas, aumentam autoridade
+      e geram resultados reais para empresas.
     </p>
 
-    <a class="button" href="https://wa.me/5514991856520" target="_blank">
+    <!-- Botão WhatsApp (com seu telefone correto) -->
+    <a class="cta"
+       href="https://wa.me/5514991856520?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20de%20v%C3%ADdeo%20com%20a%20TIMP%20Studio%20Premium"
+       target="_blank" rel="noopener">
       Pedir orçamento no WhatsApp
     </a>
-  </section>
 
+    <!-- Telefone visível -->
+    <div class="info">
+      WhatsApp: <strong>(14) 99185-6520</strong>
+    </div>
+
+    <!-- Bloco profissional (opcional, mas ajuda muito) -->
+    <section class="card" aria-label="Informações e serviços">
+      <h2>O que a TIMP Studio Premium entrega</h2>
+
+      <div class="grid">
+        <div class="item">
+          <strong>Vídeos institucionais</strong>
+          Apresente sua empresa com autoridade e clareza.
+        </div>
+        <div class="item">
+          <strong>Vídeos comerciais</strong>
+          Conteúdo focado em conversão e vendas.
+        </div>
+        <div class="item">
+          <strong>Conteúdo estratégico</strong>
+          Vídeos para redes sociais, anúncios e campanhas.
+        </div>
+        <div class="item">
+          <strong>Qualidade premium</strong>
+          Roteiro + captação + edição com padrão profissional.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> TIMP Studio Premium — Todos os direitos reservados.
+    </footer>
+  </main>
+
+  <script>
+    // ano automático no rodapé
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
