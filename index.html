@@ -2,196 +2,175 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>TIMP Studio Premium | Produção de Vídeos Profissionais</title>
-  <meta name="description" content="A TIMP Studio Premium é especializada na produção de vídeos institucionais, comerciais e conteúdo estratégico para empresas. Peça um orçamento no WhatsApp." />
-  <meta name="robots" content="index,follow" />
-
-  <!-- Open Graph (preview ao compartilhar) -->
-  <meta property="og:title" content="TIMP Studio Premium" />
-  <meta property="og:description" content="Produção de vídeos profissionais que fortalecem marcas, aumentam autoridade e geram resultados reais para empresas." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="logo-timp.png" />
-
-  <!-- Ícone (opcional; aqui usando o próprio logo) -->
-  <link rel="icon" href="logo-timp.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TIMP do Brasil</title>
 
   <style>
-    :root{
-      --text:#111;
-      --muted:#444;
-      --bg:#ffffff;
-      --card:#ffffff;
-      --border:#eaeaea;
-      --btn:#111;
-      --btnText:#fff;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    *{ box-sizing: border-box; }
-
-    body{
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--bg);
+    body {
+      background: #0f0f0f;
+      color: #ffffff;
       line-height: 1.6;
     }
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 80px 20px 60px;
-      text-align: center;
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    .logo{
-      width: min(520px, 90vw);
-      height: auto;
-      display: block;
-      margin: 0 auto 28px;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.12));
-      border-radius: 12px;
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    h1{
-      margin: 10px 0 10px;
-      font-size: clamp(30px, 4vw, 46px);
-      letter-spacing: .2px;
+    header h1 {
+      font-size: 28px;
+      letter-spacing: 1px;
     }
 
-    .subtitle{
-      max-width: 780px;
-      margin: 0 auto 26px;
-      color: var(--muted);
-      font-size: clamp(16px, 2.2vw, 18px);
-    }
-
-    .cta{
-      display: inline-block;
+    nav {
       margin-top: 10px;
-      padding: 16px 28px;
-      background: var(--btn);
-      color: var(--btnText);
+    }
+
+    nav a {
+      color: #ffffff;
       text-decoration: none;
-      border-radius: 12px;
-      font-weight: 700;
-      box-shadow: var(--shadow);
-      transition: transform .15s ease, opacity .15s ease;
-    }
-    .cta:hover{ transform: translateY(-2px); opacity: .95; }
-
-    .info{
-      margin-top: 18px;
-      font-size: 14px;
-      color: var(--muted);
+      margin-right: 16px;
+      opacity: 0.85;
     }
 
-    .card{
-      margin: 40px auto 0;
-      max-width: 860px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px 18px;
-      box-shadow: 0 6px 22px rgba(0,0,0,.05);
-      text-align: left;
+    nav a:hover {
+      opacity: 1;
     }
 
-    .card h2{
-      margin: 0 0 10px;
-      font-size: 18px;
-      text-align: center;
+    section {
+      padding: 64px 0;
     }
 
-    .grid{
+    h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      opacity: 0.85;
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+
+    /* CONTATO */
+    .contato-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
+      color: #ffffff;
+      transition: all .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .card-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card-info {
+      font-size: 16px;
+    }
+
+    .card-cta {
       margin-top: 14px;
+      font-weight: bold;
+      opacity: 0.9;
     }
 
-    .item{
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 12px;
-      background: #fff;
-    }
-    .item strong{ display: block; margin-bottom: 4px; }
-
-    footer{
-      margin-top: 40px;
-      font-size: 12px;
-      color: #666;
+    .card-static:hover {
+      transform: none;
+      cursor: default;
     }
 
-    @media (max-width: 720px){
-      .wrap{ padding: 60px 16px 50px; }
-      .card{ text-align: left; }
-      .grid{ grid-template-columns: 1fr; }
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      opacity: 0.6;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 900px) {
+      .contato-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <!-- Logo -->
-    <img class="logo" src="logo-timp.png" alt="TIMP Studio Premium" />
 
-    <!-- Título -->
-    <h1>TIMP Studio Premium</h1>
-
-    <!-- Texto principal -->
-    <p class="subtitle">
-      Produção de vídeos profissionais que fortalecem marcas, aumentam autoridade
-      e geram resultados reais para empresas.
-    </p>
-
-    <!-- Botão WhatsApp (com seu telefone correto) -->
-    <a class="cta"
-       href="https://wa.me/5514991856520?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20de%20v%C3%ADdeo%20com%20a%20TIMP%20Studio%20Premium"
-       target="_blank" rel="noopener">
-      Pedir orçamento no WhatsApp
-    </a>
-
-    <!-- Telefone visível -->
-    <div class="info">
-      WhatsApp: <strong>(14) 99185-6520</strong>
+  <header>
+    <div class="container">
+      <h1>TIMP do Brasil</h1>
+      <nav>
+        <a href="#contato">Contato</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Bloco profissional (opcional, mas ajuda muito) -->
-    <section class="card" aria-label="Informações e serviços">
-      <h2>O que a TIMP Studio Premium entrega</h2>
+  <main>
 
-      <div class="grid">
-        <div class="item">
-          <strong>Vídeos institucionais</strong>
-          Apresente sua empresa com autoridade e clareza.
-        </div>
-        <div class="item">
-          <strong>Vídeos comerciais</strong>
-          Conteúdo focado em conversão e vendas.
-        </div>
-        <div class="item">
-          <strong>Conteúdo estratégico</strong>
-          Vídeos para redes sociais, anúncios e campanhas.
-        </div>
-        <div class="item">
-          <strong>Qualidade premium</strong>
-          Roteiro + captação + edição com padrão profissional.
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="container">
+        <h2>Contato</h2>
+        <p class="sub">Fale com a TIMP. Atendimento rápido e direto.</p>
+
+        <div class="contato-grid">
+          <a class="card" href="https://wa.me/5514991856520" target="_blank" rel="noopener">
+            <div class="card-title">WhatsApp</div>
+            <div class="card-info">(14) 99185-6520</div>
+            <div class="card-cta">Abrir conversa →</div>
+          </a>
+
+          <a class="card" href="mailto:timpdobrasil@gmail.com">
+            <div class="card-title">E-mail</div>
+            <div class="card-info">timpdobrasil@gmail.com</div>
+            <div class="card-cta">Enviar e-mail →</div>
+          </a>
+
+          <div class="card card-static">
+            <div class="card-title">Cidade</div>
+            <div class="card-info">Bauru - SP</div>
+            <div class="card-cta">Atendimento em todo o Brasil</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <footer>
-      © <span id="year"></span> TIMP Studio Premium — Todos os direitos reservados.
-    </footer>
   </main>
 
-  <script>
-    // ano automático no rodapé
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <footer>
+    <div class="container">
+      © TIMP do Brasil — Todos os direitos reservados
+    </div>
+  </footer>
+
 </body>
 </html>
