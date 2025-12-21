@@ -46,20 +46,49 @@
       gap: 16px;
       padding: 14px 0;
     }
+
+    /* BRAND com LOGO */
     .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .brand-logo{
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      flex: 0 0 46px;
+    }
+    .brand-logo img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display:block;
+      padding: 6px;
+      opacity: 0.95;
+    }
+    .brand-text{
       display:flex;
       flex-direction:column;
       gap: 2px;
     }
-    .brand h1{
+    .brand-text h1{
       font-size: 22px;
       letter-spacing: 0.6px;
       margin: 0;
     }
-    .brand small{
+    .brand-text small{
       color: var(--muted2);
       font-size: 12px;
     }
+
     nav a{
       color: var(--muted);
       text-decoration: none;
@@ -75,9 +104,7 @@
     p.sub{ color: var(--muted); max-width: 720px; }
 
     /* HERO */
-    .hero{
-      padding: 78px 0 72px;
-    }
+    .hero{ padding: 78px 0 72px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.3fr 0.7fr;
@@ -169,7 +196,7 @@
     .card h3{ font-size: 16px; margin-bottom: 8px; }
     .card p{ color: var(--muted); font-size: 14px; }
 
-    /* PORTFOLIO PLACEHOLDER */
+    /* PORTFOLIO NOTE */
     .portfolio-note{
       margin-top: 18px;
       color: var(--muted);
@@ -216,6 +243,7 @@
       .contato-grid{ grid-template-columns: 1fr; }
       .hero h2{ font-size: 36px; }
       nav{ display:none; } /* simplifica no mobile */
+      .brand{ min-width: unset; }
     }
   </style>
 </head>
@@ -224,10 +252,21 @@
   <header>
     <div class="container">
       <div class="header-wrap">
+
+        <!-- LOGO + Nome -->
         <div class="brand">
-          <h1>TIMP do Brasil</h1>
-          <small>Bauru - SP • Atendimento em todo o Brasil</small>
+          <div class="brand-logo" title="Logo TIMP">
+            <!-- IMPORTANTE: coloque um arquivo chamado logo.png na raiz do repositório -->
+            <img src="logo.png" alt="Logo TIMP do Brasil"
+                 onerror="this.style.display='none'; this.parentElement.style.justifyContent='center'; this.parentElement.innerHTML='<span style=&quot;color:rgba(255,255,255,0.65);font-weight:800;font-size:12px;&quot;>TIMP</span>';">
+          </div>
+
+          <div class="brand-text">
+            <h1>TIMP do Brasil</h1>
+            <small>Bauru - SP • Atendimento em todo o Brasil</small>
+          </div>
         </div>
+
         <nav>
           <a href="#inicio">Início</a>
           <a href="#sobre">Sobre</a>
@@ -236,6 +275,7 @@
           <a href="#depoimentos">Depoimentos</a>
           <a href="#contato">Contato</a>
         </nav>
+
       </div>
     </div>
   </header>
@@ -370,54 +410,3 @@
           <div class="card">
             <h3>Cliente 1</h3>
             <p>“Depoimento curto destacando a qualidade do atendimento e resultado.”</p>
-          </div>
-          <div class="card">
-            <h3>Cliente 2</h3>
-            <p>“Depoimento curto reforçando confiança, entrega e rapidez.”</p>
-          </div>
-          <div class="card">
-            <h3>Cliente 3</h3>
-            <p>“Depoimento curto falando de experiência e satisfação.”</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato">
-      <div class="container">
-        <div class="kicker">Contato</div>
-        <h2>Fale com a TIMP</h2>
-        <p class="sub">Atendimento rápido e direto. Use o WhatsApp (número único) ou e-mail.</p>
-
-        <div class="contato-grid">
-          <a class="contact-card" href="https://wa.me/5514991856520" target="_blank" rel="noopener">
-            <div class="contact-title">WhatsApp</div>
-            <div class="contact-info">(14) 99185-6520</div>
-            <div class="contact-cta">Abrir conversa →</div>
-          </a>
-
-          <a class="contact-card" href="mailto:timpdobrasil@gmail.com">
-            <div class="contact-title">E-mail</div>
-            <div class="contact-info">timpdobrasil@gmail.com</div>
-            <div class="contact-cta">Enviar e-mail →</div>
-          </a>
-
-          <div class="contact-card static">
-            <div class="contact-title">Cidade</div>
-            <div class="contact-info">Bauru - SP</div>
-            <div class="contact-cta">Atendimento em todo o Brasil</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container">
-      © TIMP do Brasil — Todos os direitos reservados
-    </div>
-  </footer>
-</body>
-</html>
