@@ -4,265 +4,167 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TIMP do Brasil</title>
-<meta name="description" content="TIMP Studio Premium — Produção audiovisual com presença, credibilidade e atendimento direto em todo o Brasil." />
+<meta name="description" content="TIMP do Brasil — Atendimento rápido e direto. Fale com a TIMP agora." />
 
 <style>
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box}
-
-/* BASE */
 :root{
   --bg:#0b0b0b;
-  --bg2:#050505;
-  --text:#fff;
-  --muted:#cfcfcf;
-  --line:rgba(255,255,255,.10);
-  --glass:rgba(0,0,0,.65);
+  --bg2:#111;
+  --card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+  --text:#f5f5f5;
+  --muted:#bdbdbd;
+  --green:#25D366;
+  --green-dark:#1da851;
 }
 
+*{margin:0;padding:0;box-sizing:border-box}
+
 html{scroll-behavior:smooth}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
+  background:
+    radial-gradient(1200px 600px at 10% 10%,rgba(255,255,255,.06),transparent 55%),
+    linear-gradient(135deg,#000,#111);
   color:var(--text);
-  overflow-x:hidden;
 }
 
 /* HEADER */
 header{
-  position:fixed;
-  top:0;left:0;
-  width:100%;
+  position:sticky;
+  top:0;
   z-index:100;
-  background:var(--glass);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.06);
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
 }
 
-.header-container{
-  max-width:1400px;
+.nav{
+  max-width:1200px;
   margin:auto;
-  padding:14px 22px;
+  padding:14px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:14px;
 }
 
-/* “Mock” (logotipo pequeno no topo, só para mobile não ficar vazio) */
-.brand-mini{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  min-width:0;
-}
-.brand-mini img{
-  width:34px;height:34px;
-  object-fit:contain;
-  display:block;
-  opacity:.92;
-}
-.brand-mini .brand-text{
-  font-size:14px;
-  font-weight:700;
-  letter-spacing:.2px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  max-width:45vw;
-  color:#f1f1f1;
+.nav img{
+  height:46px;
 }
 
-/* NAV (DESKTOP) */
-nav.nav-desktop{
+.nav ul{
+  list-style:none;
   display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:26px;
+  gap:24px;
 }
-nav.nav-desktop a{
+
+.nav a{
+  text-decoration:none;
   color:var(--muted);
-  text-decoration:none;
-  font-size:14px;
-  font-weight:500;
-  position:relative;
-  padding:6px 0;
-}
-nav.nav-desktop a:hover{color:#fff}
-nav.nav-desktop a.active{color:#fff}
-nav.nav-desktop a.active::after{
-  content:"";
-  position:absolute;
-  left:0;bottom:-6px;
-  width:100%;
-  height:2px;
-  background:#fff;
-  border-radius:2px;
+  font-size:15px;
 }
 
-/* BOTÃO HAMBURGUER (MOBILE) */
-.menu-btn{
-  display:none;
-  align-items:center;
-  justify-content:center;
-  width:44px;height:44px;
-  border-radius:12px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-  cursor:pointer;
+.nav a:hover{
   color:#fff;
-}
-.menu-btn:active{transform:scale(.98)}
-.menu-icon{
-  width:18px;height:12px; position:relative;
-}
-.menu-icon span{
-  position:absolute; left:0; right:0;
-  height:2px; background:#fff;
-  border-radius:2px;
-  transition:.2s;
-}
-.menu-icon span:nth-child(1){top:0}
-.menu-icon span:nth-child(2){top:5px; opacity:1}
-.menu-icon span:nth-child(3){top:10px}
-
-/* MENU MOBILE (PAINEL) */
-.mobile-panel{
-  display:none;
-  border-top:1px solid rgba(255,255,255,.06);
-  background:rgba(0,0,0,.75);
-  backdrop-filter:blur(12px);
-}
-.mobile-panel .inner{
-  max-width:1400px;
-  margin:auto;
-  padding:10px 18px 16px;
-}
-.mobile-panel a{
-  display:block;
-  padding:12px 10px;
-  border-radius:12px;
-  color:#e8e8e8;
-  text-decoration:none;
-  font-weight:700;
-  letter-spacing:.2px;
-}
-.mobile-panel a:hover{
-  background:rgba(255,255,255,.07);
-}
-.mobile-panel a.active{
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.12);
+  border-bottom:2px solid #fff;
+  padding-bottom:4px;
 }
 
-/* HERO COM LOGO GIGANTE */
+/* HERO */
 .hero{
-  height:100vh;
+  min-height:90vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:
-    radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 55%),
-    linear-gradient(180deg,#0b0b0b 0%,#060606 100%);
-  /* Empurra o conteúdo para não ficar escondido atrás do header fixo */
-  padding-top:78px;
 }
+
 .hero img{
-  max-width:900px;
-  width:min(86vw, 900px);
+  max-width:90%;
   height:auto;
-  filter:
-    drop-shadow(0 25px 60px rgba(0,0,0,.9))
-    drop-shadow(0 0 80px rgba(255,255,255,.08));
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,.6));
 }
 
-/* SEÇÕES */
+/* SECTIONS */
 section{
-  padding:110px 22px;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.container{
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
-}
-h2{
-  font-size:48px;
-  margin-bottom:22px;
-}
-p{
-  color:#bdbdbd;
-  font-size:18px;
-  line-height:1.7;
-  max-width:900px;
+  padding:80px 20px;
 }
 
-/* BOTÕES */
+h2{
+  font-size:42px;
+  margin-bottom:20px;
+}
+
+p{
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+}
+
+/* CONTACT */
+.contact{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:40px;
+  max-width:600px;
+}
+
+.contact p{
+  margin-bottom:10px;
+}
+
+/* BUTTONS */
 .buttons{
-  margin-top:36px;
   display:flex;
   gap:16px;
+  margin-top:25px;
   flex-wrap:wrap;
 }
+
 .btn{
   padding:14px 26px;
-  border-radius:18px;
+  border-radius:999px;
+  border:1px solid var(--border);
   background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
   color:#fff;
   text-decoration:none;
-  font-weight:700;
+  font-weight:600;
   transition:.25s;
 }
+
 .btn:hover{
-  background:rgba(255,255,255,.18);
-  transform:translateY(-2px);
+  background:rgba(255,255,255,.15);
 }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:26px;
-  margin-top:44px;
-}
-.card{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:24px;
-  padding:30px;
-  font-size:16px;
+/* WHATSAPP BUTTON */
+.btn-whatsapp{
+  background:var(--green);
+  border-color:var(--green);
+  color:#000;
 }
 
-/* CONTATO */
-.contact-info{
-  margin-top:30px;
-  font-size:18px;
-  line-height:1.9;
+.btn-whatsapp:hover{
+  background:var(--green-dark);
+  border-color:var(--green-dark);
 }
 
 /* FOOTER */
 footer{
-  padding:44px 22px;
   text-align:center;
-  color:#777;
-  background:var(--bg2);
-  font-size:14px;
+  padding:30px;
+  color:#888;
+  border-top:1px solid var(--border);
+  margin-top:80px;
 }
 
-/* SCROLL OFFSET (para o header fixo) */
-#inicio, #sobre, #servicos, #portfolio, #depoimentos, #contato{
-  scroll-margin-top:92px;
-}
-
-/* RESPONSIVO */
-@media(max-width:980px){
-  nav.nav-desktop{display:none}
-  .menu-btn{display:flex}
-  .mobile-panel{display:none} /* só aparece quando abrir */
-  h2{font-size:36px}
-  .grid{grid-template-columns:1fr}
-  .hero{padding-top:86px}
-  .hero img{width:min(92vw, 820px)}
+/* MOBILE */
+@media(max-width:768px){
+  .nav ul{display:none}
+  h2{font-size:32px}
+  .contact{padding:30px}
 }
 </style>
 </head>
@@ -270,168 +172,46 @@ footer{
 <body>
 
 <header>
-  <div class="header-container">
-    <div class="brand-mini" aria-label="TIMP Studio Premium">
-      <!-- mini logo opcional no topo (fica discreta no mobile) -->
-      <img src="logo-timp.png" alt="TIMP" />
-      <div class="brand-text">TIMP Studio Premium</div>
-    </div>
-
-    <nav class="nav-desktop" aria-label="Menu principal">
-      <a href="#inicio" class="active">Início</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#depoimentos">Depoimentos</a>
-      <a href="#contato">Contato</a>
-    </nav>
-
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
-      <div class="menu-icon" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-    </button>
-  </div>
-
-  <!-- Painel mobile -->
-  <div class="mobile-panel" id="mobilePanel">
-    <div class="inner">
-      <a href="#inicio" class="active">Início</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#depoimentos">Depoimentos</a>
-      <a href="#contato">Contato</a>
-    </div>
+  <div class="nav">
+    <img src="logo-timp.png" alt="TIMP Studio Premium">
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
   </div>
 </header>
 
-<!-- HERO / LOGO -->
 <section class="hero" id="inicio">
   <img src="logo-timp.png" alt="TIMP Studio Premium">
 </section>
 
-<section id="sobre">
-  <div class="container">
-    <h2>Quem somos</h2>
-    <p>
-      A TIMP Studio Premium é um estúdio audiovisual focado em presença de marca,
-      produção profissional e atendimento direto. Atuamos com clareza,
-      excelência estética e compromisso com resultado, atendendo clientes
-      em todo o Brasil.
-    </p>
-  </div>
-</section>
-
-<section id="servicos">
-  <div class="container">
-    <h2>Serviços</h2>
-    <div class="grid">
-      <div class="card">Produção de vídeos profissionais</div>
-      <div class="card">Conteúdo institucional e comercial</div>
-      <div class="card">Projetos audiovisuais sob medida</div>
-    </div>
-  </div>
-</section>
-
-<section id="portfolio">
-  <div class="container">
-    <h2>Portfólio</h2>
-    <div class="grid">
-      <div class="card">Projeto / Vídeo 01</div>
-      <div class="card">Projeto / Vídeo 02</div>
-      <div class="card">Projeto / Vídeo 03</div>
-    </div>
-  </div>
-</section>
-
-<section id="depoimentos">
-  <div class="container">
-    <h2>Depoimentos</h2>
-    <div class="grid">
-      <div class="card">“Marca forte, visual impecável e atendimento rápido.”</div>
-      <div class="card">“Produção premium do início ao fim.”</div>
-      <div class="card">“Experiência profissional acima da média.”</div>
-    </div>
-  </div>
-</section>
-
 <section id="contato">
-  <div class="container">
-    <h2>Contato</h2>
-    <p class="contact-info">
-      WhatsApp: (14) 99185-6520<br>
-      E-mail: timpdobrasil@gmail.com<br>
-      Cidade: Bauru - SP<br>
-      Atendimento em todo o Brasil
-    </p>
+  <h2>Contato</h2>
+
+  <div class="contact">
+    <p><strong>WhatsApp:</strong> (14) 99185-6520</p>
+    <p><strong>E-mail:</strong> timpdobrasil@gmail.com</p>
+    <p><strong>Cidade:</strong> Bauru - SP</p>
+    <p>Atendimento em todo o Brasil</p>
 
     <div class="buttons">
-      <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar e-mail</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/5514991856520" target="_blank">
+        WhatsApp
+      </a>
+      <a class="btn" href="mailto:timpdobrasil@gmail.com">
+        Enviar e-mail
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  © TIMP Studio Premium — Todos os direitos reservados
+  © TIMP do Brasil — Studio Premium
 </footer>
-
-<script>
-(function(){
-  const menuBtn = document.getElementById('menuBtn');
-  const panel = document.getElementById('mobilePanel');
-  const desktopLinks = Array.from(document.querySelectorAll('nav.nav-desktop a'));
-  const mobileLinks = Array.from(panel.querySelectorAll('a'));
-
-  function setActive(hash){
-    const all = desktopLinks.concat(mobileLinks);
-    all.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
-  }
-
-  function closeMenu(){
-    panel.style.display = 'none';
-    menuBtn.setAttribute('aria-expanded','false');
-    menuBtn.setAttribute('aria-label','Abrir menu');
-  }
-
-  function toggleMenu(){
-    const open = panel.style.display === 'block';
-    if(open){
-      closeMenu();
-    }else{
-      panel.style.display = 'block';
-      menuBtn.setAttribute('aria-expanded','true');
-      menuBtn.setAttribute('aria-label','Fechar menu');
-    }
-  }
-
-  menuBtn.addEventListener('click', toggleMenu);
-
-  // Fecha menu ao clicar em um link do mobile
-  mobileLinks.forEach(a=>{
-    a.addEventListener('click', ()=>{
-      setActive(a.getAttribute('href'));
-      closeMenu();
-    });
-  });
-
-  // Atualiza ativo ao clicar no desktop
-  desktopLinks.forEach(a=>{
-    a.addEventListener('click', ()=> setActive(a.getAttribute('href')));
-  });
-
-  // Fecha menu ao rolar
-  window.addEventListener('scroll', ()=>{
-    if(panel.style.display === 'block') closeMenu();
-  }, {passive:true});
-
-  // Se abrir com hash (ex: #contato)
-  if(location.hash){
-    setActive(location.hash);
-  }
-})();
-</script>
 
 </body>
 </html>
