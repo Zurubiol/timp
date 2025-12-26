@@ -20,9 +20,6 @@
   --card:rgba(255,255,255,.06);
   --border:rgba(255,255,255,.12);
 
-  --green:#25D366;
-  --green-dark:#1da851;
-
   --radius:24px;
   --shadow: 0 25px 60px rgba(0,0,0,.65);
 }
@@ -119,7 +116,7 @@ nav.nav-desktop a.active::after{
   border-radius:2px;
 }
 
-/* botão WhatsApp pequeno no header (desktop) */
+/* CTA do header (tudo na cor original do site) */
 .header-cta{
   display:flex;
   gap:10px;
@@ -137,16 +134,6 @@ nav.nav-desktop a.active::after{
   transition:.2s;
 }
 .btn-mini:hover{background: rgba(255,255,255,.12); transform: translateY(-1px);}
-
-.btn-mini.whats{
-  background: var(--green);
-  border-color: var(--green);
-  color:#0b0b0b;
-}
-.btn-mini.whats:hover{
-  background: var(--green-dark);
-  border-color: var(--green-dark);
-}
 
 /* =========================
    MENU MOBILE (HAMBURGUER)
@@ -214,15 +201,11 @@ nav.nav-desktop a.active::after{
 .mobile-panel .cta-row a{
   flex:1;
   justify-content:center;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
 }
-.mobile-panel .cta-row a.whats{
-  background: var(--green);
-  border: 1px solid var(--green);
-  color:#0b0b0b;
-}
-.mobile-panel .cta-row a.whats:hover{
-  background: var(--green-dark);
-  border-color: var(--green-dark);
+.mobile-panel .cta-row a:hover{
+  background: rgba(255,255,255,.12);
 }
 
 /* =========================
@@ -293,7 +276,7 @@ p{
 }
 
 /* =========================
-   BOTÕES
+   BOTÕES (cor original do site)
 ========================= */
 .buttons{
   margin-top: 28px;
@@ -315,16 +298,6 @@ p{
   justify-content:center;
 }
 .btn:hover{background: rgba(255,255,255,.16); transform: translateY(-2px);}
-
-.btn.whats{
-  background: var(--green);
-  border-color: var(--green);
-  color:#0b0b0b;
-}
-.btn.whats:hover{
-  background: var(--green-dark);
-  border-color: var(--green-dark);
-}
 
 /* =========================
    PORTFÓLIO (VÍDEOS REAIS)
@@ -466,7 +439,7 @@ footer{
     </nav>
 
     <div class="header-cta">
-      <a class="btn-mini whats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn-mini" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn-mini" href="#contato">Contato</a>
     </div>
 
@@ -487,7 +460,7 @@ footer{
       <a href="#contato">Contato</a>
 
       <div class="cta-row">
-        <a class="whats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:timpdobrasil@gmail.com">E-mail</a>
       </div>
     </div>
@@ -525,75 +498,73 @@ footer{
   </div>
 </section>
 
-<!-- PORTFÓLIO COM VÍDEOS -->
+<!-- PORTFÓLIO COM VÍDEOS REAIS -->
 <section id="portfolio">
   <div class="container reveal">
     <div class="kicker">PORTFÓLIO</div>
     <h2>Vídeos recentes</h2>
-    <p>Alguns exemplos do nosso padrão de entrega. Clique para assistir e, se quiser, peça orçamento no WhatsApp.</p>
+    <p>Alguns exemplos do nosso padrão de entrega.</p>
 
     <div class="portfolio-grid">
-      <!-- =========
-           TROQUE AQUI:
-           Substitua apenas o ID do YouTube após /embed/
-           Ex: https://www.youtube.com/embed/SEU_ID
-      ========= -->
+      <!-- INSTITUCIONAL -->
       <div class="video-card">
         <div class="video-frame">
           <iframe
-            src="https://www.youtube.com/embed/ysz5S6PUM-U"
-            title="Vídeo 01"
+            src="https://www.youtube.com/embed/VT2-W5PC-NU"
+            title="Institucional — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
           </iframe>
         </div>
         <div class="video-meta">
-          <div class="video-title">Projeto 01 — Institucional</div>
-          <div class="video-sub">Captação + edição + finalização premium.</div>
+          <div class="video-title">Institucional</div>
+          <div class="video-sub">Apresentação e presença de marca.</div>
           <div class="video-actions">
-            <a class="btn" href="https://www.youtube.com/watch?v=ysz5S6PUM-U" target="_blank" rel="noopener">Assistir</a>
-            <a class="btn whats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
+            <a class="btn" href="https://www.youtube.com/watch?v=VT2-W5PC-NU" target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
           </div>
         </div>
       </div>
 
+      <!-- COMERCIAL -->
       <div class="video-card">
         <div class="video-frame">
           <iframe
-            src="https://www.youtube.com/embed/jNQXAC9IVRw"
-            title="Vídeo 02"
+            src="https://www.youtube.com/embed/eiRr98BzZdk"
+            title="Comercial — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
           </iframe>
         </div>
         <div class="video-meta">
-          <div class="video-title">Projeto 02 — Comercial</div>
-          <div class="video-sub">Conteúdo para conversão e presença de marca.</div>
+          <div class="video-title">Comercial</div>
+          <div class="video-sub">Conteúdo para conversão e impacto.</div>
           <div class="video-actions">
-            <a class="btn" href="https://www.youtube.com/watch?v=jNQXAC9IVRw" target="_blank" rel="noopener">Assistir</a>
-            <a class="btn whats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
+            <a class="btn" href="https://www.youtube.com/watch?v=eiRr98BzZdk" target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
           </div>
         </div>
       </div>
 
+      <!-- REELS / SOCIAL -->
       <div class="video-card">
         <div class="video-frame">
           <iframe
-            src="https://www.youtube.com/embed/tgbNymZ7vqY"
-            title="Vídeo 03"
+            src="https://www.youtube.com/embed/L0RYguRzFFg"
+            title="Reels/Social — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
           </iframe>
         </div>
         <div class="video-meta">
-          <div class="video-title">Projeto 03 — Reels / Social</div>
-          <div class="video-sub">Edição dinâmica, ritmo e acabamento premium.</div>
+          <div class="video-title">Reels / Social</div>
+          <div class="video-sub">Edição dinâmica e acabamento premium.</div>
           <div class="video-actions">
-            <a class="btn" href="https://www.youtube.com/watch?v=tgbNymZ7vqY" target="_blank" rel="noopener">Assistir</a>
-            <a class="btn whats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
+            <a class="btn" href="https://www.youtube.com/watch?v=L0RYguRzFFg" target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
           </div>
         </div>
       </div>
@@ -604,7 +575,7 @@ footer{
         <strong>Quer um vídeo com esse nível?</strong>
         <span>Clique no WhatsApp e fale direto com a TIMP.</span>
       </div>
-      <a class="btn whats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Pedir orçamento</a>
+      <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Pedir orçamento</a>
     </div>
   </div>
 </section>
@@ -626,7 +597,7 @@ footer{
 <section id="contato">
   <div class="container reveal">
     <div class="kicker">CONTATO</div>
-    <h2>Fale com a TIMP</h2>
+    <h2>Contato</h2>
     <p>
       WhatsApp: (14) 99185-6520<br>
       E-mail: timpdobrasil@gmail.com<br>
@@ -635,7 +606,7 @@ footer{
     </p>
 
     <div class="buttons">
-      <a class="btn whats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar e-mail</a>
     </div>
   </div>
