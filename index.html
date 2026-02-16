@@ -1,1 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TIMP Studio Premium</title>
+<meta name="description" content="TIMP Studio Premium — Produção audiovisual com presença, credibilidade e atendimento direto em todo o Brasil." />
 
+<style>
+/* =========================
+   BASE / RESET
+========================= */
+:root{
+  --bg:#0b0b0b;
+  --bg2:#060606;
+  --text:#f5f5f5;
+  --muted:#bdbdbd;
+  --line:rgba(255,255,255,.10);
+  --glass:rgba(0,0,0,.65);
+  --card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+
+  --radius:24px;
+  --shadow: 0 25px 60px rgba(0,0,0,.65);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+/* melhorar “pulo” ao clicar nos atalhos com header fixo */
+#inicio, #sobre, #servicos, #portfolio, #depoimentos, #contato{
+  scroll-margin-top: 96px;
+}
+
+/* =========================
+   HEADER
+========================= */
+header{
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:100;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.header-container{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap:14px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.brand img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  display:block;
+  opacity:.95;
+}
+.brand .title{
+  font-weight: 800;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 44vw;
+}
+.brand .title small{
+  display:block;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+nav.nav-desktop{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+nav.nav-desktop a{
+  color: #cfcfcf;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+  position:relative;
+  padding:6px 0;
+}
+nav.nav-desktop a:hover{color:#fff}
+nav.nav-desktop a.active{color:#fff}
+nav.nav-desktop a.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:2px;
+  background:#fff;
+  border-radius:2px;
+}
+
+/* CTA do header (tudo na cor original do site) */
+.header-cta{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.btn-mini{
+  padding:10px 14px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  font-size:13px;
+  transition:.2s;
+}
+.btn-mini:hover{background: rgba(255,255,255,.12); transform: translateY(-1px);}
+
+/* =========================
+   MENU MOBILE (HAMBURGUER)
+========================= */
+.menu-btn{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+}
+.menu-btn:active{transform:scale(.98)}
+.menu-icon{
+  width:20px; height:14px;
+  position:relative;
+}
+.menu-icon span{
+  position:absolute;
+  left:0; right:0;
+  height:2px;
+  background:#fff;
+  border-radius: 2px;
+  transition:.2s;
+}
+.menu-icon span:nth-child(1){top:0}
+.menu-icon span:nth-child(2){top:6px; opacity:1}
+.menu-icon span:nth-child(3){top:12px}
+
+.mobile-panel{
+  display:none;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(12px);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.mobile-panel .inner{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 14px 16px;
+}
+.mobile-panel a{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 12px 12px;
+  border-radius: 14px;
+  color:#eaeaea;
+  text-decoration:none;
+  font-weight: 900;
+  letter-spacing:.2px;
+}
+.mobile-panel a:hover{background: rgba(255,255,255,.07);}
+.mobile-panel a.active{
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.mobile-panel .cta-row{
+  margin-top: 10px;
+  display:flex;
+  gap:10px;
+}
+.mobile-panel .cta-row a{
+  flex:1;
+  justify-content:center;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.mobile-panel .cta-row a:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* =========================
+   HERO (LOGO GIGANTE)
+========================= */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top: 84px; /* por causa do header fixo */
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 58%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+}
+
+.hero img{
+  width: min(86vw, 980px);
+  height:auto;
+  filter:
+    drop-shadow(0 25px 60px rgba(0,0,0,.9))
+    drop-shadow(0 0 90px rgba(255,255,255,.08));
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+section{
+  padding: 110px 18px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.kicker{
+  color:#cfcfcf;
+  letter-spacing: .28em;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity:.85;
+}
+h2{
+  font-size: 48px;
+  margin-bottom: 18px;
+}
+p{
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 900px;
+}
+
+/* cards / grid */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.20);
+}
+
+/* =========================
+   BOTÕES (cor original do site)
+========================= */
+.buttons{
+  margin-top: 28px;
+  display:flex;
+  gap:14px;
+  flex-wrap: wrap;
+}
+.btn{
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color:#fff;
+  text-decoration:none;
+  font-weight: 900;
+  transition: .22s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.btn:hover{background: rgba(255,255,255,.16); transform: translateY(-2px);}
+
+/* =========================
+   PORTFÓLIO (VÍDEOS REAIS)
+========================= */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
+.video-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio: 16/9;
+  background:#000;
+}
+.video-frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+.video-meta{
+  padding: 18px 18px 20px;
+}
+.video-title{
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.video-sub{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.video-actions{
+  margin-top: 14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.video-actions a{
+  flex: 1;
+  min-width: 140px;
+}
+
+/* CTA fim do portfólio */
+.portfolio-cta{
+  margin-top: 26px;
+  padding: 22px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.portfolio-cta strong{
+  font-size: 18px;
+}
+.portfolio-cta span{
+  color: var(--muted);
+  display:block;
+  margin-top:6px;
+  font-size:14px;
+}
+
+/* =========================
+   ANIMAÇÕES SUAVES (SCROLL REVEAL)
+========================= */
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+  will-change: opacity, transform;
+}
+.reveal.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+  padding: 44px 18px;
+  text-align:center;
+  color:#777;
+  background:#050505;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media(max-width: 980px){
+  nav.nav-desktop{display:none}
+  .menu-btn{display:flex}
+  .header-cta{display:none}
+  h2{font-size: 36px}
+  .grid{grid-template-columns: 1fr}
+  .portfolio-grid{grid-template-columns: 1fr}
+  .hero{padding-top: 92px}
+  .brand .title{max-width: 55vw}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="brand">
+      <img src="logo-timp.png" alt="TIMP" />
+      <div class="title">
+        TIMP Studio Premium
+        <small>Bauru - SP • Atendimento em todo o Brasil</small>
+      </div>
+    </div>
+
+    <nav class="nav-desktop" aria-label="Menu principal">
+      <a href="#inicio" class="active">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="header-cta">
+      <a class="btn-mini" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn-mini" href="#contato">Contato</a>
+    </div>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+      <div class="menu-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
+
+  <div class="mobile-panel" id="mobilePanel">
+    <div class="inner">
+      <a href="#inicio" class="active">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+
+      <div class="cta-row">
+        <a href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:timpdobrasil@gmail.com">E-mail</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <img src="logo-timp.png" alt="TIMP Studio Premium">
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container reveal">
+    <div class="kicker">SOBRE</div>
+    <h2>Quem somos</h2>
+    <p>
+      A TIMP Studio Premium é um estúdio audiovisual focado em presença de marca,
+      produção profissional e atendimento direto. Atuamos com clareza, estética premium
+      e compromisso com resultado — atendendo clientes em todo o Brasil.
+    </p>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container reveal">
+    <div class="kicker">SERVIÇOS</div>
+    <h2>O que fazemos</h2>
+    <div class="grid">
+      <div class="card">Produção de vídeos profissionais (institucional, comercial e conteúdo)</div>
+      <div class="card">Reels e peças curtas para redes sociais (performance e estética)</div>
+      <div class="card">Projetos sob medida (captação, edição, motion e finalização)</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO COM VÍDEOS REAIS -->
+<section id="portfolio">
+  <div class="container reveal">
+    <div class="kicker">PORTFÓLIO</div>
+    <h2>Vídeos recentes</h2>
+    <p>Alguns exemplos do nosso padrão de entrega.</p>
+
+    <div class="portfolio-grid">
+      <!-- INSTITUCIONAL -->
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/VT2-W5PC-NU"
+            title="Institucional — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Institucional</div>
+          <div class="video-sub">Apresentação e presença de marca.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=VT2-W5PC-NU" target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMERCIAL -->
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/eiRr98BzZdk"
+            title="Comercial — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Comercial</div>
+          <div class="video-sub">Conteúdo para conversão e impacto.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=eiRr98BzZdk" target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- REELS / SOCIAL -->
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/L0RYguRzFFg"
+            title="Reels/Social — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Reels / Social</div>
+          <div class="video-sub">Edição dinâmica e acabamento premium.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=L0RYguRzFFg" target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Orçamento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-cta">
+      <div>
+        <strong>Quer um vídeo com esse nível?</strong>
+        <span>Clique no WhatsApp e fale direto com a TIMP.</span>
+      </div>
+      <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Pedir orçamento</a>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="container reveal">
+    <div class="kicker">DEPOIMENTOS</div>
+    <h2>O que falam</h2>
+    <div class="grid">
+      <div class="card">“Marca forte, visual impecável e atendimento rápido.”</div>
+      <div class="card">“Produção premium do início ao fim.”</div>
+      <div class="card">“Experiência profissional acima da média.”</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="container reveal">
+    <div class="kicker">CONTATO</div>
+    <h2>Contato</h2>
+    <p>
+      WhatsApp: (14) 99185-6520<br>
+      E-mail: timpdobrasil@gmail.com<br>
+      Cidade: Bauru - SP<br>
+      Atendimento em todo o Brasil
+    </p>
+
+    <div class="buttons">
+      <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar e-mail</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © TIMP Studio Premium — Todos os direitos reservados
+</footer>
+
+<script>
+(function(){
+  // ===== MENU MOBILE =====
+  const menuBtn = document.getElementById('menuBtn');
+  const panel = document.getElementById('mobilePanel');
+  const desktopLinks = Array.from(document.querySelectorAll('nav.nav-desktop a'));
+  const mobileLinks  = Array.from(panel.querySelectorAll('.inner > a'));
+
+  function setActive(hash){
+    const all = desktopLinks.concat(mobileLinks);
+    all.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+  }
+
+  function closeMenu(){
+    panel.style.display = 'none';
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.setAttribute('aria-label','Abrir menu');
+  }
+
+  function toggleMenu(){
+    const open = panel.style.display === 'block';
+    if(open) closeMenu();
+    else{
+      panel.style.display = 'block';
+      menuBtn.setAttribute('aria-expanded','true');
+      menuBtn.setAttribute('aria-label','Fechar menu');
+    }
+  }
+
+  menuBtn.addEventListener('click', toggleMenu);
+  mobileLinks.forEach(a=>{
+    a.addEventListener('click', ()=>{
+      setActive(a.getAttribute('href'));
+      closeMenu();
+    });
+  });
+  desktopLinks.forEach(a=>{
+    a.addEventListener('click', ()=> setActive(a.getAttribute('href')));
+  });
+  window.addEventListener('scroll', ()=>{
+    if(panel.style.display === 'block') closeMenu();
+  }, {passive:true});
+
+  if(location.hash){ setActive(location.hash); }
+
+  // ===== ANIMAÇÕES SUAVES (SCROLL REVEAL) =====
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('show');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  items.forEach(el=> io.observe(el));
+})();
+</script>
+
+</body>
+</html>
