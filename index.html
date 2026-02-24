@@ -1106,7 +1106,6 @@ footer{
 
         <div class="form-actions">
           <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
-          <a class="btn" id="btnWhats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Falar no WhatsApp</a>
         </div>
 
         <p class="small-muted" style="margin-top:12px;">
@@ -1198,8 +1197,8 @@ footer{
       const name = b.getAttribute('data-packname');
       const price = b.getAttribute('data-price');
 
-      if(pack === "1") packSelect.value = "Pacote 1 - R$ 397";
-      if(pack === "2") packSelect.value = "Pacote 2 - R$ 697";
+      if(pack === "1") packSelect.value = "Pacote 1 - R$ 697";
+      if(pack === "2") packSelect.value = "Pacote 2 - R$ 997";
       if(pack === "3") packSelect.value = "Pacote 3 - R$ 1.497";
 
       updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${price}</b>. Agora preencha os dados e envie seu projeto.`);
@@ -1210,35 +1209,6 @@ footer{
   const form = document.getElementById('timpForm');
   const texto = document.getElementById('texto');
   const arquivo = document.getElementById('arquivo');
-  const btnWhats = document.getElementById('btnWhats');
-
-  function buildWhatsMessage(){
-    const pacote = packSelect.value || "";
-    const origem = (document.querySelector('input[name="origem"]:checked') || {}).value || "";
-    const nome = (document.getElementById('nome').value || "").trim();
-    const whats = (document.getElementById('whats').value || "").trim();
-    const cidade = (document.getElementById('cidade').value || "").trim();
-    const estado = (document.getElementById('estado').value || "").trim();
-
-    const msg =
-`Olá TIMP! Quero iniciar meu projeto.
-
-• Pacote: ${pacote}
-• Opção: ${origem}
-
-• Nome: ${nome}
-• WhatsApp: ${whats}
-• Cidade/UF: ${cidade} - ${estado}
-
-(Obs: Vou enviar letra/história/ideia por aqui ou pelo formulário.)`;
-
-    return "https://wa.me/5514991856520?text=" + encodeURIComponent(msg);
-  }
-
-  // Atualiza link do WhatsApp conforme preenche
-  form.addEventListener('input', ()=>{
-    btnWhats.href = buildWhatsMessage();
-  });
 
   form.addEventListener('submit', (e)=>{
     // valida pacote
@@ -1266,11 +1236,9 @@ footer{
     e.preventDefault();
 
     alert("Pedido registrado! Agora vamos abrir o WhatsApp para confirmar os detalhes com a TIMP.");
-    window.open(buildWhatsMessage(), "_blank", "noopener");
+    window.open("https://wa.me/5514991856520", "_blank", "noopener");
   });
 
-  // Inicializa WhatsApp
-  btnWhats.href = buildWhatsMessage();
 })();
 </script>
 
