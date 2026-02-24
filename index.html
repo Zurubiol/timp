@@ -34,7 +34,7 @@ body{
 }
 
 /* melhorar “pulo” ao clicar nos atalhos com header fixo */
-#inicio, #sobre, #servicos, #portfolio, #depoimentos, #contato{
+#inicio, #sobre, #servicos, #pacotes, #portfolio, #depoimentos, #contato{
   scroll-margin-top: 96px;
 }
 
@@ -259,7 +259,6 @@ p{
   line-height: 1.7;
   max-width: 900px;
 }
-/* espaçamento entre parágrafos (resolve texto “grudado”) */
 p + p{ margin-top: 14px; }
 
 /* cards / grid */
@@ -378,6 +377,167 @@ p + p{ margin-top: 14px; }
 }
 
 /* =========================
+   PACOTES (PREÇOS)
+========================= */
+.price-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.price-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  font-weight:900;
+  font-size:12px;
+  width: fit-content;
+}
+.price{
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: .3px;
+}
+.price small{
+  display:block;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: 6px;
+}
+.features{
+  margin-top: 2px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  color:#d7d7d7;
+  font-size:14px;
+  line-height:1.4;
+}
+.features span{
+  opacity:.95;
+}
+.select-btn{
+  margin-top:auto;
+  width:100%;
+}
+
+/* destaque do pacote 2 (âncora de valor) */
+.featured{
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 18px 70px rgba(0,0,0,.50);
+}
+.featured::before{
+  content:"Mais vendido";
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.45);
+  font-weight:900;
+  font-size:12px;
+  color:#fff;
+}
+
+/* =========================
+   FORMULÁRIO
+========================= */
+.form-wrap{
+  margin-top: 26px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.form-grid .full{ grid-column: 1 / -1; }
+.field label{
+  display:block;
+  font-weight: 900;
+  font-size: 13px;
+  color:#eaeaea;
+  margin-bottom: 8px;
+  letter-spacing:.2px;
+}
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.40);
+  color: #fff;
+  outline: none;
+}
+.field input::placeholder,
+.field textarea::placeholder{
+  color: rgba(255,255,255,.45);
+}
+.field textarea{ min-height: 140px; resize: vertical; }
+
+.radio-row{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top: 10px;
+}
+.radio-item{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.radio-item input{ margin-top: 3px; }
+.radio-item strong{ display:block; }
+.radio-item span{ display:block; color: var(--muted); font-size: 13px; margin-top: 4px; line-height:1.4; }
+
+.notice{
+  margin-top: 14px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  color:#d9d9d9;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.notice b{ color:#fff; }
+
+.form-actions{
+  margin-top: 16px;
+  display:flex;
+  gap: 12px;
+  flex-wrap:wrap;
+}
+.form-actions .btn{
+  flex:1;
+  min-width: 240px;
+}
+
+.small-muted{
+  color: var(--muted);
+  font-size: 13px;
+  line-height:1.5;
+}
+
+/* =========================
    ANIMAÇÕES SUAVES (SCROLL REVEAL)
 ========================= */
 .reveal{
@@ -415,6 +575,7 @@ footer{
   .portfolio-grid{grid-template-columns: 1fr}
   .hero{padding-top: 92px}
   .brand .title{max-width: 55vw}
+  .form-grid{grid-template-columns: 1fr}
 }
 </style>
 </head>
@@ -435,6 +596,7 @@ footer{
       <a href="#inicio" class="active">Início</a>
       <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
+      <a href="#pacotes">Pacotes</a>
       <a href="#portfolio">Portfólio</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#contato">Contato</a>
@@ -442,7 +604,7 @@ footer{
 
     <div class="header-cta">
       <a class="btn-mini" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn-mini" href="#contato">Contato</a>
+      <a class="btn-mini" href="#pacotes">Ver pacotes</a>
     </div>
 
     <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
@@ -457,6 +619,7 @@ footer{
       <a href="#inicio" class="active">Início</a>
       <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
+      <a href="#pacotes">Pacotes</a>
       <a href="#portfolio">Portfólio</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#contato">Contato</a>
@@ -509,6 +672,68 @@ footer{
       <div class="card">Transformamos histórias em letras musicais que ganham vida em versos e melodias.</div>
       <div class="card">Desenvolvemos harmonia e arranjos instrumentais para completar letras já existentes.</div>
       <div class="card">Criamos do Zero, músicas, letras, melodia e vídeos clipes mesmo a partir de uma simples ideia.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PACOTES / PREÇOS -->
+<section id="pacotes">
+  <div class="container reveal">
+    <div class="kicker">PACOTES</div>
+    <h2>Escolha seu pacote</h2>
+    <p>Você escolhe o nível de criação — nós transformamos em música de verdade.</p>
+
+    <div class="grid" style="margin-top:34px;">
+      <!-- PACOTE 1 -->
+      <div class="card price-card">
+        <div class="price-badge">🥉 Pacote 1 • Entrada</div>
+        <div class="price">R$ 297 <small>Já tenho a letra — quero melodia e base</small></div>
+        <div class="features">
+          <span>• Criação de melodia original</span>
+          <span>• Estrutura musical (verso/refrão/ponte)</span>
+          <span>• Base instrumental personalizada</span>
+          <span>• 1 revisão</span>
+          <span>• Entrega MP3</span>
+        </div>
+        <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="297">Escolher Pacote 1</a>
+      </div>
+
+      <!-- PACOTE 2 -->
+      <div class="card price-card featured">
+        <div class="price-badge">🥈 Pacote 2 • Intermediário</div>
+        <div class="price">R$ 697 <small>Tenho a história — quero letra + música</small></div>
+        <div class="features">
+          <span>• Criação da letra personalizada</span>
+          <span>• Melodia original</span>
+          <span>• Produção instrumental completa</span>
+          <span>• 2 revisões</span>
+          <span>• Entrega MP3 + WAV</span>
+        </div>
+        <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="697">Escolher Pacote 2</a>
+      </div>
+
+      <!-- PACOTE 3 -->
+      <div class="card price-card">
+        <div class="price-badge">🥇 Pacote 3 • Completo</div>
+        <div class="price">R$ 1.497 <small>Tenho uma ideia — quero projeto do zero</small></div>
+        <div class="features">
+          <span>• Desenvolvimento do conceito</span>
+          <span>• Letra + melodia + produção musical</span>
+          <span>• Direção artística</span>
+          <span>• 3 revisões</span>
+          <span>• Capa digital (imagem)</span>
+          <span>• Entrega MP3 + WAV</span>
+        </div>
+        <a class="btn select-btn" href="#contato" data-pack="3" data-packname="Pacote 3" data-price="1497">Escolher Pacote 3</a>
+      </div>
+    </div>
+
+    <div class="portfolio-cta" style="margin-top:26px;">
+      <div>
+        <strong>Quer fechar rápido?</strong>
+        <span>Escolha um pacote e envie os dados. A TIMP confirma e inicia a produção.</span>
+      </div>
+      <a class="btn" href="#contato">Quero começar agora</a>
     </div>
   </div>
 </section>
@@ -770,17 +995,136 @@ footer{
   </div>
 </section>
 
-<!-- CONTATO -->
+<!-- CONTATO + FORMULÁRIO -->
 <section id="contato">
   <div class="container reveal">
     <div class="kicker">CONTATO</div>
-    <h2>Contato</h2>
-    <p>
-      WhatsApp: (14) 99185-6520<br>
-      E-mail: timpdobrasil@gmail.com<br>
-      Cidade: Bauru - SP<br>
-      Atendimento em todo o Brasil
+    <h2>Começar meu projeto</h2>
+
+    <p class="small-muted">
+      Preencha os dados abaixo. Se você clicou em um pacote acima, ele já fica selecionado aqui.
+      <br>WhatsApp: (14) 99185-6520 • E-mail: timpdobrasil@gmail.com • Bauru - SP
     </p>
+
+    <div class="form-wrap" id="formWrap">
+      <form id="timpForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+        <!-- RESUMO DO PACOTE SELECIONADO -->
+        <div class="notice" id="packSummary">
+          <b>Selecione um pacote</b> acima para preencher automaticamente aqui.
+        </div>
+
+        <!-- PACOTE (obrigatório) -->
+        <div class="field" style="margin-top:14px;">
+          <label for="pacote">Pacote escolhido (obrigatório)</label>
+          <select id="pacote" name="pacote" required>
+            <option value="" selected disabled>Selecione um pacote</option>
+            <option value="Pacote 1 - R$ 297">Pacote 1 — R$ 297 (Já tenho a letra)</option>
+            <option value="Pacote 2 - R$ 697">Pacote 2 — R$ 697 (Tenho a história)</option>
+            <option value="Pacote 3 - R$ 1.497">Pacote 3 — R$ 1.497 (Tenho uma ideia)</option>
+          </select>
+        </div>
+
+        <!-- OPÇÃO 1/2/3 (obrigatório) -->
+        <div class="field" style="margin-top:14px;">
+          <label>O que você já tem? (obrigatório)</label>
+          <div class="radio-row">
+            <label class="radio-item">
+              <input type="radio" name="origem" value="1) Já tem a letra, mas ainda não tem a melodia" required>
+              <div>
+                <strong>1) Já tenho a letra, mas ainda não tenho a melodia</strong>
+                <span>Você manda a letra e nós criamos a melodia + base.</span>
+              </div>
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="origem" value="2) Tenho uma história e quero transformá-la em letra musical" required>
+              <div>
+                <strong>2) Tenho uma história e quero transformar em letra musical</strong>
+                <span>Você manda a história e nós viramos letra + música.</span>
+              </div>
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="origem" value="3) Não tenho história nem letra, mas tenho uma ideia" required>
+              <div>
+                <strong>3) Não tenho história nem letra, mas tenho uma ideia</strong>
+                <span>Você manda a ideia e nós criamos tudo do zero.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- CONTEÚDO -->
+          <div class="field full">
+            <label for="texto">Cole aqui sua letra / história / ideia (obrigatório se não anexar arquivo)</label>
+            <textarea id="texto" name="texto" placeholder="Cole aqui sua letra, história ou ideia..."></textarea>
+            <div class="small-muted" style="margin-top:8px;">
+              Você pode colar aqui OU anexar o arquivo abaixo. Pelo menos 1 dos dois é obrigatório.
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="arquivo">Anexar arquivo com letra/história/ideia (obrigatório se não colar no campo acima)</label>
+            <input id="arquivo" name="arquivo" type="file" accept=".doc,.docx,.pdf,.txt">
+          </div>
+
+          <div class="field full">
+            <label for="imagem">Anexar imagem (opcional) — referência / capa / inspiração</label>
+            <input id="imagem" name="imagem" type="file" accept="image/*">
+          </div>
+
+          <!-- DADOS OBRIGATÓRIOS -->
+          <div class="field">
+            <label for="nome">Nome completo (obrigatório)</label>
+            <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required>
+          </div>
+
+          <div class="field">
+            <label for="nascimento">Data de nascimento (obrigatório)</label>
+            <input id="nascimento" name="nascimento" type="date" required>
+          </div>
+
+          <div class="field full">
+            <label for="endereco">Endereço (obrigatório)</label>
+            <input id="endereco" name="endereco" type="text" placeholder="Rua, número, bairro, complemento" required>
+          </div>
+
+          <div class="field">
+            <label for="cidade">Cidade (obrigatório)</label>
+            <input id="cidade" name="cidade" type="text" placeholder="Cidade" required>
+          </div>
+
+          <div class="field">
+            <label for="estado">Estado (obrigatório)</label>
+            <input id="estado" name="estado" type="text" placeholder="Ex: SP" required>
+          </div>
+
+          <div class="field">
+            <label for="cep">CEP (obrigatório)</label>
+            <input id="cep" name="cep" type="text" placeholder="00000-000" required>
+          </div>
+
+          <div class="field">
+            <label for="whats">Telefone / WhatsApp (obrigatório)</label>
+            <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" required>
+          </div>
+        </div>
+
+        <div class="notice" id="contentNotice">
+          <b>Atenção:</b> para enviar, você precisa <b>colar o texto</b> (letra/história/ideia) <b>ou anexar o arquivo</b>. Pode fazer os dois também.
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
+          <a class="btn" id="btnWhats" href="https://wa.me/5514991856520" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </div>
+
+        <p class="small-muted" style="margin-top:12px;">
+          *Após o envio, a TIMP confirma os detalhes e inicia a produção. Para escala: este formulário já filtra e organiza as informações.
+        </p>
+      </form>
+    </div>
 
     <div class="buttons">
       <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
@@ -849,6 +1193,95 @@ footer{
     });
   }, {threshold: 0.12});
   items.forEach(el=> io.observe(el));
+
+  // ===== PACOTES -> FORMULÁRIO =====
+  const packSummary = document.getElementById('packSummary');
+  const packSelect  = document.getElementById('pacote');
+  const btns = Array.from(document.querySelectorAll('[data-pack]'));
+
+  function updateSummary(text){
+    packSummary.innerHTML = text;
+  }
+
+  btns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const pack = b.getAttribute('data-pack');
+      const name = b.getAttribute('data-packname');
+      const price = b.getAttribute('data-price');
+
+      if(pack === "1") packSelect.value = "Pacote 1 - R$ 297";
+      if(pack === "2") packSelect.value = "Pacote 2 - R$ 697";
+      if(pack === "3") packSelect.value = "Pacote 3 - R$ 1.497";
+
+      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${price}</b>. Agora preencha os dados e envie seu projeto.`);
+    });
+  });
+
+  // ===== VALIDAÇÃO: texto OU arquivo obrigatório =====
+  const form = document.getElementById('timpForm');
+  const texto = document.getElementById('texto');
+  const arquivo = document.getElementById('arquivo');
+  const btnWhats = document.getElementById('btnWhats');
+
+  function buildWhatsMessage(){
+    const pacote = packSelect.value || "";
+    const origem = (document.querySelector('input[name="origem"]:checked') || {}).value || "";
+    const nome = (document.getElementById('nome').value || "").trim();
+    const whats = (document.getElementById('whats').value || "").trim();
+    const cidade = (document.getElementById('cidade').value || "").trim();
+    const estado = (document.getElementById('estado').value || "").trim();
+
+    const msg =
+`Olá TIMP! Quero iniciar meu projeto.
+
+• Pacote: ${pacote}
+• Opção: ${origem}
+
+• Nome: ${nome}
+• WhatsApp: ${whats}
+• Cidade/UF: ${cidade} - ${estado}
+
+(Obs: Vou enviar letra/história/ideia por aqui ou pelo formulário.)`;
+
+    return "https://wa.me/5514991856520?text=" + encodeURIComponent(msg);
+  }
+
+  // Atualiza link do WhatsApp conforme preenche
+  form.addEventListener('input', ()=>{
+    btnWhats.href = buildWhatsMessage();
+  });
+
+  form.addEventListener('submit', (e)=>{
+    // valida pacote
+    if(!packSelect.value){
+      e.preventDefault();
+      alert("Selecione um pacote antes de enviar.");
+      packSelect.focus();
+      return;
+    }
+
+    // valida texto OU arquivo
+    const hasText = (texto.value || "").trim().length > 0;
+    const hasFile = (arquivo.files && arquivo.files.length > 0);
+
+    if(!hasText && !hasFile){
+      e.preventDefault();
+      alert("Você precisa colar a letra/história/ideia OU anexar um arquivo para enviar.");
+      texto.focus();
+      return;
+    }
+
+    // Aqui o formulário está OK.
+    // IMPORTANTE: action="#" não envia para servidor.
+    // Você pode integrar com Formspree / Google Forms / backend depois.
+    e.preventDefault();
+
+    alert("Pedido registrado! Agora vamos abrir o WhatsApp para confirmar os detalhes com a TIMP.");
+    window.open(buildWhatsMessage(), "_blank", "noopener");
+  });
+
+  // Inicializa WhatsApp
+  btnWhats.href = buildWhatsMessage();
 })();
 </script>
 
