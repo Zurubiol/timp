@@ -755,6 +755,16 @@ p + p{ margin-top: 14px; }
 }
 .pay-sheet .row a{ flex:1; min-width: 210px; }
 
+/* NOVO: estado pós-envio */
+.form-hidden{
+  display:none !important;
+}
+.btn[disabled]{
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none !important;
+}
+
 /* =========================
    ANIMAÇÕES SUAVES (SCROLL REVEAL)
 ========================= */
@@ -913,7 +923,6 @@ footer{
 
         <div class="pay-row">
           <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="697">Quero esse</a>
-          
         </div>
       </div>
 
@@ -931,7 +940,6 @@ footer{
 
         <div class="pay-row">
           <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="997">Quero esse</a>
-          
         </div>
       </div>
 
@@ -950,14 +958,13 @@ footer{
 
         <div class="pay-row">
           <a class="btn select-btn" href="#contato" data-pack="3" data-packname="Pacote 3" data-price="1497">Quero esse</a>
-          
         </div>
       </div>
     </div>
 
     <div class="portfolio-cta" style="margin-top:26px;">
-      <div>
-     
+      <div></div>
+    </div>
 </section>
 
 <!-- PORTFÓLIO COM VÍDEOS REAIS -->
@@ -1423,7 +1430,7 @@ footer{
   // 1) COLE AQUI SEUS LINKS DO MERCADO PAGO (um por pacote)
   // =========================
   const MP_LINKS = {
-    1: "https://mpago.li/2DrujAy", // ex: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=...
+    1: "https://mpago.li/2DrujAy",
     2: "https://mpago.li/2za2eDc",
     3: "https://mpago.li/1gm7Bhc"
   };
@@ -1440,15 +1447,6 @@ footer{
     const p = Number(pack);
     const link = MP_LINKS[p];
     return isValidMpLink(link) ? link : "";
-  }
-
-  function openPay(pack){
-    const link = getMpLinkByPack(pack);
-    if(link){
-      window.open(link, "_blank", "noopener");
-      return true;
-    }
-    return false;
   }
 
   // ===== MENU MOBILE =====
@@ -1554,21 +1552,6 @@ footer{
     });
   });
 
-  // ===== BOTÕES "PAGAR AGORA" NOS PACOTES =====
-  const payBtns = Array.from(document.querySelectorAll('[data-pay]'));
-  payBtns.forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const pack = btn.getAttribute('data-pay');
-
-      const opened = openPay(pack);
-      if(!opened){
-        const msg = "Olá TIMP! Quero pagar o " + (pack === "1" ? "Pacote 1" : pack === "2" ? "Pacote 2" : "Pacote 3") + ". Pode me enviar o link de pagamento?";
-        window.open("https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
-      }
-    });
-  });
-
   // ===== UPLOAD UI (arquivo + remover) =====
   const arquivoInput = document.getElementById('arquivo');
   const arquivoPick  = document.getElementById('arquivoPick');
@@ -1616,9 +1599,11 @@ footer{
   const texto = document.getElementById('texto');
   const formError = document.getElementById('formError');
 
+  const formWrap = document.getElementById('formWrap');
   const paySheet = document.getElementById('paySheet');
   const payNowBtn = document.getElementById('payNowBtn');
   const whatsConfirmBtn = document.getElementById('whatsConfirmBtn');
+  const btnSend = document.getElementById('btnSend');
 
   function hasOrigem(){
     return !!form.querySelector('input[name="origem"]:checked');
@@ -1699,7 +1684,12 @@ footer{
       return;
     }
 
+    // tudo ok -> agora sim mostra cobrança
     e.preventDefault();
+
+    // trava botão para evitar duplo envio
+    btnSend.disabled = true;
+    btnSend.textContent = "Pedido enviado ✅";
 
     const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
     const nome = (document.getElementById('nome').value || '').trim();
@@ -1733,7 +1723,16 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       payNowBtn.textContent = "Pedir link de pagamento (WhatsApp)";
     }
 
+    // mostra checkout e "finaliza" experiência
     paySheet.classList.add('show');
+
+    // esconde o formulário (mas mantém a caixa do checkout visível)
+    // se preferir manter o form visível, é só comentar as 2 linhas abaixo:
+    Array.from(form.querySelectorAll('.form-section, .form-actions, .form-topbar, .error')).forEach(el=>{
+      if(el && el.id !== 'paySheet') el.classList.add('form-hidden');
+    });
+
+    // rola até o checkout
     paySheet.scrollIntoView({behavior:"smooth", block:"center"});
   });
 
