@@ -297,6 +297,7 @@ p + p{ margin-top: 14px; }
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  cursor:pointer;
 }
 .btn:hover{background: rgba(255,255,255,.16); transform: translateY(-2px);}
 
@@ -447,31 +448,137 @@ p + p{ margin-top: 14px; }
 }
 
 /* =========================
-   FORMULÁRIO
+   FORMULÁRIO (UPGRADE PREMIUM)
 ========================= */
+.small-muted{
+  color: var(--muted);
+  font-size: 13px;
+  line-height:1.5;
+}
+
 .form-wrap{
-  margin-top: 26px;
+  margin-top: 22px;
   background: rgba(255,255,255,.05);
   border: 1px solid rgba(255,255,255,.10);
   border-radius: var(--radius);
   padding: 22px;
   box-shadow: 0 10px 30px rgba(0,0,0,.28);
 }
-.form-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 14px;
+
+.form-topbar{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:space-between;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  margin-bottom: 16px;
 }
-.form-grid .full{ grid-column: 1 / -1; }
-.field label{
+.form-topbar strong{
   display:block;
+  font-size: 14px;
+  letter-spacing:.2px;
+}
+.form-topbar span{
+  display:block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+  line-height:1.45;
+}
+
+.steps{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.step{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  font-weight:900;
+  font-size: 12px;
+  color:#eaeaea;
+  opacity:.92;
+}
+.step .dot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.28);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+}
+.step.done .dot{ background: rgba(255,255,255,.85); }
+.step.active{
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.18);
+}
+.step.active .dot{ background: rgba(255,255,255,.95); }
+
+.form-section{
+  margin-top: 14px;
+  padding: 16px 16px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+.form-section h3{
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.form-section p{
+  margin: 0;
+  max-width: none;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.req{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:900;
+}
+.req::after{
+  content:"Obrigatório";
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:#eaeaea;
+  opacity:.9;
+}
+
+.field{
+  margin-top: 12px;
+}
+.field label{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
   font-weight: 900;
   font-size: 13px;
   color:#eaeaea;
-  margin-bottom: 8px;
   letter-spacing:.2px;
+  margin-bottom: 8px;
 }
+.helper{
+  color: rgba(255,255,255,.55);
+  font-weight: 700;
+  font-size: 12px;
+}
+
 .field input,
 .field textarea,
 .field select{
@@ -482,34 +589,70 @@ p + p{ margin-top: 14px; }
   background: rgba(0,0,0,.40);
   color: #fff;
   outline: none;
+  transition: .15s ease;
 }
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color: rgba(255,255,255,.22);
+  background: rgba(0,0,0,.52);
+}
+
 .field input::placeholder,
 .field textarea::placeholder{
   color: rgba(255,255,255,.45);
 }
-.field textarea{ min-height: 140px; resize: vertical; }
+.field textarea{ min-height: 150px; resize: vertical; }
+
+.error{
+  display:none;
+  margin-top: 10px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.error.show{ display:block; }
+.error b{ color:#fff; }
+
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+.form-grid .full{ grid-column: 1 / -1; }
 
 .radio-row{
   display:flex;
   flex-direction:column;
   gap:10px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 .radio-item{
   display:flex;
-  gap:10px;
+  gap:12px;
   align-items:flex-start;
-  padding: 12px 12px;
-  border-radius: 16px;
+  padding: 14px 14px;
+  border-radius: 18px;
   border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.04);
+  cursor:pointer;
+  transition: .15s ease;
 }
-.radio-item input{ margin-top: 3px; }
-.radio-item strong{ display:block; }
+.radio-item:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+}
+.radio-item input{ margin-top: 3px; transform: scale(1.05); }
+.radio-item strong{ display:block; font-size: 14px; }
 .radio-item span{ display:block; color: var(--muted); font-size: 13px; margin-top: 4px; line-height:1.4; }
 
 .notice{
-  margin-top: 14px;
+  margin-top: 12px;
   padding: 14px 14px;
   border-radius: 16px;
   border:1px solid rgba(255,255,255,.10);
@@ -520,6 +663,83 @@ p + p{ margin-top: 14px; }
 }
 .notice b{ color:#fff; }
 
+/* UPLOAD PREMIUM */
+.file-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.file-ui{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border:1px dashed rgba(255,255,255,.18);
+  background: rgba(0,0,0,.30);
+}
+.file-ui strong{
+  font-size: 13px;
+}
+.file-ui .meta{
+  min-width: 240px;
+  flex:1;
+}
+.file-ui .meta span{
+  display:block;
+  color: rgba(255,255,255,.60);
+  font-size: 12px;
+  margin-top: 4px;
+}
+.file-ui .name{
+  color:#fff;
+  font-weight: 900;
+  font-size: 13px;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 62ch;
+}
+.file-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.btn-soft{
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  font-weight: 900;
+  font-size: 13px;
+  cursor:pointer;
+  transition: .18s;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.btn-soft:hover{ background: rgba(255,255,255,.12); transform: translateY(-1px); }
+.btn-danger{
+  background: rgba(255,255,255,.03);
+}
+.btn-danger:hover{
+  background: rgba(255,255,255,.10);
+}
+
+.hidden-file{
+  position:absolute;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  opacity:0;
+}
+
+/* submit */
 .form-actions{
   margin-top: 16px;
   display:flex;
@@ -529,12 +749,6 @@ p + p{ margin-top: 14px; }
 .form-actions .btn{
   flex:1;
   min-width: 240px;
-}
-
-.small-muted{
-  color: var(--muted);
-  font-size: 13px;
-  line-height:1.5;
 }
 
 /* =========================
@@ -576,6 +790,7 @@ footer{
   .hero{padding-top: 92px}
   .brand .title{max-width: 55vw}
   .form-grid{grid-template-columns: 1fr}
+  .file-ui .name{max-width: 42ch}
 }
 </style>
 </head>
@@ -695,7 +910,7 @@ footer{
           <span>• sem revisão</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
-        <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="297">Escolher Pacote 1</a>
+        <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="697">Escolher Pacote 1</a>
       </div>
 
       <!-- PACOTE 2 -->
@@ -709,7 +924,7 @@ footer{
           <span>• 1 revisão</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
-        <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="697">Escolher Pacote 2</a>
+        <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="997">Escolher Pacote 2</a>
       </div>
 
       <!-- PACOTE 3 -->
@@ -935,7 +1150,8 @@ footer{
           <div class="video-title">Letra / Música / Clipe</div>
           <div class="video-sub">Produção musical personalizada.</div>
           <div class="video-actions">
-            <a class="btn" href="https://www.youtube.com/watch?v=o49Oo8HIR_8" target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://www.youtube.com/watch?v=o49Oo8HIR_8"
+               target="_blank" rel="noopener">Assistir</a>
           </div>
         </div>
       </div>
@@ -959,7 +1175,7 @@ footer{
         </div>
       </div>
       <!-- FIM NOVOS VÍDEOS -->
-   
+    </div>
   </div>
 </section>
 
@@ -989,28 +1205,57 @@ footer{
 
     <div class="form-wrap" id="formWrap">
       <form id="timpForm" action="#" method="post" enctype="multipart/form-data" novalidate>
-        <!-- RESUMO DO PACOTE SELECIONADO -->
-        <div class="notice" id="packSummary">
-          <b>Selecione um pacote</b> acima para preencher automaticamente aqui.
+
+        <!-- TOPBAR + ETAPAS -->
+        <div class="form-topbar">
+          <div>
+            <strong>Envio do projeto (rápido e guiado)</strong>
+            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. A TIMP confirma os detalhes no WhatsApp.</span>
+          </div>
+          <div class="steps" aria-label="Etapas do formulário">
+            <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
+            <div class="step" id="s2"><span class="dot"></span>2) Você já tem</div>
+            <div class="step" id="s3"><span class="dot"></span>3) Conteúdo</div>
+            <div class="step" id="s4"><span class="dot"></span>4) Seus dados</div>
+          </div>
         </div>
 
-        <!-- PACOTE (obrigatório) -->
-        <div class="field" style="margin-top:14px;">
-          <label for="pacote">Pacote escolhido (obrigatório)</label>
-          <select id="pacote" name="pacote" required>
-            <option value="" selected disabled>Selecione um pacote</option>
-            <option value="Pacote 1 - R$ 697">Pacote 1 — R$ 697 (Já tenho a letra)</option>
-            <option value="Pacote 2 - R$ 997">Pacote 2 — R$ 997 (Tenho a história)</option>
-            <option value="Pacote 3 - R$ 1.497">Pacote 3 — R$ 1.497 (Tenho uma ideia)</option>
-          </select>
+        <!-- ERRO INLINE (substitui alert) -->
+        <div class="error" id="formError">
+          <b>Faltou algo:</b> revise os campos destacados e tente novamente.
         </div>
 
-        <!-- OPÇÃO 1/2/3 (obrigatório) -->
-        <div class="field" style="margin-top:14px;">
-          <label>O que você já tem? (obrigatório)</label>
+        <!-- 1) PACOTE -->
+        <div class="form-section" id="secPacote">
+          <h3 class="req">1) Pacote escolhido</h3>
+          <p>Selecione o pacote para direcionarmos a criação corretamente.</p>
+
+          <div class="notice" id="packSummary" style="margin-top:12px;">
+            <b>Selecione um pacote</b> acima para preencher automaticamente aqui.
+          </div>
+
+          <div class="field">
+            <label for="pacote">
+              Pacote
+              <span class="helper">Escolha 1 opção</span>
+            </label>
+            <select id="pacote" name="pacote" required>
+              <option value="" selected disabled>Selecione um pacote</option>
+              <option value="Pacote 1 - R$ 697">Pacote 1 — R$ 697 (Já tenho a letra)</option>
+              <option value="Pacote 2 - R$ 997">Pacote 2 — R$ 997 (Tenho a história)</option>
+              <option value="Pacote 3 - R$ 1.497">Pacote 3 — R$ 1.497 (Tenho uma ideia)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 2) ORIGEM -->
+        <div class="form-section" id="secOrigem">
+          <h3 class="req">2) O que você já tem?</h3>
+          <p>Isso ajuda a TIMP a começar do ponto certo e acelerar a entrega.</p>
+
           <div class="radio-row">
             <label class="radio-item">
-              <input type="radio" name="origem" value="1) Já tem a letra, mas ainda não tem a melodia" required>
+              <input type="radio" name="origem" value="1) Já tenho a letra, mas ainda não tenho a melodia" required>
               <div>
                 <strong>1) Já tenho a letra, mas ainda não tenho a melodia</strong>
                 <span>Você manda a letra e nós criamos a melodia + base.</span>
@@ -1035,74 +1280,122 @@ footer{
           </div>
         </div>
 
-        <div class="form-grid">
-          <!-- CONTEÚDO -->
-          <div class="field full">
-            <label for="texto">Cole aqui sua letra / história / ideia (obrigatório se não anexar arquivo)</label>
+        <!-- 3) CONTEÚDO -->
+        <div class="form-section" id="secConteudo">
+          <h3 class="req">3) Seu conteúdo (texto ou arquivo)</h3>
+          <p>Você pode <b>colar o texto</b> ou <b>anexar um arquivo</b>. Pelo menos 1 é obrigatório.</p>
+
+          <div class="field">
+            <label for="texto">
+              Cole aqui sua letra / história / ideia
+              <span class="helper">Ou envie um arquivo abaixo</span>
+            </label>
             <textarea id="texto" name="texto" placeholder="Cole aqui sua letra, história ou ideia..."></textarea>
             <div class="small-muted" style="margin-top:8px;">
-              Você pode colar aqui OU anexar o arquivo abaixo. Pelo menos 1 dos dois é obrigatório.
+              Dica: se tiver partes importantes (refrão, emoção, história), deixe bem claro.
             </div>
           </div>
 
-          <div class="field full">
-            <label for="arquivo">Anexar arquivo com letra/história/ideia (obrigatório se não colar no campo acima)</label>
-            <input id="arquivo" name="arquivo" type="file" accept=".doc,.docx,.pdf,.txt">
-          </div>
-
-          <div class="field full">
-            <label for="imagem">Anexar imagem (opcional) — referência / capa / inspiração</label>
-            <input id="imagem" name="imagem" type="file" accept="image/*">
-          </div>
-
-          <!-- DADOS OBRIGATÓRIOS -->
+          <!-- UPLOAD LETRA/HISTÓRIA -->
           <div class="field">
-            <label for="nome">Nome completo (obrigatório)</label>
-            <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required>
+            <label>
+              Anexar arquivo com letra/história/ideia
+              <span class="helper">PDF, DOC/DOCX ou TXT</span>
+            </label>
+
+            <input class="hidden-file" id="arquivo" name="arquivo" type="file" accept=".doc,.docx,.pdf,.txt">
+
+            <div class="file-ui" id="arquivoUI">
+              <div class="meta">
+                <div class="name" id="arquivoName">Nenhum arquivo selecionado</div>
+                <span>Se você escolher um arquivo errado, clique em <b>Remover</b> e selecione outro.</span>
+              </div>
+
+              <div class="file-actions">
+                <button type="button" class="btn-soft" id="arquivoPick">Escolher arquivo</button>
+                <button type="button" class="btn-soft btn-danger" id="arquivoClear" disabled>Remover</button>
+              </div>
+            </div>
           </div>
 
+          <!-- UPLOAD IMAGEM -->
           <div class="field">
-            <label for="nascimento">Data de nascimento (obrigatório)</label>
-            <input id="nascimento" name="nascimento" type="date" required>
+            <label>
+              Anexar imagem (opcional)
+              <span class="helper">Referência / capa / inspiração</span>
+            </label>
+
+            <input class="hidden-file" id="imagem" name="imagem" type="file" accept="image/*">
+
+            <div class="file-ui" id="imagemUI" style="border-style: solid; border-color: rgba(255,255,255,.12);">
+              <div class="meta">
+                <div class="name" id="imagemName">Nenhuma imagem selecionada</div>
+                <span>Opcional. Se anexar, facilita na direção visual do clipe/capa.</span>
+              </div>
+
+              <div class="file-actions">
+                <button type="button" class="btn-soft" id="imagemPick">Escolher imagem</button>
+                <button type="button" class="btn-soft btn-danger" id="imagemClear" disabled>Remover</button>
+              </div>
+            </div>
           </div>
 
-          <div class="field full">
-            <label for="endereco">Endereço (obrigatório)</label>
-            <input id="endereco" name="endereco" type="text" placeholder="Rua, número, bairro, complemento" required>
-          </div>
-
-          <div class="field">
-            <label for="cidade">Cidade (obrigatório)</label>
-            <input id="cidade" name="cidade" type="text" placeholder="Cidade" required>
-          </div>
-
-          <div class="field">
-            <label for="estado">Estado (obrigatório)</label>
-            <input id="estado" name="estado" type="text" placeholder="Ex: SP" required>
-          </div>
-
-          <div class="field">
-            <label for="cep">CEP (obrigatório)</label>
-            <input id="cep" name="cep" type="text" placeholder="00000-000" required>
-          </div>
-
-          <div class="field">
-            <label for="whats">Telefone / WhatsApp (obrigatório)</label>
-            <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" required>
+          <div class="notice" id="contentNotice">
+            <b>Atenção:</b> para enviar, você precisa <b>colar o texto</b> (letra/história/ideia) <b>ou anexar o arquivo</b>. Pode fazer os dois também.
           </div>
         </div>
 
-        <div class="notice" id="contentNotice">
-          <b>Atenção:</b> para enviar, você precisa <b>colar o texto</b> (letra/história/ideia) <b>ou anexar o arquivo</b>. Pode fazer os dois também.
+        <!-- 4) DADOS -->
+        <div class="form-section" id="secDados">
+          <h3 class="req">4) Seus dados</h3>
+          <p>Precisamos destes dados para confirmar o pedido e organizar a produção.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="nome">Nome completo <span class="helper">Obrigatório</span></label>
+              <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required>
+            </div>
+
+            <div class="field">
+              <label for="nascimento">Data de nascimento <span class="helper">Obrigatório</span></label>
+              <input id="nascimento" name="nascimento" type="date" required>
+            </div>
+
+            <div class="field full">
+              <label for="endereco">Endereço <span class="helper">Obrigatório</span></label>
+              <input id="endereco" name="endereco" type="text" placeholder="Rua, número, bairro, complemento" required>
+            </div>
+
+            <div class="field">
+              <label for="cidade">Cidade <span class="helper">Obrigatório</span></label>
+              <input id="cidade" name="cidade" type="text" placeholder="Cidade" required>
+            </div>
+
+            <div class="field">
+              <label for="estado">Estado <span class="helper">Obrigatório</span></label>
+              <input id="estado" name="estado" type="text" placeholder="Ex: SP" required>
+            </div>
+
+            <div class="field">
+              <label for="cep">CEP <span class="helper">Obrigatório</span></label>
+              <input id="cep" name="cep" type="text" placeholder="00000-000" required>
+            </div>
+
+            <div class="field">
+              <label for="whats">Telefone / WhatsApp <span class="helper">Obrigatório</span></label>
+              <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" required>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
+          </div>
+
+          <p class="small-muted" style="margin-top:12px;">
+            *Após o envio, a TIMP confirma os detalhes e inicia a produção.
+          </p>
         </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
-        </div>
-
-        <p class="small-muted" style="margin-top:12px;">
-          *Após o envio, a TIMP confirma os detalhes e inicia a produção. Para escala: este formulário já filtra e organiza as informações.
-        </p>
       </form>
     </div>
 
@@ -1159,6 +1452,9 @@ footer{
   window.addEventListener('scroll', ()=>{
     if(panel.style.display === 'block') closeMenu();
   }, {passive:true});
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 980) closeMenu();
+  });
 
   if(location.hash){ setActive(location.hash); }
 
@@ -1174,13 +1470,34 @@ footer{
   }, {threshold: 0.12});
   items.forEach(el=> io.observe(el));
 
+  // ===== ATIVO NO MENU PELO SCROLL =====
+  const sectionIds = ['inicio','sobre','servicos','pacotes','portfolio','depoimentos','contato'];
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  const navIO = new IntersectionObserver((entries)=>{
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+
+    if(visible && visible.target && visible.target.id){
+      setActive('#' + visible.target.id);
+    }
+  }, {threshold: [0.25, 0.35, 0.5, 0.65]});
+
+  sections.forEach(s => navIO.observe(s));
+
   // ===== PACOTES -> FORMULÁRIO =====
   const packSummary = document.getElementById('packSummary');
   const packSelect  = document.getElementById('pacote');
   const btns = Array.from(document.querySelectorAll('[data-pack]'));
 
-  function updateSummary(text){
-    packSummary.innerHTML = text;
+  function formatBRL(value){
+    const n = Number(value || 0);
+    return n.toLocaleString('pt-BR', {minimumFractionDigits: 0});
+  }
+
+  function updateSummary(html){
+    packSummary.innerHTML = html;
   }
 
   btns.forEach(b=>{
@@ -1193,42 +1510,165 @@ footer{
       if(pack === "2") packSelect.value = "Pacote 2 - R$ 997";
       if(pack === "3") packSelect.value = "Pacote 3 - R$ 1.497";
 
-      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${price}</b>. Agora preencha os dados e envie seu projeto.`);
+      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${formatBRL(price)}</b>. Agora complete as etapas abaixo e envie seu pedido.`);
+      updateSteps();
     });
   });
 
-  // ===== VALIDAÇÃO: texto OU arquivo obrigatório =====
+  // ===== UPLOAD UI (arquivo + remover) =====
+  const arquivoInput = document.getElementById('arquivo');
+  const arquivoPick  = document.getElementById('arquivoPick');
+  const arquivoClear = document.getElementById('arquivoClear');
+  const arquivoName  = document.getElementById('arquivoName');
+
+  const imagemInput = document.getElementById('imagem');
+  const imagemPick  = document.getElementById('imagemPick');
+  const imagemClear = document.getElementById('imagemClear');
+  const imagemName  = document.getElementById('imagemName');
+
+  function setFileState(input, nameEl, clearBtn, emptyText){
+    const has = input.files && input.files.length > 0;
+    if(has){
+      nameEl.textContent = input.files[0].name;
+      clearBtn.disabled = false;
+    }else{
+      nameEl.textContent = emptyText;
+      clearBtn.disabled = true;
+    }
+    updateSteps();
+  }
+
+  arquivoPick.addEventListener('click', ()=> arquivoInput.click());
+  arquivoInput.addEventListener('change', ()=> setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado'));
+  arquivoClear.addEventListener('click', ()=>{
+    arquivoInput.value = '';
+    setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado');
+  });
+
+  imagemPick.addEventListener('click', ()=> imagemInput.click());
+  imagemInput.addEventListener('change', ()=> setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada'));
+  imagemClear.addEventListener('click', ()=>{
+    imagemInput.value = '';
+    setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada');
+  });
+
+  // ===== ETAPAS (visual) =====
+  const s1 = document.getElementById('s1');
+  const s2 = document.getElementById('s2');
+  const s3 = document.getElementById('s3');
+  const s4 = document.getElementById('s4');
+
   const form = document.getElementById('timpForm');
   const texto = document.getElementById('texto');
-  const arquivo = document.getElementById('arquivo');
+  const formError = document.getElementById('formError');
 
+  function hasOrigem(){
+    return !!form.querySelector('input[name="origem"]:checked');
+  }
+  function hasDadosMin(){
+    const nome = (document.getElementById('nome').value || '').trim().length > 0;
+    const nasc = (document.getElementById('nascimento').value || '').trim().length > 0;
+    const end  = (document.getElementById('endereco').value || '').trim().length > 0;
+    const cid  = (document.getElementById('cidade').value || '').trim().length > 0;
+    const est  = (document.getElementById('estado').value || '').trim().length > 0;
+    const cep  = (document.getElementById('cep').value || '').trim().length > 0;
+    const wha  = (document.getElementById('whats').value || '').trim().length > 0;
+    return nome && nasc && end && cid && est && cep && wha;
+  }
+
+  function updateSteps(){
+    // 1) pacote
+    const ok1 = !!packSelect.value;
+    s1.classList.toggle('done', ok1);
+    s1.classList.toggle('active', !ok1);
+
+    // 2) origem
+    const ok2 = hasOrigem();
+    s2.classList.toggle('done', ok2);
+    s2.classList.toggle('active', ok1 && !ok2);
+
+    // 3) conteúdo
+    const hasText = (texto.value || "").trim().length > 0;
+    const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
+    const ok3 = hasText || hasFile;
+    s3.classList.toggle('done', ok3);
+    s3.classList.toggle('active', ok1 && ok2 && !ok3);
+
+    // 4) dados
+    const ok4 = hasDadosMin();
+    s4.classList.toggle('done', ok4);
+    s4.classList.toggle('active', ok1 && ok2 && ok3 && !ok4);
+  }
+
+  ['change','keyup','blur'].forEach(evt=>{
+    form.addEventListener(evt, updateSteps, true);
+  });
+  updateSteps();
+
+  // ===== VALIDAÇÃO + ENVIO (sem alert seco) =====
   form.addEventListener('submit', (e)=>{
+    formError.classList.remove('show');
+
     // valida pacote
     if(!packSelect.value){
       e.preventDefault();
-      alert("Selecione um pacote antes de enviar.");
+      formError.classList.add('show');
       packSelect.focus();
+      return;
+    }
+
+    // valida origem
+    if(!hasOrigem()){
+      e.preventDefault();
+      formError.classList.add('show');
+      const firstRadio = form.querySelector('input[name="origem"]');
+      if(firstRadio) firstRadio.focus();
       return;
     }
 
     // valida texto OU arquivo
     const hasText = (texto.value || "").trim().length > 0;
-    const hasFile = (arquivo.files && arquivo.files.length > 0);
-
+    const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     if(!hasText && !hasFile){
       e.preventDefault();
-      alert("Você precisa colar a letra/história/ideia OU anexar um arquivo para enviar.");
+      formError.classList.add('show');
       texto.focus();
       return;
     }
 
-    // Aqui o formulário está OK.
-    // IMPORTANTE: action="#" não envia para servidor.
-    // Você pode integrar com Formspree / Google Forms / backend depois.
+    // valida required nativos (dados)
+    const requiredFields = Array.from(form.querySelectorAll('[required]'));
+    const missing = requiredFields.find(el=>{
+      if(el.type === 'radio') return false;
+      return !el.value;
+    });
+    if(missing){
+      e.preventDefault();
+      formError.classList.add('show');
+      missing.focus();
+      return;
+    }
+
+    // OK (ainda sem backend)
     e.preventDefault();
 
-    alert("Pedido registrado! Agora vamos abrir o WhatsApp para confirmar os detalhes com a TIMP.");
-    window.open("https://wa.me/5514991856520", "_blank", "noopener");
+    // abre WhatsApp (opcional: mensagem bem completa)
+    const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
+    const nome = (document.getElementById('nome').value || '').trim();
+    const cidade = (document.getElementById('cidade').value || '').trim();
+    const estado = (document.getElementById('estado').value || '').trim();
+
+    const msg =
+`Olá TIMP! Quero iniciar meu projeto.
+• Pacote: ${packSelect.value}
+• Eu já tenho: ${origem}
+• Nome: ${nome}
+• Cidade/UF: ${cidade}/${estado}
+
+Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
+
+    const url = "https://wa.me/5514991856520?text=" + encodeURIComponent(msg);
+    window.open(url, "_blank", "noopener");
   });
 
 })();
