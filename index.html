@@ -1,1 +1,1750 @@
-index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TIMP Studio Premium</title>
+<meta name="description" content="TIMP Studio Premium — Produção audiovisual com presença, credibilidade e atendimento direto em todo o Brasil." />
+
+<style>
+/* =========================
+   BASE / RESET
+========================= */
+:root{
+  --bg:#0b0b0b;
+  --bg2:#060606;
+  --text:#f5f5f5;
+  --muted:#bdbdbd;
+  --line:rgba(255,255,255,.10);
+  --glass:rgba(0,0,0,.65);
+  --card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+
+  --radius:24px;
+  --shadow: 0 25px 60px rgba(0,0,0,.65);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+/* melhorar “pulo” ao clicar nos atalhos com header fixo */
+#inicio, #sobre, #servicos, #pacotes, #portfolio, #depoimentos, #contato{
+  scroll-margin-top: 96px;
+}
+
+/* =========================
+   HEADER
+========================= */
+header{
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:100;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.header-container{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap:14px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.brand img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  display:block;
+  opacity:.95;
+}
+.brand .title{
+  font-weight: 800;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 44vw;
+}
+.brand .title small{
+  display:block;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+nav.nav-desktop{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+nav.nav-desktop a{
+  color: #cfcfcf;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+  position:relative;
+  padding:6px 0;
+}
+nav.nav-desktop a:hover{color:#fff}
+nav.nav-desktop a.active{color:#fff}
+nav.nav-desktop a.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:2px;
+  background:#fff;
+  border-radius:2px;
+}
+
+/* CTA do header */
+.header-cta{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.btn-mini{
+  padding:10px 14px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  font-size:13px;
+  transition:.2s;
+}
+.btn-mini:hover{background: rgba(255,255,255,.12); transform: translateY(-1px);}
+
+/* =========================
+   MENU MOBILE (HAMBURGUER)
+========================= */
+.menu-btn{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+}
+.menu-btn:active{transform:scale(.98)}
+.menu-icon{
+  width:20px; height:14px;
+  position:relative;
+}
+.menu-icon span{
+  position:absolute;
+  left:0; right:0;
+  height:2px;
+  background:#fff;
+  border-radius: 2px;
+  transition:.2s;
+}
+.menu-icon span:nth-child(1){top:0}
+.menu-icon span:nth-child(2){top:6px; opacity:1}
+.menu-icon span:nth-child(3){top:12px}
+
+.mobile-panel{
+  display:none;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(12px);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.mobile-panel .inner{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 14px 16px;
+}
+.mobile-panel a{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 12px 12px;
+  border-radius: 14px;
+  color:#eaeaea;
+  text-decoration:none;
+  font-weight: 900;
+  letter-spacing:.2px;
+}
+.mobile-panel a:hover{background: rgba(255,255,255,.07);}
+.mobile-panel a.active{
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.mobile-panel .cta-row{
+  margin-top: 10px;
+  display:flex;
+  gap:10px;
+}
+.mobile-panel .cta-row a{
+  flex:1;
+  justify-content:center;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.mobile-panel .cta-row a:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top: 84px;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 58%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+}
+.hero img{
+  width: min(86vw, 980px);
+  height:auto;
+  filter:
+    drop-shadow(0 25px 60px rgba(0,0,0,.9))
+    drop-shadow(0 0 90px rgba(255,255,255,.08));
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+section{
+  padding: 110px 18px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.kicker{
+  color:#cfcfcf;
+  letter-spacing: .28em;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity:.85;
+}
+h2{
+  font-size: 48px;
+  margin-bottom: 18px;
+}
+p{
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 900px;
+}
+p + p{ margin-top: 14px; }
+
+/* cards / grid */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.20);
+}
+
+/* =========================
+   BOTÕES
+========================= */
+.buttons{
+  margin-top: 28px;
+  display:flex;
+  gap:14px;
+  flex-wrap: wrap;
+}
+.btn{
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color:#fff;
+  text-decoration:none;
+  font-weight: 900;
+  transition: .22s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.btn:hover{background: rgba(255,255,255,.16); transform: translateY(-2px);}
+
+.btn-outline{
+  background: rgba(255,255,255,.04);
+}
+.btn-outline:hover{background: rgba(255,255,255,.10);}
+
+/* =========================
+   PORTFÓLIO
+========================= */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
+.video-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio: 16/9;
+  background:#000;
+}
+.video-frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+.video-meta{
+  padding: 18px 18px 20px;
+}
+.video-title{
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.video-sub{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.video-actions{
+  margin-top: 14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.video-actions a{
+  flex: 1;
+  min-width: 140px;
+}
+
+/* CTA fim do portfólio */
+.portfolio-cta{
+  margin-top: 26px;
+  padding: 22px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.portfolio-cta strong{
+  font-size: 18px;
+}
+.portfolio-cta span{
+  color: var(--muted);
+  display:block;
+  margin-top:6px;
+  font-size:14px;
+}
+
+/* =========================
+   PACOTES
+========================= */
+.price-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.price-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  font-weight:900;
+  font-size:12px;
+  width: fit-content;
+}
+.price{
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: .3px;
+}
+.price small{
+  display:block;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: 6px;
+}
+.features{
+  margin-top: 2px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  color:#d7d7d7;
+  font-size:14px;
+  line-height:1.4;
+}
+.features span{opacity:.95;}
+.select-btn{margin-top:auto; width:100%;}
+.featured{
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 18px 70px rgba(0,0,0,.50);
+}
+.featured::before{
+  content:"Mais vendido";
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.45);
+  font-weight:900;
+  font-size:12px;
+  color:#fff;
+}
+.pay-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.pay-row a{flex:1; min-width: 160px;}
+
+/* =========================
+   FORMULÁRIO (UPGRADE PREMIUM)
+========================= */
+.small-muted{
+  color: var(--muted);
+  font-size: 13px;
+  line-height:1.5;
+}
+
+.form-wrap{
+  margin-top: 22px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+
+.form-topbar{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:space-between;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  margin-bottom: 16px;
+}
+.form-topbar strong{
+  display:block;
+  font-size: 14px;
+  letter-spacing:.2px;
+}
+.form-topbar span{
+  display:block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+  line-height:1.45;
+}
+
+.steps{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.step{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  font-weight:900;
+  font-size: 12px;
+  color:#eaeaea;
+  opacity:.92;
+}
+.step .dot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.28);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+}
+.step.done .dot{ background: rgba(255,255,255,.85); }
+.step.active{
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.18);
+}
+.step.active .dot{ background: rgba(255,255,255,.95); }
+
+.form-section{
+  margin-top: 14px;
+  padding: 16px 16px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+.form-section h3{
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.form-section p{
+  margin: 0;
+  max-width: none;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.req{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:900;
+}
+.req::after{
+  content:"Obrigatório";
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:#eaeaea;
+  opacity:.9;
+}
+
+.field{ margin-top: 12px; }
+.field label{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  font-weight: 900;
+  font-size: 13px;
+  color:#eaeaea;
+  letter-spacing:.2px;
+  margin-bottom: 8px;
+}
+.helper{
+  color: rgba(255,255,255,.55);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.40);
+  color: #fff;
+  outline: none;
+  transition: .15s ease;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color: rgba(255,255,255,.22);
+  background: rgba(0,0,0,.52);
+}
+.field input::placeholder,
+.field textarea::placeholder{ color: rgba(255,255,255,.45); }
+.field textarea{ min-height: 150px; resize: vertical; }
+
+.error{
+  display:none;
+  margin-top: 10px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.error.show{ display:block; }
+
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+.form-grid .full{ grid-column: 1 / -1; }
+
+.radio-row{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top: 12px;
+}
+.radio-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  cursor:pointer;
+  transition: .15s ease;
+}
+.radio-item:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+}
+.radio-item input{ margin-top: 3px; transform: scale(1.05); }
+.radio-item strong{ display:block; font-size: 14px; }
+.radio-item span{ display:block; color: var(--muted); font-size: 13px; margin-top: 4px; line-height:1.4; }
+
+.notice{
+  margin-top: 12px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  color:#d9d9d9;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.notice b{ color:#fff; }
+
+/* UPLOAD PREMIUM */
+.file-ui{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border:1px dashed rgba(255,255,255,.18);
+  background: rgba(0,0,0,.30);
+}
+.file-ui strong{ font-size: 13px; }
+.file-ui .meta{ min-width: 240px; flex:1; }
+.file-ui .meta span{
+  display:block;
+  color: rgba(255,255,255,.60);
+  font-size: 12px;
+  margin-top: 4px;
+}
+.file-ui .name{
+  color:#fff;
+  font-weight: 900;
+  font-size: 13px;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 62ch;
+}
+.file-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.btn-soft{
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  font-weight: 900;
+  font-size: 13px;
+  cursor:pointer;
+  transition: .18s;
+}
+.btn-soft:hover{ background: rgba(255,255,255,.12); transform: translateY(-1px); }
+.btn-danger{ background: rgba(255,255,255,.03); }
+.btn-danger:hover{ background: rgba(255,255,255,.10); }
+.hidden-file{
+  position:absolute;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  opacity:0;
+}
+
+.form-actions{
+  margin-top: 16px;
+  display:flex;
+  gap: 12px;
+  flex-wrap:wrap;
+}
+.form-actions .btn{
+  flex:1;
+  min-width: 240px;
+}
+
+/* MINI CHECKOUT APÓS ENVIO */
+.pay-sheet{
+  display:none;
+  margin-top: 14px;
+  padding: 16px 16px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+}
+.pay-sheet.show{ display:block; }
+.pay-sheet h4{
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.pay-sheet p{
+  margin:0;
+  max-width:none;
+  font-size: 14px;
+  color: var(--muted);
+}
+.pay-sheet .row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 12px;
+}
+.pay-sheet .row a{ flex:1; min-width: 210px; }
+
+/* =========================
+   ANIMAÇÕES SUAVES (SCROLL REVEAL)
+========================= */
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+  will-change: opacity, transform;
+}
+.reveal.show{ opacity: 1; transform: translateY(0); }
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+  padding: 44px 18px;
+  text-align:center;
+  color:#777;
+  background:#050505;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media(max-width: 980px){
+  nav.nav-desktop{display:none}
+  .menu-btn{display:flex}
+  .header-cta{display:none}
+  h2{font-size: 36px}
+  .grid{grid-template-columns: 1fr}
+  .portfolio-grid{grid-template-columns: 1fr}
+  .hero{padding-top: 92px}
+  .brand .title{max-width: 55vw}
+  .form-grid{grid-template-columns: 1fr}
+  .file-ui .name{max-width: 42ch}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="brand">
+      <img src="logo-timp.png" alt="TIMP" />
+      <div class="title">
+        TIMP Studio Premium
+        <small>• Atendimento em todo o Brasil •</small>
+      </div>
+    </div>
+
+    <nav class="nav-desktop" aria-label="Menu principal">
+      <a href="#inicio" class="active">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#pacotes">Pacotes</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="header-cta">
+      <a class="btn-mini" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn-mini" href="#pacotes">Ver pacotes</a>
+    </div>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+      <div class="menu-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
+
+  <div class="mobile-panel" id="mobilePanel">
+    <div class="inner">
+      <a href="#inicio" class="active">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#pacotes">Pacotes</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+
+      <div class="cta-row">
+        <a href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:timpdobrasil@gmail.com">E-mail</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <img src="logo-timp.png" alt="TIMP Studio Premium">
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container reveal">
+    <div class="kicker">SOBRE</div>
+    <h2>Quem somos</h2>
+
+    <p>
+      A TIMP Studio Premium é um estúdio audiovisual especializado em transformar letras em músicas reais e músicas em videoclipes profissionais.
+      Através de tecnologia avançada de IA, conectamos criação musical e produção visual para entregar obras completas, prontas para emocionar e impactar o público.
+    </p>
+
+    <p>
+      Somos movidos pela criação artística com estratégia.
+      Transformamos ideias, sentimentos e palavras em videoclipes e narrativas audiovisuais com identidade forte.
+    </p>
+
+    <p>
+      Da composição à produção musical, da gravação ao vídeo final, entregamos projetos com excelência estética, clareza criativa e foco em resultado.
+    </p>
+
+    <p>
+      Tudo pronto para você divulgar em canais digitais como: YouTube, Instagram, Facebook, WhatsApp, TikTok, etc.
+    </p>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container reveal">
+    <div class="kicker">SERVIÇOS</div>
+    <h2>O que fazemos</h2>
+    <div class="grid">
+      <div class="card">Transformamos histórias em letras musicais que ganham vida em versos e melodias.</div>
+      <div class="card">Desenvolvemos harmonia e arranjos instrumentais para completar letras já existentes.</div>
+      <div class="card">Criamos do Zero, músicas, letras, melodia e vídeos clipes mesmo a partir de uma simples ideia.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PACOTES / PREÇOS -->
+<section id="pacotes">
+  <div class="container reveal">
+    <div class="kicker">PACOTES</div>
+    <h2>Escolha seu pacote</h2>
+    <p>Você escolhe o nível de criação — nós transformamos em música de verdade.</p>
+
+    <div class="grid" style="margin-top:34px;">
+      <!-- PACOTE 1 -->
+      <div class="card price-card">
+        <div class="price-badge">🥉 Pacote 1 • Entrada</div>
+        <div class="price">R$ 697 <small>Já tenho a letra — quero melodia e base</small></div>
+        <div class="features">
+          <span>• Criação de melodia original</span>
+          <span>• Estrutura musical (verso/refrão/ponte)</span>
+          <span>• Base instrumental personalizada</span>
+          <span>• sem revisão</span>
+          <span>• Entrega MP3 + Vídeo Clipe</span>
+        </div>
+
+        <div class="pay-row">
+          <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="697">Quero pelo formulário</a>
+          <a class="btn btn-outline select-btn" href="#" data-pay="1">Pagar agora</a>
+        </div>
+      </div>
+
+      <!-- PACOTE 2 -->
+      <div class="card price-card featured">
+        <div class="price-badge">🥈 Pacote 2 • Intermediário</div>
+        <div class="price">R$ 997 <small>Tenho a história — quero letra + música</small></div>
+        <div class="features">
+          <span>• Criação da letra personalizada</span>
+          <span>• Melodia original</span>
+          <span>• Produção instrumental completa</span>
+          <span>• 1 revisão</span>
+          <span>• Entrega MP3 + Vídeo Clipe</span>
+        </div>
+
+        <div class="pay-row">
+          <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="997">Quero pelo formulário</a>
+          <a class="btn btn-outline select-btn" href="#" data-pay="2">Pagar agora</a>
+        </div>
+      </div>
+
+      <!-- PACOTE 3 -->
+      <div class="card price-card">
+        <div class="price-badge">🥇 Pacote 3 • Completo</div>
+        <div class="price">R$ 1.497 <small>Tenho uma ideia — quero projeto do zero</small></div>
+        <div class="features">
+          <span>• Desenvolvimento do conceito</span>
+          <span>• Letra + melodia + produção musical</span>
+          <span>• Direção artística</span>
+          <span>• 2 revisões</span>
+          <span>• Capa digital (imagem)</span>
+          <span>• Entrega MP3 + Vídeo Clipe</span>
+        </div>
+
+        <div class="pay-row">
+          <a class="btn select-btn" href="#contato" data-pack="3" data-packname="Pacote 3" data-price="1497">Quero pelo formulário</a>
+          <a class="btn btn-outline select-btn" href="#" data-pay="3">Pagar agora</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-cta" style="margin-top:26px;">
+      <div>
+        <strong>Pagamento fácil</strong>
+        <span>Você pode pagar por Pix ou cartão parcelado via Mercado Pago. A TIMP confirma e inicia a produção.</span>
+      </div>
+      <a class="btn" href="#contato">Quero começar agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO COM VÍDEOS REAIS -->
+<section id="portfolio">
+  <div class="container reveal">
+    <div class="kicker">PORTFÓLIO</div>
+    <h2>Vídeos recentes</h2>
+    <p>Alguns exemplos do nosso padrão de entrega.</p>
+
+    <div class="portfolio-grid">
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/iWxMJYtuuGM"
+            title="Institucional — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Institucional</div>
+          <div class="video-sub">Apresentação e presença de marca.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=iWxMJYtuuGM" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/eiRr98BzZdk"
+            title="Comercial — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Conteúdo para conversão e impacto.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=eiRr98BzZdk" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/L0RYguRzFFg"
+            title="Reels/Social — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Edição dinâmica e acabamento premium.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=L0RYguRzFFg" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/oOAuzagI1dg"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Projeto autoral desenvolvido pela TIMP.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=oOAuzagI1dg" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/kUphz1lk47Q"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Música desenvolvida com identidade própria.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=kUphz1lk47Q" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/p6jQcIeORqE"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Criação musical e visual integradas.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=p6jQcIeORqE" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/fIcl7pr-kxw"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Desenvolvimento criativo completo.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=fIcl7pr-kxw" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/DG2ip-o5Yno"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Produção profissional com identidade sonora.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=DG2ip-o5Yno" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/eCNHUnNrHxY"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Integração entre música e imagem.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=eCNHUnNrHxY" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/o49Oo8HIR_8"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Produção musical personalizada.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=o49Oo8HIR_8" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/NIaHr8Ui4K0"
+            title="Letra / Música / Clipe — TIMP Studio Premium"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Letra / Música / Clipe</div>
+          <div class="video-sub">Da letra ao videoclipe final.</div>
+          <div class="video-actions">
+            <a class="btn" href="https://www.youtube.com/watch?v=NIaHr8Ui4K0" target="_blank" rel="noopener">Assistir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="container reveal">
+    <div class="kicker">DEPOIMENTOS</div>
+    <h2>O que falam</h2>
+    <div class="grid">
+      <div class="card">“Marca forte, visual impecável e atendimento rápido.”</div>
+      <div class="card">“Produção premium do início ao fim.”</div>
+      <div class="card">“Experiência profissional acima da média.”</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO + FORMULÁRIO -->
+<section id="contato">
+  <div class="container reveal">
+    <div class="kicker">CONTATO</div>
+    <h2>Começar meu projeto</h2>
+
+    <p class="small-muted">
+      Preencha os dados abaixo. Se você clicou em um pacote acima, ele já fica selecionado aqui.
+      <br>WhatsApp: (14) 99185-6520 • E-mail: timpdobrasil@gmail.com • Bauru - SP
+    </p>
+
+    <div class="form-wrap" id="formWrap">
+      <form id="timpForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+
+        <div class="form-topbar">
+          <div>
+            <strong>Envio do projeto (rápido e guiado)</strong>
+            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. Depois, você pode pagar por Pix ou cartão parcelado via Mercado Pago.</span>
+          </div>
+          <div class="steps" aria-label="Etapas do formulário">
+            <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
+            <div class="step" id="s2"><span class="dot"></span>2) Você já tem</div>
+            <div class="step" id="s3"><span class="dot"></span>3) Conteúdo</div>
+            <div class="step" id="s4"><span class="dot"></span>4) Seus dados</div>
+          </div>
+        </div>
+
+        <div class="error" id="formError">
+          <b>Faltou algo:</b> revise os campos destacados e tente novamente.
+        </div>
+
+        <!-- 1) PACOTE -->
+        <div class="form-section" id="secPacote">
+          <h3 class="req">1) Pacote escolhido</h3>
+          <p>Selecione o pacote para direcionarmos a criação corretamente.</p>
+
+          <div class="notice" id="packSummary" style="margin-top:12px;">
+            <b>Selecione um pacote</b> acima para preencher automaticamente aqui.
+          </div>
+
+          <div class="field">
+            <label for="pacote">
+              Pacote
+              <span class="helper">Escolha 1 opção</span>
+            </label>
+            <select id="pacote" name="pacote" required>
+              <option value="" selected disabled>Selecione um pacote</option>
+              <option value="Pacote 1 - R$ 697">Pacote 1 — R$ 697 (Já tenho a letra)</option>
+              <option value="Pacote 2 - R$ 997">Pacote 2 — R$ 997 (Tenho a história)</option>
+              <option value="Pacote 3 - R$ 1.497">Pacote 3 — R$ 1.497 (Tenho uma ideia)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 2) ORIGEM -->
+        <div class="form-section" id="secOrigem">
+          <h3 class="req">2) O que você já tem?</h3>
+          <p>Isso ajuda a TIMP a começar do ponto certo e acelerar a entrega.</p>
+
+          <div class="radio-row">
+            <label class="radio-item">
+              <input type="radio" name="origem" value="1) Já tenho a letra, mas ainda não tenho a melodia" required>
+              <div>
+                <strong>1) Já tenho a letra, mas ainda não tenho a melodia</strong>
+                <span>Você manda a letra e nós criamos a melodia + base.</span>
+              </div>
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="origem" value="2) Tenho uma história e quero transformá-la em letra musical" required>
+              <div>
+                <strong>2) Tenho uma história e quero transformar em letra musical</strong>
+                <span>Você manda a história e nós viramos letra + música.</span>
+              </div>
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="origem" value="3) Não tenho história nem letra, mas tenho uma ideia" required>
+              <div>
+                <strong>3) Não tenho história nem letra, mas tenho uma ideia</strong>
+                <span>Você manda a ideia e nós criamos tudo do zero.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 3) CONTEÚDO -->
+        <div class="form-section" id="secConteudo">
+          <h3 class="req">3) Seu conteúdo (texto ou arquivo)</h3>
+          <p>Você pode <b>colar o texto</b> ou <b>anexar um arquivo</b>. Pelo menos 1 é obrigatório.</p>
+
+          <div class="field">
+            <label for="texto">
+              Cole aqui sua letra / história / ideia
+              <span class="helper">Ou envie um arquivo abaixo</span>
+            </label>
+            <textarea id="texto" name="texto" placeholder="Cole aqui sua letra, história ou ideia..."></textarea>
+            <div class="small-muted" style="margin-top:8px;">
+              Dica: se tiver partes importantes (refrão, emoção, história), deixe bem claro.
+            </div>
+          </div>
+
+          <div class="field">
+            <label>
+              Anexar arquivo com letra/história/ideia
+              <span class="helper">PDF, DOC/DOCX ou TXT</span>
+            </label>
+
+            <input class="hidden-file" id="arquivo" name="arquivo" type="file" accept=".doc,.docx,.pdf,.txt">
+
+            <div class="file-ui" id="arquivoUI">
+              <div class="meta">
+                <div class="name" id="arquivoName">Nenhum arquivo selecionado</div>
+                <span>Se você escolher um arquivo errado, clique em <b>Remover</b> e selecione outro.</span>
+              </div>
+
+              <div class="file-actions">
+                <button type="button" class="btn-soft" id="arquivoPick">Escolher arquivo</button>
+                <button type="button" class="btn-soft btn-danger" id="arquivoClear" disabled>Remover</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>
+              Anexar imagem (opcional)
+              <span class="helper">Referência / capa / inspiração</span>
+            </label>
+
+            <input class="hidden-file" id="imagem" name="imagem" type="file" accept="image/*">
+
+            <div class="file-ui" id="imagemUI" style="border-style: solid; border-color: rgba(255,255,255,.12);">
+              <div class="meta">
+                <div class="name" id="imagemName">Nenhuma imagem selecionada</div>
+                <span>Opcional. Se anexar, facilita na direção visual do clipe/capa.</span>
+              </div>
+
+              <div class="file-actions">
+                <button type="button" class="btn-soft" id="imagemPick">Escolher imagem</button>
+                <button type="button" class="btn-soft btn-danger" id="imagemClear" disabled>Remover</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="notice" id="contentNotice">
+            <b>Atenção:</b> para enviar, você precisa <b>colar o texto</b> (letra/história/ideia) <b>ou anexar o arquivo</b>. Pode fazer os dois também.
+          </div>
+        </div>
+
+        <!-- 4) DADOS -->
+        <div class="form-section" id="secDados">
+          <h3 class="req">4) Seus dados</h3>
+          <p>Precisamos destes dados para confirmar o pedido e organizar a produção.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="nome">Nome completo <span class="helper">Obrigatório</span></label>
+              <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required>
+            </div>
+
+            <div class="field">
+              <label for="nascimento">Data de nascimento <span class="helper">Obrigatório</span></label>
+              <input id="nascimento" name="nascimento" type="date" required>
+            </div>
+
+            <div class="field full">
+              <label for="endereco">Endereço <span class="helper">Obrigatório</span></label>
+              <input id="endereco" name="endereco" type="text" placeholder="Rua, número, bairro, complemento" required>
+            </div>
+
+            <div class="field">
+              <label for="cidade">Cidade <span class="helper">Obrigatório</span></label>
+              <input id="cidade" name="cidade" type="text" placeholder="Cidade" required>
+            </div>
+
+            <div class="field">
+              <label for="estado">Estado <span class="helper">Obrigatório</span></label>
+              <input id="estado" name="estado" type="text" placeholder="Ex: SP" required>
+            </div>
+
+            <div class="field">
+              <label for="cep">CEP <span class="helper">Obrigatório</span></label>
+              <input id="cep" name="cep" type="text" placeholder="00000-000" required>
+            </div>
+
+            <div class="field">
+              <label for="whats">Telefone / WhatsApp <span class="helper">Obrigatório</span></label>
+              <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" required>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
+          </div>
+
+          <!-- MINI CHECKOUT -->
+          <div class="pay-sheet" id="paySheet">
+            <h4>Pronto ✅ Agora finalize o pagamento</h4>
+            <p>Você pode pagar por <b>Pix</b> ou <b>cartão parcelado</b> via Mercado Pago. Após o pagamento, a TIMP inicia a produção.</p>
+            <div class="row">
+              <a class="btn" href="#" id="payNowBtn" target="_blank" rel="noopener">Pagar agora (Mercado Pago)</a>
+              <a class="btn btn-outline" href="#" id="whatsConfirmBtn" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            </div>
+          </div>
+
+          <p class="small-muted" style="margin-top:12px;">
+            *Após o envio, a TIMP confirma os detalhes e inicia a produção.
+          </p>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="https://wa.me/5514991856520" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn" href="mailto:timpdobrasil@gmail.com">Enviar e-mail</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © TIMP Studio Premium — Todos os direitos reservados
+</footer>
+
+<script>
+(function(){
+  // =========================
+  // 1) COLE AQUI SEUS LINKS DO MERCADO PAGO (um por pacote)
+  // =========================
+  const MP_LINKS = {
+    1: "COLE_AQUI_O_LINK_DO_PACOTE_1", // ex: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=...
+    2: "COLE_AQUI_O_LINK_DO_PACOTE_2",
+    3: "COLE_AQUI_O_LINK_DO_PACOTE_3"
+  };
+
+  const WHATS_NUMBER = "5514991856520";
+
+  function isValidMpLink(url){
+    return typeof url === "string"
+      && url.startsWith("http")
+      && !url.includes("COLE_AQUI");
+  }
+
+  function getMpLinkByPack(pack){
+    const p = Number(pack);
+    const link = MP_LINKS[p];
+    return isValidMpLink(link) ? link : "";
+  }
+
+  function openPay(pack){
+    const link = getMpLinkByPack(pack);
+    if(link){
+      window.open(link, "_blank", "noopener");
+      return true;
+    }
+    return false;
+  }
+
+  // ===== MENU MOBILE =====
+  const menuBtn = document.getElementById('menuBtn');
+  const panel = document.getElementById('mobilePanel');
+  const desktopLinks = Array.from(document.querySelectorAll('nav.nav-desktop a'));
+  const mobileLinks  = Array.from(panel.querySelectorAll('.inner > a'));
+
+  function setActive(hash){
+    const all = desktopLinks.concat(mobileLinks);
+    all.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+  }
+
+  function closeMenu(){
+    panel.style.display = 'none';
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.setAttribute('aria-label','Abrir menu');
+  }
+
+  function toggleMenu(){
+    const open = panel.style.display === 'block';
+    if(open) closeMenu();
+    else{
+      panel.style.display = 'block';
+      menuBtn.setAttribute('aria-expanded','true');
+      menuBtn.setAttribute('aria-label','Fechar menu');
+    }
+  }
+
+  menuBtn.addEventListener('click', toggleMenu);
+  mobileLinks.forEach(a=>{
+    a.addEventListener('click', ()=>{
+      setActive(a.getAttribute('href'));
+      closeMenu();
+    });
+  });
+  desktopLinks.forEach(a=>{
+    a.addEventListener('click', ()=> setActive(a.getAttribute('href')));
+  });
+  window.addEventListener('scroll', ()=>{
+    if(panel.style.display === 'block') closeMenu();
+  }, {passive:true});
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 980) closeMenu();
+  });
+
+  if(location.hash){ setActive(location.hash); }
+
+  // ===== ANIMAÇÕES SUAVES (SCROLL REVEAL) =====
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('show');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  items.forEach(el=> io.observe(el));
+
+  // ===== ATIVO NO MENU PELO SCROLL =====
+  const sectionIds = ['inicio','sobre','servicos','pacotes','portfolio','depoimentos','contato'];
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  const navIO = new IntersectionObserver((entries)=>{
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+
+    if(visible && visible.target && visible.target.id){
+      setActive('#' + visible.target.id);
+    }
+  }, {threshold: [0.25, 0.35, 0.5, 0.65]});
+
+  sections.forEach(s => navIO.observe(s));
+
+  // ===== PACOTES -> FORMULÁRIO =====
+  const packSummary = document.getElementById('packSummary');
+  const packSelect  = document.getElementById('pacote');
+  const btns = Array.from(document.querySelectorAll('[data-pack]'));
+
+  function formatBRL(value){
+    const n = Number(value || 0);
+    return n.toLocaleString('pt-BR', {minimumFractionDigits: 0});
+  }
+
+  function updateSummary(html){
+    packSummary.innerHTML = html;
+  }
+
+  btns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const pack = b.getAttribute('data-pack');
+      const name = b.getAttribute('data-packname');
+      const price = b.getAttribute('data-price');
+
+      if(pack === "1") packSelect.value = "Pacote 1 - R$ 697";
+      if(pack === "2") packSelect.value = "Pacote 2 - R$ 997";
+      if(pack === "3") packSelect.value = "Pacote 3 - R$ 1.497";
+
+      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${formatBRL(price)}</b>. Agora complete as etapas abaixo e envie seu pedido.`);
+      updateSteps();
+    });
+  });
+
+  // ===== BOTÕES "PAGAR AGORA" NOS PACOTES =====
+  const payBtns = Array.from(document.querySelectorAll('[data-pay]'));
+  payBtns.forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const pack = btn.getAttribute('data-pay');
+
+      const opened = openPay(pack);
+      if(!opened){
+        const msg = "Olá TIMP! Quero pagar o " + (pack === "1" ? "Pacote 1" : pack === "2" ? "Pacote 2" : "Pacote 3") + ". Pode me enviar o link de pagamento?";
+        window.open("https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+      }
+    });
+  });
+
+  // ===== UPLOAD UI (arquivo + remover) =====
+  const arquivoInput = document.getElementById('arquivo');
+  const arquivoPick  = document.getElementById('arquivoPick');
+  const arquivoClear = document.getElementById('arquivoClear');
+  const arquivoName  = document.getElementById('arquivoName');
+
+  const imagemInput = document.getElementById('imagem');
+  const imagemPick  = document.getElementById('imagemPick');
+  const imagemClear = document.getElementById('imagemClear');
+  const imagemName  = document.getElementById('imagemName');
+
+  function setFileState(input, nameEl, clearBtn, emptyText){
+    const has = input.files && input.files.length > 0;
+    if(has){
+      nameEl.textContent = input.files[0].name;
+      clearBtn.disabled = false;
+    }else{
+      nameEl.textContent = emptyText;
+      clearBtn.disabled = true;
+    }
+    updateSteps();
+  }
+
+  arquivoPick.addEventListener('click', ()=> arquivoInput.click());
+  arquivoInput.addEventListener('change', ()=> setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado'));
+  arquivoClear.addEventListener('click', ()=>{
+    arquivoInput.value = '';
+    setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado');
+  });
+
+  imagemPick.addEventListener('click', ()=> imagemInput.click());
+  imagemInput.addEventListener('change', ()=> setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada'));
+  imagemClear.addEventListener('click', ()=>{
+    imagemInput.value = '';
+    setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada');
+  });
+
+  // ===== ETAPAS (visual) =====
+  const s1 = document.getElementById('s1');
+  const s2 = document.getElementById('s2');
+  const s3 = document.getElementById('s3');
+  const s4 = document.getElementById('s4');
+
+  const form = document.getElementById('timpForm');
+  const texto = document.getElementById('texto');
+  const formError = document.getElementById('formError');
+
+  const paySheet = document.getElementById('paySheet');
+  const payNowBtn = document.getElementById('payNowBtn');
+  const whatsConfirmBtn = document.getElementById('whatsConfirmBtn');
+
+  function hasOrigem(){
+    return !!form.querySelector('input[name="origem"]:checked');
+  }
+  function hasDadosMin(){
+    const nome = (document.getElementById('nome').value || '').trim().length > 0;
+    const nasc = (document.getElementById('nascimento').value || '').trim().length > 0;
+    const end  = (document.getElementById('endereco').value || '').trim().length > 0;
+    const cid  = (document.getElementById('cidade').value || '').trim().length > 0;
+    const est  = (document.getElementById('estado').value || '').trim().length > 0;
+    const cep  = (document.getElementById('cep').value || '').trim().length > 0;
+    const wha  = (document.getElementById('whats').value || '').trim().length > 0;
+    return nome && nasc && end && cid && est && cep && wha;
+  }
+
+  function updateSteps(){
+    const ok1 = !!packSelect.value;
+    s1.classList.toggle('done', ok1);
+    s1.classList.toggle('active', !ok1);
+
+    const ok2 = hasOrigem();
+    s2.classList.toggle('done', ok2);
+    s2.classList.toggle('active', ok1 && !ok2);
+
+    const hasText = (texto.value || "").trim().length > 0;
+    const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
+    const ok3 = hasText || hasFile;
+    s3.classList.toggle('done', ok3);
+    s3.classList.toggle('active', ok1 && ok2 && !ok3);
+
+    const ok4 = hasDadosMin();
+    s4.classList.toggle('done', ok4);
+    s4.classList.toggle('active', ok1 && ok2 && ok3 && !ok4);
+  }
+
+  ['change','keyup','blur'].forEach(evt=>{
+    form.addEventListener(evt, updateSteps, true);
+  });
+  updateSteps();
+
+  // ===== SUBMIT: MOSTRA MINI CHECKOUT + WHATS =====
+  form.addEventListener('submit', (e)=>{
+    formError.classList.remove('show');
+
+    if(!packSelect.value){
+      e.preventDefault();
+      formError.classList.add('show');
+      packSelect.focus();
+      return;
+    }
+
+    if(!hasOrigem()){
+      e.preventDefault();
+      formError.classList.add('show');
+      const firstRadio = form.querySelector('input[name="origem"]');
+      if(firstRadio) firstRadio.focus();
+      return;
+    }
+
+    const hasText = (texto.value || "").trim().length > 0;
+    const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
+    if(!hasText && !hasFile){
+      e.preventDefault();
+      formError.classList.add('show');
+      texto.focus();
+      return;
+    }
+
+    const requiredFields = Array.from(form.querySelectorAll('[required]'));
+    const missing = requiredFields.find(el=>{
+      if(el.type === 'radio') return false;
+      return !el.value;
+    });
+    if(missing){
+      e.preventDefault();
+      formError.classList.add('show');
+      missing.focus();
+      return;
+    }
+
+    e.preventDefault();
+
+    const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
+    const nome = (document.getElementById('nome').value || '').trim();
+    const cidade = (document.getElementById('cidade').value || '').trim();
+    const estado = (document.getElementById('estado').value || '').trim();
+
+    const msg =
+`Olá TIMP! Quero iniciar meu projeto.
+• Pacote: ${packSelect.value}
+• Eu já tenho: ${origem}
+• Nome: ${nome}
+• Cidade/UF: ${cidade}/${estado}
+
+Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
+
+    const waUrl = "https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(msg);
+    whatsConfirmBtn.href = waUrl;
+
+    // define botão de pagar agora conforme pacote selecionado
+    let packNum = 0;
+    if(packSelect.value.includes("Pacote 1")) packNum = 1;
+    if(packSelect.value.includes("Pacote 2")) packNum = 2;
+    if(packSelect.value.includes("Pacote 3")) packNum = 3;
+
+    const payLink = getMpLinkByPack(packNum);
+    if(payLink){
+      payNowBtn.href = payLink;
+      payNowBtn.textContent = "Pagar agora (Mercado Pago)";
+    }else{
+      payNowBtn.href = waUrl;
+      payNowBtn.textContent = "Pedir link de pagamento (WhatsApp)";
+    }
+
+    paySheet.classList.add('show');
+    paySheet.scrollIntoView({behavior:"smooth", block:"center"});
+  });
+
+})();
+</script>
+
+</body>
+</html>
