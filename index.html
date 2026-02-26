@@ -116,7 +116,7 @@ nav.nav-desktop a.active::after{
   border-radius:2px;
 }
 
-/* CTA do header (tudo na cor original do site) */
+/* CTA do header */
 .header-cta{
   display:flex;
   gap:10px;
@@ -209,19 +209,18 @@ nav.nav-desktop a.active::after{
 }
 
 /* =========================
-   HERO (LOGO GIGANTE)
+   HERO
 ========================= */
 .hero{
   height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding-top: 84px; /* por causa do header fixo */
+  padding-top: 84px;
   background:
     radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 58%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
 }
-
 .hero img{
   width: min(86vw, 980px);
   height:auto;
@@ -277,7 +276,7 @@ p + p{ margin-top: 14px; }
 }
 
 /* =========================
-   BOTÕES (cor original do site)
+   BOTÕES
 ========================= */
 .buttons{
   margin-top: 28px;
@@ -301,8 +300,13 @@ p + p{ margin-top: 14px; }
 }
 .btn:hover{background: rgba(255,255,255,.16); transform: translateY(-2px);}
 
+.btn-outline{
+  background: rgba(255,255,255,.04);
+}
+.btn-outline:hover{background: rgba(255,255,255,.10);}
+
 /* =========================
-   PORTFÓLIO (VÍDEOS REAIS)
+   PORTFÓLIO
 ========================= */
 .portfolio-grid{
   display:grid;
@@ -378,7 +382,7 @@ p + p{ margin-top: 14px; }
 }
 
 /* =========================
-   PACOTES (PREÇOS)
+   PACOTES
 ========================= */
 .price-card{
   position:relative;
@@ -419,15 +423,8 @@ p + p{ margin-top: 14px; }
   font-size:14px;
   line-height:1.4;
 }
-.features span{
-  opacity:.95;
-}
-.select-btn{
-  margin-top:auto;
-  width:100%;
-}
-
-/* destaque do pacote 2 (âncora de valor) */
+.features span{opacity:.95;}
+.select-btn{margin-top:auto; width:100%;}
 .featured{
   border: 1px solid rgba(255,255,255,.22);
   background: rgba(255,255,255,.08);
@@ -446,6 +443,12 @@ p + p{ margin-top: 14px; }
   font-size:12px;
   color:#fff;
 }
+.pay-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.pay-row a{flex:1; min-width: 160px;}
 
 /* =========================
    FORMULÁRIO (UPGRADE PREMIUM)
@@ -559,9 +562,7 @@ p + p{ margin-top: 14px; }
   opacity:.9;
 }
 
-.field{
-  margin-top: 12px;
-}
+.field{ margin-top: 12px; }
 .field label{
   display:flex;
   gap:10px;
@@ -597,11 +598,8 @@ p + p{ margin-top: 14px; }
   border-color: rgba(255,255,255,.22);
   background: rgba(0,0,0,.52);
 }
-
 .field input::placeholder,
-.field textarea::placeholder{
-  color: rgba(255,255,255,.45);
-}
+.field textarea::placeholder{ color: rgba(255,255,255,.45); }
 .field textarea{ min-height: 150px; resize: vertical; }
 
 .error{
@@ -616,7 +614,6 @@ p + p{ margin-top: 14px; }
   line-height: 1.45;
 }
 .error.show{ display:block; }
-.error b{ color:#fff; }
 
 .form-grid{
   display:grid;
@@ -664,12 +661,6 @@ p + p{ margin-top: 14px; }
 .notice b{ color:#fff; }
 
 /* UPLOAD PREMIUM */
-.file-row{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap:wrap;
-}
 .file-ui{
   display:flex;
   gap:10px;
@@ -680,13 +671,8 @@ p + p{ margin-top: 14px; }
   border:1px dashed rgba(255,255,255,.18);
   background: rgba(0,0,0,.30);
 }
-.file-ui strong{
-  font-size: 13px;
-}
-.file-ui .meta{
-  min-width: 240px;
-  flex:1;
-}
+.file-ui strong{ font-size: 13px; }
+.file-ui .meta{ min-width: 240px; flex:1; }
 .file-ui .meta span{
   display:block;
   color: rgba(255,255,255,.60);
@@ -718,19 +704,10 @@ p + p{ margin-top: 14px; }
   font-size: 13px;
   cursor:pointer;
   transition: .18s;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
 }
 .btn-soft:hover{ background: rgba(255,255,255,.12); transform: translateY(-1px); }
-.btn-danger{
-  background: rgba(255,255,255,.03);
-}
-.btn-danger:hover{
-  background: rgba(255,255,255,.10);
-}
-
+.btn-danger{ background: rgba(255,255,255,.03); }
+.btn-danger:hover{ background: rgba(255,255,255,.10); }
 .hidden-file{
   position:absolute;
   left:-9999px;
@@ -739,7 +716,6 @@ p + p{ margin-top: 14px; }
   opacity:0;
 }
 
-/* submit */
 .form-actions{
   margin-top: 16px;
   display:flex;
@@ -751,6 +727,34 @@ p + p{ margin-top: 14px; }
   min-width: 240px;
 }
 
+/* MINI CHECKOUT APÓS ENVIO */
+.pay-sheet{
+  display:none;
+  margin-top: 14px;
+  padding: 16px 16px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+}
+.pay-sheet.show{ display:block; }
+.pay-sheet h4{
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.pay-sheet p{
+  margin:0;
+  max-width:none;
+  font-size: 14px;
+  color: var(--muted);
+}
+.pay-sheet .row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 12px;
+}
+.pay-sheet .row a{ flex:1; min-width: 210px; }
+
 /* =========================
    ANIMAÇÕES SUAVES (SCROLL REVEAL)
 ========================= */
@@ -760,10 +764,7 @@ p + p{ margin-top: 14px; }
   transition: opacity .7s ease, transform .7s ease;
   will-change: opacity, transform;
 }
-.reveal.show{
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.show{ opacity: 1; transform: translateY(0); }
 
 /* =========================
    FOOTER
@@ -910,7 +911,11 @@ footer{
           <span>• sem revisão</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
-        <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="697">Escolher Pacote 1</a>
+
+        <div class="pay-row">
+          <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="697">Quero pelo formulário</a>
+          <a class="btn btn-outline select-btn" href="#" data-pay="1">Pagar agora</a>
+        </div>
       </div>
 
       <!-- PACOTE 2 -->
@@ -924,7 +929,11 @@ footer{
           <span>• 1 revisão</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
-        <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="997">Escolher Pacote 2</a>
+
+        <div class="pay-row">
+          <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="997">Quero pelo formulário</a>
+          <a class="btn btn-outline select-btn" href="#" data-pay="2">Pagar agora</a>
+        </div>
       </div>
 
       <!-- PACOTE 3 -->
@@ -939,14 +948,18 @@ footer{
           <span>• Capa digital (imagem)</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
-        <a class="btn select-btn" href="#contato" data-pack="3" data-packname="Pacote 3" data-price="1497">Escolher Pacote 3</a>
+
+        <div class="pay-row">
+          <a class="btn select-btn" href="#contato" data-pack="3" data-packname="Pacote 3" data-price="1497">Quero pelo formulário</a>
+          <a class="btn btn-outline select-btn" href="#" data-pay="3">Pagar agora</a>
+        </div>
       </div>
     </div>
 
     <div class="portfolio-cta" style="margin-top:26px;">
       <div>
-        <strong>Quer fechar rápido?</strong>
-        <span>Escolha um pacote e envie os dados. A TIMP confirma e inicia a produção.</span>
+        <strong>Pagamento fácil</strong>
+        <span>Você pode pagar por Pix ou cartão parcelado via Mercado Pago. A TIMP confirma e inicia a produção.</span>
       </div>
       <a class="btn" href="#contato">Quero começar agora</a>
     </div>
@@ -961,7 +974,6 @@ footer{
     <p>Alguns exemplos do nosso padrão de entrega.</p>
 
     <div class="portfolio-grid">
-      <!-- INSTITUCIONAL -->
       <div class="video-card">
         <div class="video-frame">
           <iframe
@@ -981,7 +993,6 @@ footer{
         </div>
       </div>
 
-      <!-- COMERCIAL -->
       <div class="video-card">
         <div class="video-frame">
           <iframe
@@ -1001,7 +1012,6 @@ footer{
         </div>
       </div>
 
-      <!-- REELS / SOCIAL -->
       <div class="video-card">
         <div class="video-frame">
           <iframe
@@ -1021,7 +1031,6 @@ footer{
         </div>
       </div>
 
-      <!-- NOVOS VÍDEOS -->
       <div class="video-card">
         <div class="video-frame">
           <iframe
@@ -1150,8 +1159,7 @@ footer{
           <div class="video-title">Letra / Música / Clipe</div>
           <div class="video-sub">Produção musical personalizada.</div>
           <div class="video-actions">
-            <a class="btn" href="https://www.youtube.com/watch?v=o49Oo8HIR_8"
-               target="_blank" rel="noopener">Assistir</a>
+            <a class="btn" href="https://www.youtube.com/watch?v=o49Oo8HIR_8" target="_blank" rel="noopener">Assistir</a>
           </div>
         </div>
       </div>
@@ -1174,7 +1182,6 @@ footer{
           </div>
         </div>
       </div>
-      <!-- FIM NOVOS VÍDEOS -->
     </div>
   </div>
 </section>
@@ -1206,11 +1213,10 @@ footer{
     <div class="form-wrap" id="formWrap">
       <form id="timpForm" action="#" method="post" enctype="multipart/form-data" novalidate>
 
-        <!-- TOPBAR + ETAPAS -->
         <div class="form-topbar">
           <div>
             <strong>Envio do projeto (rápido e guiado)</strong>
-            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. A TIMP confirma os detalhes no WhatsApp.</span>
+            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. Depois, você pode pagar por Pix ou cartão parcelado via Mercado Pago.</span>
           </div>
           <div class="steps" aria-label="Etapas do formulário">
             <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
@@ -1220,7 +1226,6 @@ footer{
           </div>
         </div>
 
-        <!-- ERRO INLINE (substitui alert) -->
         <div class="error" id="formError">
           <b>Faltou algo:</b> revise os campos destacados e tente novamente.
         </div>
@@ -1296,7 +1301,6 @@ footer{
             </div>
           </div>
 
-          <!-- UPLOAD LETRA/HISTÓRIA -->
           <div class="field">
             <label>
               Anexar arquivo com letra/história/ideia
@@ -1318,7 +1322,6 @@ footer{
             </div>
           </div>
 
-          <!-- UPLOAD IMAGEM -->
           <div class="field">
             <label>
               Anexar imagem (opcional)
@@ -1391,6 +1394,16 @@ footer{
             <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
           </div>
 
+          <!-- MINI CHECKOUT -->
+          <div class="pay-sheet" id="paySheet">
+            <h4>Pronto ✅ Agora finalize o pagamento</h4>
+            <p>Você pode pagar por <b>Pix</b> ou <b>cartão parcelado</b> via Mercado Pago. Após o pagamento, a TIMP inicia a produção.</p>
+            <div class="row">
+              <a class="btn" href="#" id="payNowBtn" target="_blank" rel="noopener">Pagar agora (Mercado Pago)</a>
+              <a class="btn btn-outline" href="#" id="whatsConfirmBtn" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            </div>
+          </div>
+
           <p class="small-muted" style="margin-top:12px;">
             *Após o envio, a TIMP confirma os detalhes e inicia a produção.
           </p>
@@ -1412,6 +1425,38 @@ footer{
 
 <script>
 (function(){
+  // =========================
+  // 1) COLE AQUI SEUS LINKS DO MERCADO PAGO (um por pacote)
+  // =========================
+  const MP_LINKS = {
+    1: "COLE_AQUI_O_LINK_DO_PACOTE_1", // ex: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=...
+    2: "COLE_AQUI_O_LINK_DO_PACOTE_2",
+    3: "COLE_AQUI_O_LINK_DO_PACOTE_3"
+  };
+
+  const WHATS_NUMBER = "5514991856520";
+
+  function isValidMpLink(url){
+    return typeof url === "string"
+      && url.startsWith("http")
+      && !url.includes("COLE_AQUI");
+  }
+
+  function getMpLinkByPack(pack){
+    const p = Number(pack);
+    const link = MP_LINKS[p];
+    return isValidMpLink(link) ? link : "";
+  }
+
+  function openPay(pack){
+    const link = getMpLinkByPack(pack);
+    if(link){
+      window.open(link, "_blank", "noopener");
+      return true;
+    }
+    return false;
+  }
+
   // ===== MENU MOBILE =====
   const menuBtn = document.getElementById('menuBtn');
   const panel = document.getElementById('mobilePanel');
@@ -1515,6 +1560,21 @@ footer{
     });
   });
 
+  // ===== BOTÕES "PAGAR AGORA" NOS PACOTES =====
+  const payBtns = Array.from(document.querySelectorAll('[data-pay]'));
+  payBtns.forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const pack = btn.getAttribute('data-pay');
+
+      const opened = openPay(pack);
+      if(!opened){
+        const msg = "Olá TIMP! Quero pagar o " + (pack === "1" ? "Pacote 1" : pack === "2" ? "Pacote 2" : "Pacote 3") + ". Pode me enviar o link de pagamento?";
+        window.open("https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+      }
+    });
+  });
+
   // ===== UPLOAD UI (arquivo + remover) =====
   const arquivoInput = document.getElementById('arquivo');
   const arquivoPick  = document.getElementById('arquivoPick');
@@ -1562,6 +1622,10 @@ footer{
   const texto = document.getElementById('texto');
   const formError = document.getElementById('formError');
 
+  const paySheet = document.getElementById('paySheet');
+  const payNowBtn = document.getElementById('payNowBtn');
+  const whatsConfirmBtn = document.getElementById('whatsConfirmBtn');
+
   function hasOrigem(){
     return !!form.querySelector('input[name="origem"]:checked');
   }
@@ -1577,24 +1641,20 @@ footer{
   }
 
   function updateSteps(){
-    // 1) pacote
     const ok1 = !!packSelect.value;
     s1.classList.toggle('done', ok1);
     s1.classList.toggle('active', !ok1);
 
-    // 2) origem
     const ok2 = hasOrigem();
     s2.classList.toggle('done', ok2);
     s2.classList.toggle('active', ok1 && !ok2);
 
-    // 3) conteúdo
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     const ok3 = hasText || hasFile;
     s3.classList.toggle('done', ok3);
     s3.classList.toggle('active', ok1 && ok2 && !ok3);
 
-    // 4) dados
     const ok4 = hasDadosMin();
     s4.classList.toggle('done', ok4);
     s4.classList.toggle('active', ok1 && ok2 && ok3 && !ok4);
@@ -1605,11 +1665,10 @@ footer{
   });
   updateSteps();
 
-  // ===== VALIDAÇÃO + ENVIO (sem alert seco) =====
+  // ===== SUBMIT: MOSTRA MINI CHECKOUT + WHATS =====
   form.addEventListener('submit', (e)=>{
     formError.classList.remove('show');
 
-    // valida pacote
     if(!packSelect.value){
       e.preventDefault();
       formError.classList.add('show');
@@ -1617,7 +1676,6 @@ footer{
       return;
     }
 
-    // valida origem
     if(!hasOrigem()){
       e.preventDefault();
       formError.classList.add('show');
@@ -1626,7 +1684,6 @@ footer{
       return;
     }
 
-    // valida texto OU arquivo
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     if(!hasText && !hasFile){
@@ -1636,7 +1693,6 @@ footer{
       return;
     }
 
-    // valida required nativos (dados)
     const requiredFields = Array.from(form.querySelectorAll('[required]'));
     const missing = requiredFields.find(el=>{
       if(el.type === 'radio') return false;
@@ -1649,10 +1705,8 @@ footer{
       return;
     }
 
-    // OK (ainda sem backend)
     e.preventDefault();
 
-    // abre WhatsApp (opcional: mensagem bem completa)
     const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
     const nome = (document.getElementById('nome').value || '').trim();
     const cidade = (document.getElementById('cidade').value || '').trim();
@@ -1667,8 +1721,26 @@ footer{
 
 Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
 
-    const url = "https://wa.me/5514991856520?text=" + encodeURIComponent(msg);
-    window.open(url, "_blank", "noopener");
+    const waUrl = "https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(msg);
+    whatsConfirmBtn.href = waUrl;
+
+    // define botão de pagar agora conforme pacote selecionado
+    let packNum = 0;
+    if(packSelect.value.includes("Pacote 1")) packNum = 1;
+    if(packSelect.value.includes("Pacote 2")) packNum = 2;
+    if(packSelect.value.includes("Pacote 3")) packNum = 3;
+
+    const payLink = getMpLinkByPack(packNum);
+    if(payLink){
+      payNowBtn.href = payLink;
+      payNowBtn.textContent = "Pagar agora (Mercado Pago)";
+    }else{
+      payNowBtn.href = waUrl;
+      payNowBtn.textContent = "Pedir link de pagamento (WhatsApp)";
+    }
+
+    paySheet.classList.add('show');
+    paySheet.scrollIntoView({behavior:"smooth", block:"center"});
   });
 
 })();
