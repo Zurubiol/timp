@@ -766,6 +766,28 @@ p + p{ margin-top: 14px; }
 }
 
 /* =========================
+   NOVO: DESTAQUE VISUAL DE ERROS
+========================= */
+.field.field-error input,
+.field.field-error select,
+.field.field-error textarea{
+  border-color: rgba(255,77,77,.95) !important;
+  background: rgba(255,0,0,.10) !important;
+  box-shadow: 0 0 0 3px rgba(255,77,77,.18);
+}
+
+.section-error{
+  border-color: rgba(255,77,77,.65) !important;
+  background: rgba(255,0,0,.05) !important;
+  box-shadow: 0 0 0 3px rgba(255,77,77,.10);
+}
+
+/* um “alerta” sutil no texto do label */
+.field.field-error label{
+  color: rgba(255,210,210,.98) !important;
+}
+
+/* =========================
    ANIMAÇÕES SUAVES (SCROLL REVEAL)
 ========================= */
 .reveal{
@@ -1217,7 +1239,7 @@ footer{
         <div class="form-topbar">
           <div>
             <strong>Envio do projeto (rápido e guiado)</strong>
-            <span>Ao enviar, você será direcionado automaticamente ao pagamento no Mercado Pago. Após aprovação do pagamento, você e a TIMP recebem confirmação por e-mail e WhatsApp.</span>
+            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. Depois, você pode pagar por Pix ou cartão parcelado via Mercado Pago.</span>
           </div>
           <div class="steps" aria-label="Etapas do formulário">
             <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
@@ -1229,11 +1251,6 @@ footer{
 
         <div class="error" id="formError">
           <b>Faltou algo:</b> revise os campos destacados e tente novamente.
-        </div>
-
-        <!-- NOVO: status de envio (webhook) -->
-        <div class="notice" id="sendNotice" style="display:none;">
-          <b>Enviando…</b> registrando seu pedido e preparando o redirecionamento para pagamento.
         </div>
 
         <!-- 1) PACOTE -->
@@ -1296,7 +1313,7 @@ footer{
           <h3 class="req">3) Seu conteúdo (texto ou arquivo)</h3>
           <p>Você pode <b>colar o texto</b> ou <b>anexar um arquivo</b>. Pelo menos 1 é obrigatório.</p>
 
-          <div class="field">
+          <div class="field" id="fieldTexto">
             <label for="texto">
               Cole aqui sua letra / história / ideia
               <span class="helper">Ou envie um arquivo abaixo</span>
@@ -1352,10 +1369,6 @@ footer{
           <div class="notice" id="contentNotice">
             <b>Atenção:</b> para enviar, você precisa <b>colar o texto</b> (letra/história/ideia) <b>ou anexar o arquivo</b>. Pode fazer os dois também.
           </div>
-
-          <div class="small-muted" style="margin-top:10px;">
-            Obs.: site estático (GitHub Pages) tem limitações para upload. Se o arquivo não for recebido no seu fluxo, o cliente consegue enviar o material depois pelo WhatsApp (botão aparece).
-          </div>
         </div>
 
         <!-- 4) DADOS -->
@@ -1367,12 +1380,6 @@ footer{
             <div class="field">
               <label for="nome">Nome completo <span class="helper">Obrigatório</span></label>
               <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required>
-            </div>
-
-            <!-- NOVO: EMAIL DO CLIENTE (para confirmação por e-mail) -->
-            <div class="field">
-              <label for="email">E-mail <span class="helper">Obrigatório</span></label>
-              <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required>
             </div>
 
             <div class="field">
@@ -1404,43 +1411,24 @@ footer{
               <label for="whats">Telefone / WhatsApp <span class="helper">Obrigatório</span></label>
               <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" required>
             </div>
-
-            <!-- NOVO: CONSENTIMENTO (para contato por e-mail/WhatsApp) -->
-            <div class="field full">
-              <label style="justify-content:flex-start; gap:12px;">
-                <input id="consent" name="consent" type="checkbox" required style="width:auto; transform:scale(1.15);">
-                <span style="font-weight:900; font-size:13px; color:#eaeaea;">
-                  Autorizo a TIMP a entrar em contato por e-mail e WhatsApp para confirmação do pedido e do pagamento.
-                </span>
-              </label>
-              <div class="small-muted" style="margin-top:8px;">
-                *Usamos seus dados apenas para organizar seu projeto e confirmar pagamento/entrega.
-              </div>
-            </div>
           </div>
 
           <div class="form-actions">
-            <button type="submit" class="btn" id="btnSend">Enviar e ir para pagamento</button>
+            <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
           </div>
 
-          <!-- MINI CHECKOUT (fallback) -->
+          <!-- MINI CHECKOUT -->
           <div class="pay-sheet" id="paySheet">
-            <h4>Quase lá ✅</h4>
-            <p>
-              Se o redirecionamento não abrir automaticamente, clique em <b>Pagar agora</b>.
-              <br>Depois do pagamento, a confirmação será enviada para você e para a TIMP (via automação).
-            </p>
+            <h4>Pronto ✅ Agora finalize o pagamento</h4>
+            <p>Você pode pagar por <b>Pix</b> ou <b>cartão parcelado</b> via Mercado Pago. Após o pagamento, a TIMP inicia a produção.</p>
             <div class="row">
               <a class="btn" href="#" id="payNowBtn" target="_blank" rel="noopener">Pagar agora (Mercado Pago)</a>
-              <a class="btn btn-outline" href="#" id="whatsConfirmBtn" target="_blank" rel="noopener">Enviar material / falar no WhatsApp</a>
+              <a class="btn btn-outline" href="#" id="whatsConfirmBtn" target="_blank" rel="noopener">Falar no WhatsApp</a>
             </div>
-            <p class="small-muted" style="margin-top:10px;">
-              Seu protocolo: <b id="pedidoIdView">—</b>
-            </p>
           </div>
 
           <p class="small-muted" style="margin-top:12px;">
-            *Após aprovação do pagamento, a TIMP inicia a produção.
+            *Após o envio, a TIMP confirma os detalhes e inicia a produção.
           </p>
         </div>
 
@@ -1461,14 +1449,7 @@ footer{
 <script>
 (function(){
   // =========================
-  // 0) WEBHOOK (MAKE / ZAPIER / N8N) — NECESSÁRIO PARA VOCÊ RECEBER OS DADOS E DISPARAR E-MAIL/WHATSAPP
-  // Cole aqui o "Custom Webhook" do Make (ou equivalente).
-  // IMPORTANTÍSSIMO: é esse webhook que faz você "receber" o pedido do site.
-  // =========================
-  const LEAD_WEBHOOK_URL = "COLE_AQUI_SEU_WEBHOOK_DO_MAKE"; // ex: https://hook.us1.make.com/xxxxxxx
-
-  // =========================
-  // 1) LINKS DO MERCADO PAGO (um por pacote) — OK (você já colocou)
+  // 1) COLE AQUI SEUS LINKS DO MERCADO PAGO (um por pacote)
   // =========================
   const MP_LINKS = {
     1: "https://mpago.li/2DrujAy",
@@ -1479,12 +1460,6 @@ footer{
   const WHATS_NUMBER = "5514991856520";
 
   function isValidMpLink(url){
-    return typeof url === "string"
-      && url.startsWith("http")
-      && !url.includes("COLE_AQUI");
-  }
-
-  function isValidWebhook(url){
     return typeof url === "string"
       && url.startsWith("http")
       && !url.includes("COLE_AQUI");
@@ -1594,7 +1569,7 @@ footer{
       if(pack === "2") packSelect.value = "Pacote 2 - R$ 997";
       if(pack === "3") packSelect.value = "Pacote 3 - R$ 1.497";
 
-      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${formatBRL(price)}</b>. Agora complete as etapas abaixo e envie para ir ao pagamento.`);
+      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${formatBRL(price)}</b>. Agora complete as etapas abaixo e envie seu pedido.`);
       updateSteps();
     });
   });
@@ -1651,23 +1626,24 @@ footer{
   const whatsConfirmBtn = document.getElementById('whatsConfirmBtn');
   const btnSend = document.getElementById('btnSend');
 
-  const sendNotice = document.getElementById('sendNotice');
-  const pedidoIdView = document.getElementById('pedidoIdView');
+  const secPacote = document.getElementById('secPacote');
+  const secOrigem = document.getElementById('secOrigem');
+  const secConteudo = document.getElementById('secConteudo');
+  const secDados = document.getElementById('secDados');
+  const fieldTexto = document.getElementById('fieldTexto');
 
   function hasOrigem(){
     return !!form.querySelector('input[name="origem"]:checked');
   }
   function hasDadosMin(){
     const nome = (document.getElementById('nome').value || '').trim().length > 0;
-    const email = (document.getElementById('email').value || '').trim().length > 0;
     const nasc = (document.getElementById('nascimento').value || '').trim().length > 0;
     const end  = (document.getElementById('endereco').value || '').trim().length > 0;
     const cid  = (document.getElementById('cidade').value || '').trim().length > 0;
     const est  = (document.getElementById('estado').value || '').trim().length > 0;
     const cep  = (document.getElementById('cep').value || '').trim().length > 0;
     const wha  = (document.getElementById('whats').value || '').trim().length > 0;
-    const consent = !!document.getElementById('consent').checked;
-    return nome && email && nasc && end && cid && est && cep && wha && consent;
+    return nome && nasc && end && cid && est && cep && wha;
   }
 
   function updateSteps(){
@@ -1695,186 +1671,147 @@ footer{
   });
   updateSteps();
 
-  function makePedidoId(){
-    // ID curto e rastreável: TIMP-YYYYMMDD-HHMMSS-XXXX
-    const d = new Date();
-    const pad = (n)=> String(n).padStart(2,'0');
-    const y = d.getFullYear();
-    const m = pad(d.getMonth()+1);
-    const da = pad(d.getDate());
-    const hh = pad(d.getHours());
-    const mm = pad(d.getMinutes());
-    const ss = pad(d.getSeconds());
-    const rnd = Math.random().toString(16).slice(2,6).toUpperCase();
-    return `TIMP-${y}${m}${da}-${hh}${mm}${ss}-${rnd}`;
-  }
-
-  function pickPackNum(){
-    let packNum = 0;
-    if(packSelect.value.includes("Pacote 1")) packNum = 1;
-    if(packSelect.value.includes("Pacote 2")) packNum = 2;
-    if(packSelect.value.includes("Pacote 3")) packNum = 3;
-    return packNum;
-  }
-
-  async function sendLeadToWebhook(payload){
-    if(!isValidWebhook(LEAD_WEBHOOK_URL)) return {ok:false, skipped:true};
-
-    // IMPORTANTE: site estático -> enviar JSON (sem anexos).
-    // Anexos podem ser enviados depois pelo WhatsApp (botão) ou por um fluxo extra.
-    const res = await fetch(LEAD_WEBHOOK_URL, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(payload)
-    });
-    return {ok: res.ok, status: res.status};
-  }
-
-  // ===== SUBMIT: REGISTRA PEDIDO (WEBHOOK) + REDIRECIONA PARA PAGAMENTO =====
-  form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-
-  formError.classList.remove('show');
-
-  // Remove erros anteriores
-  document.querySelectorAll('.field-error').forEach(el=> el.classList.remove('field-error'));
-  document.querySelectorAll('.radio-error').forEach(el=> el.classList.remove('radio-error'));
-  document.querySelectorAll('.checkbox-error').forEach(el=> el.classList.remove('checkbox-error'));
-
-  let firstError = null;
-
-  function markError(el, type="field"){
-    if(!firstError) firstError = el;
-
-    if(type === "radio"){
-      document.getElementById('secOrigem').classList.add('radio-error');
-    } 
-    else if(type === "checkbox"){
-      el.classList.add('checkbox-error');
-    }
-    else{
-      el.closest('.field').classList.add('field-error');
-    }
-  }
-
-  // 1) Pacote
-  if(!packSelect.value){
-    markError(packSelect);
-  }
-
-  // 2) Origem
-  if(!hasOrigem()){
-    markError(document.querySelector('input[name="origem"]'), "radio");
-  }
-
-  // 3) Texto ou arquivo
-  const hasText = (texto.value || "").trim().length > 0;
-  const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
-
-  if(!hasText && !hasFile){
-    markError(texto);
-  }
-
-  // 4) Campos obrigatórios
-  const requiredFields = Array.from(form.querySelectorAll('[required]'));
-
-  requiredFields.forEach(el=>{
-    if(el.type === 'radio') return;
-
-    if(el.type === 'checkbox'){
-      if(!el.checked){
-        markError(el, "checkbox");
-      }
-      return;
-    }
-
-    if(!el.value){
-      markError(el);
-    }
-  });
-
-  if(firstError){
-    formError.classList.add('show');
-    firstError.scrollIntoView({behavior:"smooth", block:"center"});
-    firstError.focus();
-    return;
-  }
-
-  // ===== Se chegou aqui, está tudo válido =====
-  // (continua seu código normal de envio e pagamento abaixo)
-    e.preventDefault();
+  // ===== NOVO: helpers de erro (destacar + ir direto) =====
+  function clearErrors(){
     formError.classList.remove('show');
 
+    // remove borda vermelha dos campos
+    form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+
+    // remove destaque de seção
+    [secPacote, secOrigem, secConteudo, secDados].forEach(sec => sec.classList.remove('section-error'));
+  }
+
+  function markFieldError(inputEl){
+    if(!inputEl) return;
+    const field = inputEl.closest('.field');
+    if(field) field.classList.add('field-error');
+  }
+
+  function scrollToEl(el){
+    if(!el) return;
+    el.scrollIntoView({behavior:"smooth", block:"center"});
+    setTimeout(()=>{
+      try{ el.focus({preventScroll:true}); }catch(e){}
+    }, 250);
+  }
+
+  // limpa erro quando usuário mexe
+  form.addEventListener('input', (e)=>{
+    const t = e.target;
+    const field = t && t.closest && t.closest('.field');
+    if(field && field.classList.contains('field-error')){
+      field.classList.remove('field-error');
+    }
+    // se corrigiu rádio
+    if(t && t.name === 'origem'){
+      secOrigem.classList.remove('section-error');
+    }
+  }, true);
+
+  form.addEventListener('change', (e)=>{
+    const t = e.target;
+    // se escolheu pacote
+    if(t && t.id === 'pacote'){
+      secPacote.classList.remove('section-error');
+      const f = t.closest('.field'); if(f) f.classList.remove('field-error');
+    }
+    // se anexou arquivo e não tem texto
+    if(t && (t.id === 'arquivo' || t.id === 'texto')){
+      secConteudo.classList.remove('section-error');
+      if(fieldTexto) fieldTexto.classList.remove('field-error');
+    }
+  }, true);
+
+  // ===== SUBMIT: MOSTRA MINI CHECKOUT + WHATS (com destaque de erro) =====
+  form.addEventListener('submit', (e)=>{
+    clearErrors();
+
+    // 1) Pacote
     if(!packSelect.value){
+      e.preventDefault();
       formError.classList.add('show');
-      packSelect.focus();
+      secPacote.classList.add('section-error');
+      markFieldError(packSelect);
+      scrollToEl(packSelect);
       return;
     }
 
+    // 2) Origem (radio)
     if(!hasOrigem()){
+      e.preventDefault();
       formError.classList.add('show');
+      secOrigem.classList.add('section-error');
       const firstRadio = form.querySelector('input[name="origem"]');
-      if(firstRadio) firstRadio.focus();
+      scrollToEl(firstRadio || secOrigem);
       return;
     }
 
+    // 3) Conteúdo (texto OU arquivo)
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     if(!hasText && !hasFile){
+      e.preventDefault();
       formError.classList.add('show');
-      texto.focus();
+      secConteudo.classList.add('section-error');
+      if(fieldTexto) fieldTexto.classList.add('field-error');
+      scrollToEl(texto);
       return;
     }
 
-    // required (exceto radio)
+    // 4) Campos obrigatórios (inputs/select/textarea)
     const requiredFields = Array.from(form.querySelectorAll('[required]'));
-    const missing = requiredFields.find(el=>{
-      if(el.type === 'radio') return false;
-      if(el.type === 'checkbox') return !el.checked;
-      return !el.value;
+    let firstMissing = null;
+
+    requiredFields.forEach(el=>{
+      if(el.type === 'radio') return; // rádio já validado acima
+
+      // select/input/date/tel/text
+      if(!el.value){
+        if(!firstMissing) firstMissing = el;
+        markFieldError(el);
+      }
     });
-    if(missing){
+
+    if(firstMissing){
+      e.preventDefault();
       formError.classList.add('show');
-      missing.focus();
+      secDados.classList.add('section-error');
+      scrollToEl(firstMissing);
       return;
     }
 
-    // monta dados
-    const pedidoId = makePedidoId();
-    pedidoIdView.textContent = pedidoId;
+    // tudo ok -> agora sim mostra cobrança
+    e.preventDefault();
+
+    // trava botão para evitar duplo envio
+    btnSend.disabled = true;
+    btnSend.textContent = "Pedido enviado ✅";
 
     const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
     const nome = (document.getElementById('nome').value || '').trim();
-    const email = (document.getElementById('email').value || '').trim();
-    const nasc = (document.getElementById('nascimento').value || '').trim();
-    const endereco = (document.getElementById('endereco').value || '').trim();
     const cidade = (document.getElementById('cidade').value || '').trim();
     const estado = (document.getElementById('estado').value || '').trim();
-    const cep = (document.getElementById('cep').value || '').trim();
-    const whats = (document.getElementById('whats').value || '').trim();
-    const textoConteudo = (texto.value || '').trim();
 
-    const packNum = pickPackNum();
-    const payLink = getMpLinkByPack(packNum);
-
-    // msg WhatsApp (pra enviar material / fallback)
     const msg =
 `Olá TIMP! Quero iniciar meu projeto.
-• Protocolo: ${pedidoId}
 • Pacote: ${packSelect.value}
 • Eu já tenho: ${origem}
 • Nome: ${nome}
-• E-mail: ${email}
-• WhatsApp: ${whats}
 • Cidade/UF: ${cidade}/${estado}
 
-Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?
-(Se necessário, envio o arquivo por aqui.)`;
+Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
 
     const waUrl = "https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(msg);
     whatsConfirmBtn.href = waUrl;
 
-    // define botão de pagar (fallback)
+    // define botão de pagar agora conforme pacote selecionado
+    let packNum = 0;
+    if(packSelect.value.includes("Pacote 1")) packNum = 1;
+    if(packSelect.value.includes("Pacote 2")) packNum = 2;
+    if(packSelect.value.includes("Pacote 3")) packNum = 3;
+
+    const payLink = getMpLinkByPack(packNum);
     if(payLink){
       payNowBtn.href = payLink;
       payNowBtn.textContent = "Pagar agora (Mercado Pago)";
@@ -1883,58 +1820,16 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?
       payNowBtn.textContent = "Pedir link de pagamento (WhatsApp)";
     }
 
-    // UI: travar botão e mostrar status
-    btnSend.disabled = true;
-    btnSend.textContent = "Enviando…";
-    sendNotice.style.display = "block";
+    // mostra checkout
     paySheet.classList.add('show');
 
-    // payload pro Make (isso é o que vai te “avisar” da venda/lead)
-    const payload = {
-      pedidoId,
-      createdAtISO: new Date().toISOString(),
-      pacote: packSelect.value,
-      pacoteNumero: packNum,
-      mpLink: payLink || "",
-      origem,
-      cliente: {
-        nome,
-        email,
-        nascimento: nasc,
-        endereco,
-        cidade,
-        estado,
-        cep,
-        whatsapp: whats
-      },
-      conteudo: {
-        texto: textoConteudo,
-        anexouArquivo: !!(arquivoInput.files && arquivoInput.files.length > 0),
-        nomeArquivo: (arquivoInput.files && arquivoInput.files[0] && arquivoInput.files[0].name) ? arquivoInput.files[0].name : "",
-        anexouImagem: !!(imagemInput.files && imagemInput.files.length > 0),
-        nomeImagem: (imagemInput.files && imagemInput.files[0] && imagemInput.files[0].name) ? imagemInput.files[0].name : ""
-      },
-      waFallbackLink: waUrl,
-      pageUrl: location.href
-    };
+    // esconde o formulário (mas mantém a caixa do checkout visível)
+    Array.from(form.querySelectorAll('.form-section, .form-actions, .form-topbar, .error')).forEach(el=>{
+      if(el && el.id !== 'paySheet') el.classList.add('form-hidden');
+    });
 
-    // tenta enviar pro webhook (não trava o pagamento se falhar)
-    try{
-      await sendLeadToWebhook(payload);
-    }catch(err){
-      // silencioso (o cliente ainda consegue pagar). Você pode ver no console.
-      console.warn("Falha ao enviar webhook:", err);
-    }
-
-    // Final: redireciona para o pagamento automaticamente
-    btnSend.textContent = "Redirecionando…";
-    if(payLink){
-      // pequeno delay só para o navegador completar a requisição do webhook
-      setTimeout(()=>{ window.location.href = payLink; }, 450);
-    }else{
-      // sem link, manda pro WhatsApp
-      setTimeout(()=>{ window.location.href = waUrl; }, 450);
-    }
+    // rola até o checkout
+    paySheet.scrollIntoView({behavior:"smooth", block:"center"});
   });
 
 })();
