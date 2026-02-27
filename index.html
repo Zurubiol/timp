@@ -1233,13 +1233,18 @@ footer{
       <br>WhatsApp: (14) 99185-6520 • E-mail: timpdobrasil@gmail.com • Bauru - SP
     </p>
 
+    <!-- NOVO: status do pagamento (Mercado Pago retorna aqui com querystring) -->
+    <div class="notice" id="paymentStatus" style="display:none; margin-top:14px;">
+      <b>Status:</b> <span id="paymentStatusText">—</span>
+    </div>
+
     <div class="form-wrap" id="formWrap">
       <form id="timpForm" action="#" method="post" enctype="multipart/form-data" novalidate>
 
         <div class="form-topbar">
           <div>
             <strong>Envio do projeto (rápido e guiado)</strong>
-            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. Depois, você pode pagar por Pix ou cartão parcelado via Mercado Pago.</span>
+            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. Depois, você será direcionado para o pagamento via Mercado Pago.</span>
           </div>
           <div class="steps" aria-label="Etapas do formulário">
             <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
@@ -1411,16 +1416,22 @@ footer{
               <label for="whats">Telefone / WhatsApp <span class="helper">Obrigatório</span></label>
               <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" required>
             </div>
+
+            <!-- NOVO: e-mail do cliente (para confirmação automática) -->
+            <div class="field full">
+              <label for="email">E-mail <span class="helper">Obrigatório</span></label>
+              <input id="email" name="email" type="email" placeholder="email@exemplo.com" required>
+            </div>
           </div>
 
           <div class="form-actions">
-            <button type="submit" class="btn" id="btnSend">Enviar pedido</button>
+            <button type="submit" class="btn" id="btnSend">Enviar e ir para o pagamento</button>
           </div>
 
-          <!-- MINI CHECKOUT -->
+          <!-- MINI CHECKOUT (fallback se backend falhar) -->
           <div class="pay-sheet" id="paySheet">
             <h4>Pronto ✅ Agora finalize o pagamento</h4>
-            <p>Você pode pagar por <b>Pix</b> ou <b>cartão parcelado</b> via Mercado Pago. Após o pagamento, a TIMP inicia a produção.</p>
+            <p>Se o redirecionamento automático falhar, use os botões abaixo.</p>
             <div class="row">
               <a class="btn" href="#" id="payNowBtn" target="_blank" rel="noopener">Pagar agora (Mercado Pago)</a>
               <a class="btn btn-outline" href="#" id="whatsConfirmBtn" target="_blank" rel="noopener">Falar no WhatsApp</a>
@@ -1428,7 +1439,7 @@ footer{
           </div>
 
           <p class="small-muted" style="margin-top:12px;">
-            *Após o envio, a TIMP confirma os detalhes e inicia a produção.
+            *Após o pagamento confirmado, você e a TIMP receberão confirmação por e-mail/WhatsApp (quando o webhook estiver configurado).
           </p>
         </div>
 
@@ -1448,9 +1459,21 @@ footer{
 
 <script>
 (function(){
-  // =========================
-  // 1) COLE AQUI SEUS LINKS DO MERCADO PAGO (um por pacote)
-  // =========================
+  /**
+   * =========================
+   * CONFIG (VOCÊ VAI EDITAR ISSO)
+   * =========================
+   * Este site é estático. Para ter:
+   * - registro do pedido
+   * - redirecionamento automático para Mercado Pago
+   * - confirmação automática (webhook) + e-mail + WhatsApp
+   * você precisa de um endpoint (back-end).
+   *
+   * Coloque aqui a URL do seu back-end publicado (Cloudflare Worker / Vercel / etc).
+   */
+  const API_BASE = "COLE_AQUI_SUA_API_BASE"; // ex: https://timp-pay.yourdomain.workers.dev
+
+  // fallback: seus links mpago.li (caso o backend falhe)
   const MP_LINKS = {
     1: "https://mpago.li/2DrujAy",
     2: "https://mpago.li/2za2eDc",
@@ -1458,13 +1481,16 @@ footer{
   };
 
   const WHATS_NUMBER = "5514991856520";
+  const OWNER_EMAIL = "timpdobrasil@gmail.com";
+
+  function hasApi(){
+    return typeof API_BASE === "string" && API_BASE.startsWith("http");
+  }
 
   function isValidMpLink(url){
     return typeof url === "string"
-      && url.startsWith("http")
-      && !url.includes("COLE_AQUI");
+      && url.startsWith("http");
   }
-
   function getMpLinkByPack(pack){
     const p = Number(pack);
     const link = MP_LINKS[p];
@@ -1554,7 +1580,6 @@ footer{
     const n = Number(value || 0);
     return n.toLocaleString('pt-BR', {minimumFractionDigits: 0});
   }
-
   function updateSummary(html){
     packSummary.innerHTML = html;
   }
@@ -1643,7 +1668,8 @@ footer{
     const est  = (document.getElementById('estado').value || '').trim().length > 0;
     const cep  = (document.getElementById('cep').value || '').trim().length > 0;
     const wha  = (document.getElementById('whats').value || '').trim().length > 0;
-    return nome && nasc && end && cid && est && cep && wha;
+    const eml  = (document.getElementById('email').value || '').trim().length > 0;
+    return nome && nasc && end && cid && est && cep && wha && eml;
   }
 
   function updateSteps(){
@@ -1674,20 +1700,14 @@ footer{
   // ===== NOVO: helpers de erro (destacar + ir direto) =====
   function clearErrors(){
     formError.classList.remove('show');
-
-    // remove borda vermelha dos campos
     form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
-
-    // remove destaque de seção
     [secPacote, secOrigem, secConteudo, secDados].forEach(sec => sec.classList.remove('section-error'));
   }
-
   function markFieldError(inputEl){
     if(!inputEl) return;
     const field = inputEl.closest('.field');
     if(field) field.classList.add('field-error');
   }
-
   function scrollToEl(el){
     if(!el) return;
     el.scrollIntoView({behavior:"smooth", block:"center"});
@@ -1696,14 +1716,12 @@ footer{
     }, 250);
   }
 
-  // limpa erro quando usuário mexe
   form.addEventListener('input', (e)=>{
     const t = e.target;
     const field = t && t.closest && t.closest('.field');
     if(field && field.classList.contains('field-error')){
       field.classList.remove('field-error');
     }
-    // se corrigiu rádio
     if(t && t.name === 'origem'){
       secOrigem.classList.remove('section-error');
     }
@@ -1711,23 +1729,102 @@ footer{
 
   form.addEventListener('change', (e)=>{
     const t = e.target;
-    // se escolheu pacote
     if(t && t.id === 'pacote'){
       secPacote.classList.remove('section-error');
       const f = t.closest('.field'); if(f) f.classList.remove('field-error');
     }
-    // se anexou arquivo e não tem texto
     if(t && (t.id === 'arquivo' || t.id === 'texto')){
       secConteudo.classList.remove('section-error');
       if(fieldTexto) fieldTexto.classList.remove('field-error');
     }
   }, true);
 
-  // ===== SUBMIT: MOSTRA MINI CHECKOUT + WHATS (com destaque de erro) =====
-  form.addEventListener('submit', (e)=>{
+  // ===== NOVO: status do pagamento via querystring =====
+  const paymentStatus = document.getElementById('paymentStatus');
+  const paymentStatusText = document.getElementById('paymentStatusText');
+
+  function parseQS(){
+    const p = new URLSearchParams(location.search || "");
+    const obj = {};
+    p.forEach((v,k)=> obj[k] = v);
+    return obj;
+  }
+
+  function showPaymentStatus(){
+    const qs = parseQS();
+
+    // Mercado Pago pode voltar com status/collection_status etc dependendo do modo
+    const status =
+      qs.status ||
+      qs.collection_status ||
+      qs.payment_status ||
+      "";
+
+    if(!status) return;
+
+    let txt = status;
+
+    // mensagens amigáveis
+    const s = String(status).toLowerCase();
+    if(s.includes("approved") || s.includes("aprovado")){
+      txt = "Pagamento aprovado ✅ Você receberá a confirmação por e-mail/WhatsApp.";
+    }else if(s.includes("pending") || s.includes("in_process")){
+      txt = "Pagamento pendente ⏳ Assim que confirmar, você receberá a confirmação.";
+    }else if(s.includes("rejected") || s.includes("cancelled") || s.includes("failure") || s.includes("failed")){
+      txt = "Pagamento não concluído ❌ Você pode tentar novamente ou falar com a TIMP no WhatsApp.";
+    }
+
+    paymentStatusText.textContent = txt;
+    paymentStatus.style.display = "block";
+
+    // se pagou, já leva a pessoa pra seção de contato
+    if(location.hash !== "#contato"){
+      location.hash = "#contato";
+    }
+  }
+  showPaymentStatus();
+
+  // ===== SUBMIT: ENVIA PRO BACKEND E REDIRECIONA PRO CHECKOUT MP =====
+  function packNumFromSelect(val){
+    if(!val) return 0;
+    if(val.includes("Pacote 1")) return 1;
+    if(val.includes("Pacote 2")) return 2;
+    if(val.includes("Pacote 3")) return 3;
+    return 0;
+  }
+
+  function buildWhatsMsg(payload){
+    return `Olá TIMP! Quero iniciar meu projeto.
+• Pacote: ${payload.pacote}
+• Eu já tenho: ${payload.origem}
+• Nome: ${payload.nome}
+• Cidade/UF: ${payload.cidade}/${payload.estado}
+
+Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
+  }
+
+  async function createCheckout(payload){
+    // endpoint esperado:
+    // POST {API_BASE}/api/checkout
+    // body json payload
+    // resposta: { checkoutUrl, orderId }
+    const url = API_BASE.replace(/\/+$/,'') + "/api/checkout";
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok){
+      const t = await res.text().catch(()=> "");
+      throw new Error("Falha ao criar checkout. " + t);
+    }
+    const data = await res.json();
+    return data;
+  }
+
+  form.addEventListener('submit', async (e)=>{
     clearErrors();
 
-    // 1) Pacote
     if(!packSelect.value){
       e.preventDefault();
       formError.classList.add('show');
@@ -1737,7 +1834,6 @@ footer{
       return;
     }
 
-    // 2) Origem (radio)
     if(!hasOrigem()){
       e.preventDefault();
       formError.classList.add('show');
@@ -1747,7 +1843,6 @@ footer{
       return;
     }
 
-    // 3) Conteúdo (texto OU arquivo)
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     if(!hasText && !hasFile){
@@ -1759,14 +1854,11 @@ footer{
       return;
     }
 
-    // 4) Campos obrigatórios (inputs/select/textarea)
     const requiredFields = Array.from(form.querySelectorAll('[required]'));
     let firstMissing = null;
 
     requiredFields.forEach(el=>{
-      if(el.type === 'radio') return; // rádio já validado acima
-
-      // select/input/date/tel/text
+      if(el.type === 'radio') return;
       if(!el.value){
         if(!firstMissing) firstMissing = el;
         markFieldError(el);
@@ -1781,55 +1873,79 @@ footer{
       return;
     }
 
-    // tudo ok -> agora sim mostra cobrança
     e.preventDefault();
 
-    // trava botão para evitar duplo envio
+    // trava botão
     btnSend.disabled = true;
-    btnSend.textContent = "Pedido enviado ✅";
+    btnSend.textContent = "Enviando…";
 
     const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
-    const nome = (document.getElementById('nome').value || '').trim();
-    const cidade = (document.getElementById('cidade').value || '').trim();
-    const estado = (document.getElementById('estado').value || '').trim();
+    const packNum = packNumFromSelect(packSelect.value);
 
-    const msg =
-`Olá TIMP! Quero iniciar meu projeto.
-• Pacote: ${packSelect.value}
-• Eu já tenho: ${origem}
-• Nome: ${nome}
-• Cidade/UF: ${cidade}/${estado}
+    const payload = {
+      pacote: packSelect.value,
+      pacote_num: packNum,
+      origem,
+      texto: (texto.value || "").trim(),
+      // arquivos/imagem: em site estático, enviar arquivo direto exige backend com upload.
+      // por enquanto vamos enviar só os nomes (o backend pode instruir o cliente depois).
+      arquivo_nome: (arquivoInput.files && arquivoInput.files[0]) ? arquivoInput.files[0].name : "",
+      imagem_nome: (imagemInput.files && imagemInput.files[0]) ? imagemInput.files[0].name : "",
+      nome: (document.getElementById('nome').value || '').trim(),
+      nascimento: (document.getElementById('nascimento').value || '').trim(),
+      endereco: (document.getElementById('endereco').value || '').trim(),
+      cidade: (document.getElementById('cidade').value || '').trim(),
+      estado: (document.getElementById('estado').value || '').trim(),
+      cep: (document.getElementById('cep').value || '').trim(),
+      whats: (document.getElementById('whats').value || '').trim(),
+      email: (document.getElementById('email').value || '').trim(),
+      owner_email: OWNER_EMAIL,
+      return_url: location.origin + location.pathname + "#contato"
+    };
 
-Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
-
-    const waUrl = "https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(msg);
+    // monta WhatsApp
+    const waMsg = buildWhatsMsg(payload);
+    const waUrl = "https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(waMsg);
     whatsConfirmBtn.href = waUrl;
 
-    // define botão de pagar agora conforme pacote selecionado
-    let packNum = 0;
-    if(packSelect.value.includes("Pacote 1")) packNum = 1;
-    if(packSelect.value.includes("Pacote 2")) packNum = 2;
-    if(packSelect.value.includes("Pacote 3")) packNum = 3;
+    // fallback MP direto (se backend não estiver pronto)
+    const payLinkFallback = getMpLinkByPack(packNum) || waUrl;
+    payNowBtn.href = payLinkFallback;
 
-    const payLink = getMpLinkByPack(packNum);
-    if(payLink){
-      payNowBtn.href = payLink;
-      payNowBtn.textContent = "Pagar agora (Mercado Pago)";
-    }else{
-      payNowBtn.href = waUrl;
-      payNowBtn.textContent = "Pedir link de pagamento (WhatsApp)";
+    try{
+      if(!hasApi()){
+        // backend ainda não configurado: mostra fallback
+        btnSend.textContent = "Pedido enviado ✅";
+        paySheet.classList.add('show');
+        paySheet.scrollIntoView({behavior:"smooth", block:"center"});
+        return;
+      }
+
+      // cria checkout no backend e redireciona
+      btnSend.textContent = "Redirecionando pro pagamento…";
+      const data = await createCheckout(payload);
+
+      if(data && data.checkoutUrl){
+        // redireciona
+        window.location.href = data.checkoutUrl;
+        return;
+      }
+
+      throw new Error("Backend não retornou checkoutUrl.");
+    }catch(err){
+      console.error(err);
+      btnSend.textContent = "Pedido enviado ✅";
+      paySheet.classList.add('show');
+
+      // mostra aviso que backend falhou
+      paymentStatusText.textContent = "Não foi possível redirecionar automaticamente. Use os botões abaixo para pagar e/ou falar no WhatsApp.";
+      paymentStatus.style.display = "block";
+
+      paySheet.scrollIntoView({behavior:"smooth", block:"center"});
+    }finally{
+      // mantém disabled pra evitar duplicar pedido; se quiser liberar, descomente:
+      // btnSend.disabled = false;
     }
-
-    // mostra checkout
-    paySheet.classList.add('show');
-
-    // esconde o formulário (mas mantém a caixa do checkout visível)
-    Array.from(form.querySelectorAll('.form-section, .form-actions, .form-topbar, .error')).forEach(el=>{
-      if(el && el.id !== 'paySheet') el.classList.add('form-hidden');
-    });
-
-    // rola até o checkout
-    paySheet.scrollIntoView({behavior:"smooth", block:"center"});
   });
 
 })();
