@@ -1732,6 +1732,76 @@ footer{
 
   // ===== SUBMIT: REGISTRA PEDIDO (WEBHOOK) + REDIRECIONA PARA PAGAMENTO =====
   form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+
+  formError.classList.remove('show');
+
+  // Remove erros anteriores
+  document.querySelectorAll('.field-error').forEach(el=> el.classList.remove('field-error'));
+  document.querySelectorAll('.radio-error').forEach(el=> el.classList.remove('radio-error'));
+  document.querySelectorAll('.checkbox-error').forEach(el=> el.classList.remove('checkbox-error'));
+
+  let firstError = null;
+
+  function markError(el, type="field"){
+    if(!firstError) firstError = el;
+
+    if(type === "radio"){
+      document.getElementById('secOrigem').classList.add('radio-error');
+    } 
+    else if(type === "checkbox"){
+      el.classList.add('checkbox-error');
+    }
+    else{
+      el.closest('.field').classList.add('field-error');
+    }
+  }
+
+  // 1) Pacote
+  if(!packSelect.value){
+    markError(packSelect);
+  }
+
+  // 2) Origem
+  if(!hasOrigem()){
+    markError(document.querySelector('input[name="origem"]'), "radio");
+  }
+
+  // 3) Texto ou arquivo
+  const hasText = (texto.value || "").trim().length > 0;
+  const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
+
+  if(!hasText && !hasFile){
+    markError(texto);
+  }
+
+  // 4) Campos obrigatórios
+  const requiredFields = Array.from(form.querySelectorAll('[required]'));
+
+  requiredFields.forEach(el=>{
+    if(el.type === 'radio') return;
+
+    if(el.type === 'checkbox'){
+      if(!el.checked){
+        markError(el, "checkbox");
+      }
+      return;
+    }
+
+    if(!el.value){
+      markError(el);
+    }
+  });
+
+  if(firstError){
+    formError.classList.add('show');
+    firstError.scrollIntoView({behavior:"smooth", block:"center"});
+    firstError.focus();
+    return;
+  }
+
+  // ===== Se chegou aqui, está tudo válido =====
+  // (continua seu código normal de envio e pagamento abaixo)
     e.preventDefault();
     formError.classList.remove('show');
 
