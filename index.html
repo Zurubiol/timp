@@ -799,6 +799,111 @@ p + p{ margin-top: 14px; }
 .reveal.show{ opacity: 1; transform: translateY(0); }
 
 /* =========================
+   MODAL CONTRATO (NOVO)
+========================= */
+.modal{
+  position: fixed;
+  inset: 0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+  background: rgba(0,0,0,.82);
+  z-index: 9999;
+}
+.modal.show{ display:flex; }
+
+.modal-card{
+  width: min(980px, 96vw);
+  max-height: 86vh;
+  overflow:hidden;
+  border-radius: 22px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(10,10,10,.92);
+  box-shadow: 0 25px 80px rgba(0,0,0,.65);
+  backdrop-filter: blur(10px);
+}
+
+.modal-head{
+  padding: 14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+}
+.modal-head strong{
+  font-size: 14px;
+  letter-spacing:.2px;
+}
+.modal-head .muted{
+  color: rgba(255,255,255,.55);
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.modal-close{
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor:pointer;
+  font-weight:900;
+}
+.modal-close:hover{ background: rgba(255,255,255,.12); }
+
+.modal-body{
+  padding: 14px 16px;
+  overflow:auto;
+  max-height: calc(86vh - 140px);
+}
+.contract{
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.88);
+}
+.contract h4{
+  font-size: 14px;
+  margin: 14px 0 8px;
+}
+.contract p{ color: rgba(255,255,255,.70); font-size: 13px; max-width: none; }
+.contract ul{ margin: 8px 0 0 18px; color: rgba(255,255,255,.72); }
+.contract li{ margin: 6px 0; }
+
+.modal-foot{
+  padding: 14px 16px;
+  border-top:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  align-items:center;
+}
+.modal-foot .btn{
+  padding: 12px 16px;
+}
+.btn-ghost{
+  background: rgba(255,255,255,.05);
+}
+.btn-ghost:hover{ background: rgba(255,255,255,.10); }
+
+.contract-link{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  font-weight: 900;
+  font-size: 13px;
+  color: rgba(255,255,255,.82);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.contract-link:hover{ color:#fff; }
+
+/* =========================
    FOOTER
 ========================= */
 footer{
@@ -1249,7 +1354,7 @@ footer{
         <div class="form-topbar">
           <div>
             <strong>Envio do projeto (rápido e guiado)</strong>
-            <span>Escolha um pacote, diga o que você já tem, responda o questionário e envie seu conteúdo. Depois, você será direcionado para o pagamento via Mercado Pago.</span>
+            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. Depois, você será direcionado para o pagamento via Mercado Pago.</span>
           </div>
           <div class="steps" aria-label="Etapas do formulário">
             <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
@@ -1318,212 +1423,12 @@ footer{
           </div>
         </div>
 
-        <!-- 3) CONTEÚDO + QUESTIONÁRIO -->
+        <!-- 3) CONTEÚDO -->
         <div class="form-section" id="secConteudo">
-          <h3 class="req">3) Conteúdo + Questionário criativo</h3>
-          <p>Responda rapidinho para alinharmos <b>música</b> e <b>videoclipe</b>. E envie seu texto/arquivo.</p>
+          <h3 class="req">3) Seu conteúdo (texto ou arquivo)</h3>
+          <p>Você pode <b>colar o texto</b> ou <b>anexar um arquivo</b>. Pelo menos 1 é obrigatório.</p>
 
-          <div class="notice" style="margin-top:12px;">
-            <b>Dica:</b> quanto mais claro você for aqui, mais “na mosca” fica o resultado final.
-          </div>
-
-          <!-- QUESTIONÁRIO -->
-          <div class="form-grid" style="margin-top:12px;">
-            <div class="field">
-              <label for="genero">Gênero principal <span class="helper">Obrigatório</span></label>
-              <select id="genero" name="genero" required>
-                <option value="" selected disabled>Selecione um gênero</option>
-                <option>Rock</option>
-                <option>Sertanejo</option>
-                <option>MPB</option>
-                <option>Pop</option>
-                <option>Rap/Trap</option>
-                <option>Gospel</option>
-                <option>Forró</option>
-                <option>Pagode</option>
-                <option>Funk</option>
-                <option>Eletrônica</option>
-                <option>Reggae</option>
-                <option>Outro</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="velocidade">Velocidade / pegada <span class="helper">Obrigatório</span></label>
-              <select id="velocidade" name="velocidade" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Lenta</option>
-                <option>Média</option>
-                <option>Rápida</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="referencias">Referências (2 a 5 músicas/artistas) <span class="helper">Obrigatório</span></label>
-              <textarea id="referencias" name="referencias" placeholder="Cole links do YouTube/Spotify ou escreva artistas/músicas de referência..." required></textarea>
-            </div>
-
-            <div class="field">
-              <label for="emocao">Clima/emoção principal <span class="helper">Obrigatório</span></label>
-              <select id="emocao" name="emocao" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Romântico</option>
-                <option>Animado</option>
-                <option>Triste</option>
-                <option>Superação</option>
-                <option>Motivacional</option>
-                <option>Humor</option>
-                <option>Nostálgico</option>
-                <option>Épico</option>
-                <option>Outro</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="voz">Voz desejada <span class="helper">Obrigatório</span></label>
-              <select id="voz" name="voz" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Masculina</option>
-                <option>Feminina</option>
-                <option>Dueto</option>
-                <option>Tanto faz</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="instrumentosSim">Instrumentos/elementos que NÃO podem faltar <span class="helper">Opcional</span></label>
-              <input id="instrumentosSim" name="instrumentosSim" type="text" placeholder="Ex: violão, sanfona, guitarra, piano, batida eletrônica...">
-            </div>
-
-            <div class="field full">
-              <label for="instrumentosNao">Instrumentos/estilos que você NÃO quer <span class="helper">Opcional</span></label>
-              <input id="instrumentosNao" name="instrumentosNao" type="text" placeholder="Ex: sem autotune, sem sanfona, sem batida funk...">
-            </div>
-
-            <div class="field">
-              <label for="tipoVideo">Tipo de vídeo <span class="helper">Obrigatório</span></label>
-              <select id="tipoVideo" name="tipoVideo" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Clipe com história</option>
-                <option>Performance (artista cantando)</option>
-                <option>Visual artístico (conceitual)</option>
-                <option>Lyric vídeo (letra na tela)</option>
-                <option>Misturado</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="aparecer">Você quer aparecer no vídeo? <span class="helper">Obrigatório</span></label>
-              <select id="aparecer" name="aparecer" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Sim</option>
-                <option>Não</option>
-                <option>Não sei</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="videoSim">O que você quer que apareça no vídeo <span class="helper">Obrigatório</span></label>
-              <textarea id="videoSim" name="videoSim" placeholder="Ex: casal, estrada, barzinho, palco, praia, cidade, família, fazenda..." required></textarea>
-            </div>
-
-            <div class="field full">
-              <label for="videoNao">O que NÃO pode aparecer no vídeo <span class="helper">Obrigatório</span></label>
-              <textarea id="videoNao" name="videoNao" placeholder="Ex: armas, bebida, cenas sensuais, violência, política..." required></textarea>
-            </div>
-
-            <div class="field">
-              <label for="estetica">Estética/estilo visual <span class="helper">Obrigatório</span></label>
-              <select id="estetica" name="estetica" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Cinemático</option>
-                <option>Realista</option>
-                <option>Retrô</option>
-                <option>Futurista</option>
-                <option>Clipão musical</option>
-                <option>Minimalista</option>
-                <option>Outro</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="cores">Cores/vibe <span class="helper">Opcional</span></label>
-              <select id="cores" name="cores">
-                <option value="" selected>Sem preferência</option>
-                <option>Quente</option>
-                <option>Fria</option>
-                <option>Preto e branco</option>
-                <option>Colorido forte</option>
-                <option>Pastel</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="mensagem">Mensagem principal da música <span class="helper">Obrigatório</span></label>
-              <textarea id="mensagem" name="mensagem" placeholder="Em 1 a 3 frases, qual é a mensagem principal?" required></textarea>
-            </div>
-
-            <div class="field full">
-              <label for="trecho">Trecho mais importante (refrão/frase chave) <span class="helper">Obrigatório</span></label>
-              <input id="trecho" name="trecho" type="text" placeholder="Ex: 'E eu vou te amar...' (um trecho que precisa de destaque)" required>
-            </div>
-
-            <div class="field full">
-              <label for="publico">Para quem é essa música? <span class="helper">Obrigatório</span></label>
-              <input id="publico" name="publico" type="text" placeholder="Ex: para minha esposa / para divulgar meu trabalho / para postar no Instagram..." required>
-            </div>
-
-            <div class="field full">
-              <label for="historiaReal">Existe uma história real por trás? <span class="helper">Opcional</span></label>
-              <textarea id="historiaReal" name="historiaReal" placeholder="Se quiser, conte em poucas linhas."></textarea>
-            </div>
-
-            <div class="field">
-              <label for="plataformas">Onde você vai postar? <span class="helper">Obrigatório</span></label>
-              <select id="plataformas" name="plataformas" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>YouTube</option>
-                <option>Instagram Reels</option>
-                <option>TikTok</option>
-                <option>WhatsApp</option>
-                <option>Todas</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="formatoVideo">Formato do vídeo <span class="helper">Obrigatório</span></label>
-              <select id="formatoVideo" name="formatoVideo" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Vertical (9:16)</option>
-                <option>Horizontal (16:9)</option>
-                <option>Quadrado (1:1)</option>
-                <option>Quero os 2 (vertical + horizontal)</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="duracao">Duração desejada <span class="helper">Opcional</span></label>
-              <select id="duracao" name="duracao">
-                <option value="" selected>Sem preferência</option>
-                <option>30–60s</option>
-                <option>1–2min</option>
-                <option>Completa</option>
-                <option>Não sei</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="prazo">Data/prazo importante <span class="helper">Opcional</span></label>
-              <input id="prazo" name="prazo" type="text" placeholder="Ex: aniversário (10/04), casamento, lançamento...">
-            </div>
-          </div>
-
-          <div class="notice" id="quizNotice">
-            <b>Checklist:</b> responda as perguntas obrigatórias acima e depois envie o texto/arquivo abaixo.
-          </div>
-
-          <!-- CONTEÚDO (texto ou arquivo) -->
-          <div class="field" id="fieldTexto" style="margin-top:14px;">
+          <div class="field" id="fieldTexto">
             <label for="texto">
               Cole aqui sua letra / história / ideia
               <span class="helper">Ou envie um arquivo abaixo</span>
@@ -1622,10 +1527,32 @@ footer{
               <input id="whats" name="whats" type="tel" placeholder="(00) 00000-0000" required>
             </div>
 
-            <!-- NOVO: e-mail do cliente (para confirmação automática) -->
             <div class="field full">
               <label for="email">E-mail <span class="helper">Obrigatório</span></label>
               <input id="email" name="email" type="email" placeholder="email@exemplo.com" required>
+            </div>
+
+            <!-- NOVO: CPF/CNPJ obrigatório -->
+            <div class="field full" id="fieldCpfCnpj">
+              <label for="cpfcnpj">CPF ou CNPJ <span class="helper">Obrigatório</span></label>
+              <input id="cpfcnpj" name="cpfcnpj" type="text" placeholder="Digite seu CPF ou CNPJ" required>
+            </div>
+          </div>
+
+          <!-- NOVO: ACEITE DO CONTRATO -->
+          <div class="notice" style="margin-top:14px;">
+            <b>Contrato:</b> antes de continuar, leia o contrato e aceite para liberar o pagamento.
+            <div class="contract-link" id="openContract">🔎 Ler contrato completo</div>
+
+            <div class="field" style="margin-top:10px;" id="fieldContractCheck">
+              <label style="justify-content:flex-start; gap:10px; align-items:center;">
+                <input id="aceiteContrato" name="aceiteContrato" type="checkbox" required style="width:auto; transform:scale(1.1);">
+                Li e aceito o contrato de participação (obrigatório)
+              </label>
+              <div class="small-muted" id="contractMeta" style="margin-top:8px;">
+                Versão do contrato: <b id="contractVersionLabel">TIMP-PARTICIPACAO-v1.0</b>
+                <span style="display:block; margin-top:4px; opacity:.9;">Ao aceitar, registraremos data/hora e seu aceite para liberar o pagamento.</span>
+              </div>
             </div>
           </div>
 
@@ -1662,12 +1589,119 @@ footer{
   © TIMP Studio Premium — Todos os direitos reservados
 </footer>
 
+<!-- MODAL CONTRATO (NOVO) -->
+<div class="modal" id="contractModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contractTitle">
+    <div class="modal-head">
+      <div>
+        <strong id="contractTitle">Contrato de Participação — TIMP Studio Premium</strong>
+        <div class="muted">Leia com atenção. Para continuar a compra, é necessário aceitar.</div>
+      </div>
+      <button class="modal-close" type="button" id="closeContract">Fechar</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="contract">
+        <p><b>Versão:</b> <span id="contractVersionText">TIMP-PARTICIPACAO-v1.0</span></p>
+
+        <h4>CLÁUSULA 1 – OBJETO</h4>
+        <p>
+          1.1 O presente contrato tem por objeto a prestação de serviços artísticos pela CONTRATADA, podendo incluir, conforme o pacote contratado:
+        </p>
+        <ul>
+          <li>Criação de letra</li>
+          <li>Criação de melodia</li>
+          <li>Arranjo musical</li>
+          <li>Produção musical</li>
+          <li>Produção fonográfica (master)</li>
+          <li>Produção audiovisual (videoclipe)</li>
+        </ul>
+
+        <h4>CLÁUSULA 2 – NATUREZA DOS DIREITOS</h4>
+        <p>2.1 O pagamento do pacote contratado refere-se à execução técnica e artística do serviço.</p>
+        <p>2.2 O pagamento não implica cessão integral automática de direitos autorais ou fonográficos, salvo previsão expressa neste instrumento.</p>
+
+        <h4>CLÁUSULA 3 – DIREITOS AUTORAIS (COMPOSIÇÃO)</h4>
+        <p>3.1 Sempre que houver participação criativa da CONTRATADA na criação de letra e/ou melodia, esta será reconhecida como coautora da obra.</p>
+        <p>3.2 O percentual de participação autoral será:</p>
+        <ul>
+          <li>Até 50% da composição, quando houver criação integral de letra e melodia;</li>
+          <li>Percentual proporcional quando houver coautoria parcial.</li>
+        </ul>
+        <p>3.3 A obra deverá ser registrada nas associações de gestão coletiva (UBC, ABRAMUS ou equivalente) com os percentuais corretos.</p>
+        <p>3.4 É vedado ao CONTRATANTE registrar a obra omitindo o nome ou percentual da CONTRATADA.</p>
+
+        <h4>CLÁUSULA 4 – DIREITOS FONOGRÁFICOS (MASTER)</h4>
+        <p>4.1 Caso a CONTRATADA produza a gravação final (master), será reconhecida como produtora fonográfica.</p>
+        <p>4.2 A CONTRATADA deterá até 20% de participação sobre a master.</p>
+        <p>4.3 A exploração comercial da gravação deverá respeitar os percentuais acordados.</p>
+        <p>4.4 A distribuição digital deverá ser cadastrada com splits corretos nas plataformas (Spotify, Apple Music, YouTube, etc).</p>
+
+        <h4>CLÁUSULA 5 – PARTICIPAÇÃO EM RECEITAS</h4>
+        <p>5.1 A CONTRATADA terá direito a participação proporcional nas seguintes receitas:</p>
+        <ul>
+          <li>Streaming</li>
+          <li>Execução pública (ECAD)</li>
+          <li>YouTube (Content ID e monetização)</li>
+          <li>Licenciamento comercial</li>
+          <li>Sincronização audiovisual</li>
+          <li>Redes sociais monetizadas</li>
+        </ul>
+        <p>5.2 O CONTRATANTE compromete-se a enviar relatório trimestral detalhado das receitas.</p>
+        <p>5.3 Os valores devidos deverão ser pagos em até 15 dias após o envio do relatório.</p>
+
+        <h4>CLÁUSULA 6 – BÔNUS DE SUCESSO (OPCIONAL)</h4>
+        <p>6.1 Caso a obra atinja qualquer dos seguintes marcos:</p>
+        <ul>
+          <li>1.000.000 de streams acumulados; ou</li>
+          <li>Receita superior a R$ 50.000</li>
+        </ul>
+        <p>Será devido à CONTRATADA bônus adicional equivalente a 10% da receita líquida apurada até o marco.</p>
+
+        <h4>CLÁUSULA 7 – CRÉDITOS OBRIGATÓRIOS</h4>
+        <p>7.1 Em toda publicação da obra deverá constar: <b>“Produzido por TIMP Studio Premium”</b>.</p>
+        <p>7.2 A omissão de crédito configura descumprimento contratual.</p>
+
+        <h4>CLÁUSULA 8 – PROIBIÇÃO DE OCULTAÇÃO</h4>
+        <p>8.1 O CONTRATANTE compromete-se a não ocultar receitas ou alterar percentuais unilateralmente.</p>
+        <p>8.2 Em caso de omissão comprovada, será aplicada multa equivalente a 30% do valor não declarado, além das medidas judiciais cabíveis.</p>
+
+        <h4>CLÁUSULA 9 – PRAZO</h4>
+        <p>9.1 O presente contrato vigorará por prazo indeterminado enquanto houver exploração comercial da obra.</p>
+
+        <h4>CLÁUSULA 10 – ACEITE ELETRÔNICO</h4>
+        <p>10.1 O aceite eletrônico realizado no site da CONTRATADA possui validade jurídica, nos termos da legislação brasileira vigente.</p>
+        <p>10.2 O registro digital do aceite poderá incluir IP, data e horário.</p>
+
+        <h4>CLÁUSULA 11 – FORO</h4>
+        <p>Fica eleito o foro da comarca de Bauru/SP para dirimir eventuais controvérsias.</p>
+
+        <p style="margin-top:14px; color: rgba(255,255,255,.78);">
+          Ao clicar em <b>“Li e Aceito”</b>, você declara que leu integralmente e concorda com os termos.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button type="button" class="btn btn-ghost" id="modalOnlyClose">Fechar</button>
+      <button type="button" class="btn" id="modalAccept">Li e Aceito</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   /**
    * =========================
    * CONFIG (VOCÊ VAI EDITAR ISSO)
    * =========================
+   * Este site é estático. Para ter:
+   * - registro do pedido
+   * - redirecionamento automático para Mercado Pago
+   * - confirmação automática (webhook) + e-mail + WhatsApp
+   * você precisa de um endpoint (back-end).
+   *
+   * Coloque aqui a URL do seu back-end publicado (Cloudflare Worker / Vercel / etc).
    */
   const API_BASE = "COLE_AQUI_SUA_API_BASE"; // ex: https://timp-pay.yourdomain.workers.dev
 
@@ -1681,13 +1715,15 @@ footer{
   const WHATS_NUMBER = "5514991856520";
   const OWNER_EMAIL = "timpdobrasil@gmail.com";
 
+  // ===== NOVO: CONTRATO (VERSÃO) =====
+  const CONTRACT_VERSION = "TIMP-PARTICIPACAO-v1.0";
+
   function hasApi(){
     return typeof API_BASE === "string" && API_BASE.startsWith("http");
   }
 
   function isValidMpLink(url){
-    return typeof url === "string"
-      && url.startsWith("http");
+    return typeof url === "string" && url.startsWith("http");
   }
   function getMpLinkByPack(pack){
     const p = Number(pack);
@@ -1855,22 +1891,11 @@ footer{
   const secDados = document.getElementById('secDados');
   const fieldTexto = document.getElementById('fieldTexto');
 
-  // campos questionário (obrigatórios)
-  const genero = document.getElementById('genero');
-  const velocidade = document.getElementById('velocidade');
-  const referencias = document.getElementById('referencias');
-  const emocao = document.getElementById('emocao');
-  const voz = document.getElementById('voz');
-  const tipoVideo = document.getElementById('tipoVideo');
-  const aparecer = document.getElementById('aparecer');
-  const videoSim = document.getElementById('videoSim');
-  const videoNao = document.getElementById('videoNao');
-  const estetica = document.getElementById('estetica');
-  const mensagem = document.getElementById('mensagem');
-  const trecho = document.getElementById('trecho');
-  const publico = document.getElementById('publico');
-  const plataformas = document.getElementById('plataformas');
-  const formatoVideo = document.getElementById('formatoVideo');
+  // ===== NOVO: CPF/CNPJ + ACEITE =====
+  const cpfcnpj = document.getElementById('cpfcnpj');
+  const aceiteContrato = document.getElementById('aceiteContrato');
+  const fieldCpfCnpj = document.getElementById('fieldCpfCnpj');
+  const fieldContractCheck = document.getElementById('fieldContractCheck');
 
   function hasOrigem(){
     return !!form.querySelector('input[name="origem"]:checked');
@@ -1884,29 +1909,9 @@ footer{
     const cep  = (document.getElementById('cep').value || '').trim().length > 0;
     const wha  = (document.getElementById('whats').value || '').trim().length > 0;
     const eml  = (document.getElementById('email').value || '').trim().length > 0;
-    return nome && nasc && end && cid && est && cep && wha && eml;
-  }
-
-  function quizOk(){
-    // mínimos obrigatórios do questionário
-    const ok =
-      !!(genero && genero.value) &&
-      !!(velocidade && velocidade.value) &&
-      ((referencias && (referencias.value||"").trim().length) > 0) &&
-      !!(emocao && emocao.value) &&
-      !!(voz && voz.value) &&
-      !!(tipoVideo && tipoVideo.value) &&
-      !!(aparecer && aparecer.value) &&
-      ((videoSim && (videoSim.value||"").trim().length) > 0) &&
-      ((videoNao && (videoNao.value||"").trim().length) > 0) &&
-      !!(estetica && estetica.value) &&
-      ((mensagem && (mensagem.value||"").trim().length) > 0) &&
-      ((trecho && (trecho.value||"").trim().length) > 0) &&
-      ((publico && (publico.value||"").trim().length) > 0) &&
-      !!(plataformas && plataformas.value) &&
-      !!(formatoVideo && formatoVideo.value);
-
-    return !!ok;
+    const doc  = (cpfcnpj.value || '').trim().length > 0;
+    const acc  = !!aceiteContrato.checked;
+    return nome && nasc && end && cid && est && cep && wha && eml && doc && acc;
   }
 
   function updateSteps(){
@@ -1920,9 +1925,7 @@ footer{
 
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
-    const contentOk = hasText || hasFile;
-
-    const ok3 = contentOk && quizOk();
+    const ok3 = hasText || hasFile;
     s3.classList.toggle('done', ok3);
     s3.classList.toggle('active', ok1 && ok2 && !ok3);
 
@@ -1991,7 +1994,6 @@ footer{
 
   function showPaymentStatus(){
     const qs = parseQS();
-
     const status =
       qs.status ||
       qs.collection_status ||
@@ -2001,7 +2003,6 @@ footer{
     if(!status) return;
 
     let txt = status;
-
     const s = String(status).toLowerCase();
     if(s.includes("approved") || s.includes("aprovado")){
       txt = "Pagamento aprovado ✅ Você receberá a confirmação por e-mail/WhatsApp.";
@@ -2032,8 +2033,6 @@ footer{
   function buildWhatsMsg(payload){
     return `Olá TIMP! Quero iniciar meu projeto.
 • Pacote: ${payload.pacote}
-• Gênero: ${payload.genero}
-• Tipo de vídeo: ${payload.tipoVideo}
 • Eu já tenho: ${payload.origem}
 • Nome: ${payload.nome}
 • Cidade/UF: ${payload.cidade}/${payload.estado}
@@ -2056,6 +2055,55 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
     return data;
   }
 
+  // ===== MODAL CONTRATO (NOVO) =====
+  const contractModal = document.getElementById('contractModal');
+  const openContract = document.getElementById('openContract');
+  const closeContract = document.getElementById('closeContract');
+  const modalOnlyClose = document.getElementById('modalOnlyClose');
+  const modalAccept = document.getElementById('modalAccept');
+
+  const contractVersionLabel = document.getElementById('contractVersionLabel');
+  const contractVersionText = document.getElementById('contractVersionText');
+
+  if(contractVersionLabel) contractVersionLabel.textContent = CONTRACT_VERSION;
+  if(contractVersionText) contractVersionText.textContent = CONTRACT_VERSION;
+
+  function openModal(){
+    contractModal.classList.add('show');
+    contractModal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    contractModal.classList.remove('show');
+    contractModal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  if(openContract) openContract.addEventListener('click', openModal);
+  if(closeContract) closeContract.addEventListener('click', closeModal);
+  if(modalOnlyClose) modalOnlyClose.addEventListener('click', closeModal);
+
+  if(contractModal){
+    contractModal.addEventListener('click', (e)=>{
+      if(e.target === contractModal) closeModal();
+    });
+  }
+
+  if(modalAccept){
+    modalAccept.addEventListener('click', ()=>{
+      aceiteContrato.checked = true;
+      closeModal();
+      updateSteps();
+    });
+  }
+
+  // ESC fecha modal
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && contractModal && contractModal.classList.contains('show')){
+      closeModal();
+    }
+  });
+
   form.addEventListener('submit', async (e)=>{
     clearErrors();
 
@@ -2077,33 +2125,6 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       return;
     }
 
-    // valida questionário (obrigatório)
-    if(!quizOk()){
-      e.preventDefault();
-      formError.classList.add('show');
-      secConteudo.classList.add('section-error');
-
-      // marca campos obrigatórios do quiz que faltarem e leva para o primeiro
-      const quizRequired = [genero, velocidade, referencias, emocao, voz, tipoVideo, aparecer, videoSim, videoNao, estetica, mensagem, trecho, publico, plataformas, formatoVideo];
-      let firstMissingQuiz = null;
-
-      quizRequired.forEach(el=>{
-        if(!el) return;
-        const val = (el.value || "").trim();
-        if(!val){
-          if(!firstMissingQuiz) firstMissingQuiz = el;
-          markFieldError(el);
-        }
-      });
-
-      if(firstMissingQuiz){
-        scrollToEl(firstMissingQuiz);
-      }else{
-        scrollToEl(secConteudo);
-      }
-      return;
-    }
-
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     if(!hasText && !hasFile){
@@ -2115,11 +2136,13 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       return;
     }
 
+    // valida required comuns
     const requiredFields = Array.from(form.querySelectorAll('[required]'));
     let firstMissing = null;
 
     requiredFields.forEach(el=>{
       if(el.type === 'radio') return;
+      if(el.id === 'aceiteContrato') return; // valida abaixo (com highlight próprio)
       if(!el.value){
         if(!firstMissing) firstMissing = el;
         markFieldError(el);
@@ -2129,15 +2152,29 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
     if(firstMissing){
       e.preventDefault();
       formError.classList.add('show');
-
-      // decide em qual seção está faltando
-      const isInConteudo = !!firstMissing.closest('#secConteudo');
-      const isInDados = !!firstMissing.closest('#secDados');
-
-      if(isInConteudo) secConteudo.classList.add('section-error');
-      if(isInDados) secDados.classList.add('section-error');
-
+      secDados.classList.add('section-error');
       scrollToEl(firstMissing);
+      return;
+    }
+
+    // NOVO: valida CPF/CNPJ
+    if(!(cpfcnpj.value || '').trim()){
+      e.preventDefault();
+      formError.classList.add('show');
+      secDados.classList.add('section-error');
+      markFieldError(cpfcnpj);
+      scrollToEl(cpfcnpj);
+      return;
+    }
+
+    // NOVO: valida aceite contrato
+    if(!aceiteContrato.checked){
+      e.preventDefault();
+      formError.classList.add('show');
+      secDados.classList.add('section-error');
+      if(fieldContractCheck) fieldContractCheck.classList.add('field-error');
+      scrollToEl(openContract || aceiteContrato);
+      openModal(); // abre para leitura
       return;
     }
 
@@ -2150,43 +2187,16 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
     const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
     const packNum = packNumFromSelect(packSelect.value);
 
+    // carimbo do aceite (cliente) - o backend deve salvar um timestamp do servidor também
+    const aceiteLocalISO = new Date().toISOString();
+
     const payload = {
       pacote: packSelect.value,
       pacote_num: packNum,
       origem,
-
-      // QUESTIONÁRIO
-      genero: (genero.value || '').trim(),
-      velocidade: (velocidade.value || '').trim(),
-      referencias: (referencias.value || '').trim(),
-      emocao: (emocao.value || '').trim(),
-      voz: (voz.value || '').trim(),
-      instrumentosSim: (document.getElementById('instrumentosSim').value || '').trim(),
-      instrumentosNao: (document.getElementById('instrumentosNao').value || '').trim(),
-      tipoVideo: (tipoVideo.value || '').trim(),
-      aparecer: (aparecer.value || '').trim(),
-      videoSim: (videoSim.value || '').trim(),
-      videoNao: (videoNao.value || '').trim(),
-      estetica: (estetica.value || '').trim(),
-      cores: (document.getElementById('cores').value || '').trim(),
-      mensagem: (mensagem.value || '').trim(),
-      trecho: (trecho.value || '').trim(),
-      publico: (publico.value || '').trim(),
-      historiaReal: (document.getElementById('historiaReal').value || '').trim(),
-      plataformas: (plataformas.value || '').trim(),
-      formatoVideo: (formatoVideo.value || '').trim(),
-      duracao: (document.getElementById('duracao').value || '').trim(),
-      prazo: (document.getElementById('prazo').value || '').trim(),
-
-      // CONTEÚDO
       texto: (texto.value || "").trim(),
-
-      // arquivos/imagem: em site estático, enviar arquivo direto exige backend com upload.
-      // por enquanto vamos enviar só os nomes (o backend pode instruir o cliente depois).
       arquivo_nome: (arquivoInput.files && arquivoInput.files[0]) ? arquivoInput.files[0].name : "",
       imagem_nome: (imagemInput.files && imagemInput.files[0]) ? imagemInput.files[0].name : "",
-
-      // DADOS
       nome: (document.getElementById('nome').value || '').trim(),
       nascimento: (document.getElementById('nascimento').value || '').trim(),
       endereco: (document.getElementById('endereco').value || '').trim(),
@@ -2195,6 +2205,12 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       cep: (document.getElementById('cep').value || '').trim(),
       whats: (document.getElementById('whats').value || '').trim(),
       email: (document.getElementById('email').value || '').trim(),
+      cpf_cnpj: (cpfcnpj.value || '').trim(),
+
+      // NOVO: aceite contrato
+      aceite_contrato: true,
+      contrato_versao: CONTRACT_VERSION,
+      aceite_local_iso: aceiteLocalISO,
 
       owner_email: OWNER_EMAIL,
       return_url: location.origin + location.pathname + "#contato"
@@ -2211,6 +2227,7 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
 
     try{
       if(!hasApi()){
+        // backend ainda não configurado: mostra fallback
         btnSend.textContent = "Pedido enviado ✅";
         paySheet.classList.add('show');
         paySheet.scrollIntoView({behavior:"smooth", block:"center"});
@@ -2218,10 +2235,11 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       }
 
       // cria checkout no backend e redireciona
-      btnSend.textContent = "Redirecionando pro pagamento…";
+      btnSend.textContent = "Validando contrato…";
       const data = await createCheckout(payload);
 
       if(data && data.checkoutUrl){
+        btnSend.textContent = "Redirecionando pro pagamento…";
         window.location.href = data.checkoutUrl;
         return;
       }
