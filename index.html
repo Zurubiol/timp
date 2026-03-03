@@ -921,6 +921,7 @@ footer{
       <div class="card">Você compartilha uma história e nós a transformamos em letra de música, melodia e videoclipe.</div>
       <div class="card">Criamos do zero, Você traz apenas uma ideia e nós damos vida a ela, criando letra de música, melodia e videoclipe.</div>
     </div>
+  </div>
 </section>
 
 <!-- PACOTES / PREÇOS -->
@@ -987,6 +988,7 @@ footer{
     <div class="portfolio-cta" style="margin-top:26px;">
       <div></div>
     </div>
+  </div>
 </section>
 
 <!-- PORTFÓLIO COM VÍDEOS REAIS -->
@@ -1247,7 +1249,7 @@ footer{
         <div class="form-topbar">
           <div>
             <strong>Envio do projeto (rápido e guiado)</strong>
-            <span>Escolha um pacote, diga o que você já tem e envie seu conteúdo. Depois, você será direcionado para o pagamento via Mercado Pago.</span>
+            <span>Escolha um pacote, diga o que você já tem, responda o questionário e envie seu conteúdo. Depois, você será direcionado para o pagamento via Mercado Pago.</span>
           </div>
           <div class="steps" aria-label="Etapas do formulário">
             <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
@@ -1316,12 +1318,212 @@ footer{
           </div>
         </div>
 
-        <!-- 3) CONTEÚDO -->
+        <!-- 3) CONTEÚDO + QUESTIONÁRIO -->
         <div class="form-section" id="secConteudo">
-          <h3 class="req">3) Seu conteúdo (texto ou arquivo)</h3>
-          <p>Você pode <b>colar o texto</b> ou <b>anexar um arquivo</b>. Pelo menos 1 é obrigatório.</p>
+          <h3 class="req">3) Conteúdo + Questionário criativo</h3>
+          <p>Responda rapidinho para alinharmos <b>música</b> e <b>videoclipe</b>. E envie seu texto/arquivo.</p>
 
-          <div class="field" id="fieldTexto">
+          <div class="notice" style="margin-top:12px;">
+            <b>Dica:</b> quanto mais claro você for aqui, mais “na mosca” fica o resultado final.
+          </div>
+
+          <!-- QUESTIONÁRIO -->
+          <div class="form-grid" style="margin-top:12px;">
+            <div class="field">
+              <label for="genero">Gênero principal <span class="helper">Obrigatório</span></label>
+              <select id="genero" name="genero" required>
+                <option value="" selected disabled>Selecione um gênero</option>
+                <option>Rock</option>
+                <option>Sertanejo</option>
+                <option>MPB</option>
+                <option>Pop</option>
+                <option>Rap/Trap</option>
+                <option>Gospel</option>
+                <option>Forró</option>
+                <option>Pagode</option>
+                <option>Funk</option>
+                <option>Eletrônica</option>
+                <option>Reggae</option>
+                <option>Outro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="velocidade">Velocidade / pegada <span class="helper">Obrigatório</span></label>
+              <select id="velocidade" name="velocidade" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Lenta</option>
+                <option>Média</option>
+                <option>Rápida</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="referencias">Referências (2 a 5 músicas/artistas) <span class="helper">Obrigatório</span></label>
+              <textarea id="referencias" name="referencias" placeholder="Cole links do YouTube/Spotify ou escreva artistas/músicas de referência..." required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="emocao">Clima/emoção principal <span class="helper">Obrigatório</span></label>
+              <select id="emocao" name="emocao" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Romântico</option>
+                <option>Animado</option>
+                <option>Triste</option>
+                <option>Superação</option>
+                <option>Motivacional</option>
+                <option>Humor</option>
+                <option>Nostálgico</option>
+                <option>Épico</option>
+                <option>Outro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="voz">Voz desejada <span class="helper">Obrigatório</span></label>
+              <select id="voz" name="voz" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Masculina</option>
+                <option>Feminina</option>
+                <option>Dueto</option>
+                <option>Tanto faz</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="instrumentosSim">Instrumentos/elementos que NÃO podem faltar <span class="helper">Opcional</span></label>
+              <input id="instrumentosSim" name="instrumentosSim" type="text" placeholder="Ex: violão, sanfona, guitarra, piano, batida eletrônica...">
+            </div>
+
+            <div class="field full">
+              <label for="instrumentosNao">Instrumentos/estilos que você NÃO quer <span class="helper">Opcional</span></label>
+              <input id="instrumentosNao" name="instrumentosNao" type="text" placeholder="Ex: sem autotune, sem sanfona, sem batida funk...">
+            </div>
+
+            <div class="field">
+              <label for="tipoVideo">Tipo de vídeo <span class="helper">Obrigatório</span></label>
+              <select id="tipoVideo" name="tipoVideo" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Clipe com história</option>
+                <option>Performance (artista cantando)</option>
+                <option>Visual artístico (conceitual)</option>
+                <option>Lyric vídeo (letra na tela)</option>
+                <option>Misturado</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="aparecer">Você quer aparecer no vídeo? <span class="helper">Obrigatório</span></label>
+              <select id="aparecer" name="aparecer" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+                <option>Não sei</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="videoSim">O que você quer que apareça no vídeo <span class="helper">Obrigatório</span></label>
+              <textarea id="videoSim" name="videoSim" placeholder="Ex: casal, estrada, barzinho, palco, praia, cidade, família, fazenda..." required></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="videoNao">O que NÃO pode aparecer no vídeo <span class="helper">Obrigatório</span></label>
+              <textarea id="videoNao" name="videoNao" placeholder="Ex: armas, bebida, cenas sensuais, violência, política..." required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="estetica">Estética/estilo visual <span class="helper">Obrigatório</span></label>
+              <select id="estetica" name="estetica" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Cinemático</option>
+                <option>Realista</option>
+                <option>Retrô</option>
+                <option>Futurista</option>
+                <option>Clipão musical</option>
+                <option>Minimalista</option>
+                <option>Outro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="cores">Cores/vibe <span class="helper">Opcional</span></label>
+              <select id="cores" name="cores">
+                <option value="" selected>Sem preferência</option>
+                <option>Quente</option>
+                <option>Fria</option>
+                <option>Preto e branco</option>
+                <option>Colorido forte</option>
+                <option>Pastel</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="mensagem">Mensagem principal da música <span class="helper">Obrigatório</span></label>
+              <textarea id="mensagem" name="mensagem" placeholder="Em 1 a 3 frases, qual é a mensagem principal?" required></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="trecho">Trecho mais importante (refrão/frase chave) <span class="helper">Obrigatório</span></label>
+              <input id="trecho" name="trecho" type="text" placeholder="Ex: 'E eu vou te amar...' (um trecho que precisa de destaque)" required>
+            </div>
+
+            <div class="field full">
+              <label for="publico">Para quem é essa música? <span class="helper">Obrigatório</span></label>
+              <input id="publico" name="publico" type="text" placeholder="Ex: para minha esposa / para divulgar meu trabalho / para postar no Instagram..." required>
+            </div>
+
+            <div class="field full">
+              <label for="historiaReal">Existe uma história real por trás? <span class="helper">Opcional</span></label>
+              <textarea id="historiaReal" name="historiaReal" placeholder="Se quiser, conte em poucas linhas."></textarea>
+            </div>
+
+            <div class="field">
+              <label for="plataformas">Onde você vai postar? <span class="helper">Obrigatório</span></label>
+              <select id="plataformas" name="plataformas" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>YouTube</option>
+                <option>Instagram Reels</option>
+                <option>TikTok</option>
+                <option>WhatsApp</option>
+                <option>Todas</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="formatoVideo">Formato do vídeo <span class="helper">Obrigatório</span></label>
+              <select id="formatoVideo" name="formatoVideo" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Vertical (9:16)</option>
+                <option>Horizontal (16:9)</option>
+                <option>Quadrado (1:1)</option>
+                <option>Quero os 2 (vertical + horizontal)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="duracao">Duração desejada <span class="helper">Opcional</span></label>
+              <select id="duracao" name="duracao">
+                <option value="" selected>Sem preferência</option>
+                <option>30–60s</option>
+                <option>1–2min</option>
+                <option>Completa</option>
+                <option>Não sei</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="prazo">Data/prazo importante <span class="helper">Opcional</span></label>
+              <input id="prazo" name="prazo" type="text" placeholder="Ex: aniversário (10/04), casamento, lançamento...">
+            </div>
+          </div>
+
+          <div class="notice" id="quizNotice">
+            <b>Checklist:</b> responda as perguntas obrigatórias acima e depois envie o texto/arquivo abaixo.
+          </div>
+
+          <!-- CONTEÚDO (texto ou arquivo) -->
+          <div class="field" id="fieldTexto" style="margin-top:14px;">
             <label for="texto">
               Cole aqui sua letra / história / ideia
               <span class="helper">Ou envie um arquivo abaixo</span>
@@ -1466,13 +1668,6 @@ footer{
    * =========================
    * CONFIG (VOCÊ VAI EDITAR ISSO)
    * =========================
-   * Este site é estático. Para ter:
-   * - registro do pedido
-   * - redirecionamento automático para Mercado Pago
-   * - confirmação automática (webhook) + e-mail + WhatsApp
-   * você precisa de um endpoint (back-end).
-   *
-   * Coloque aqui a URL do seu back-end publicado (Cloudflare Worker / Vercel / etc).
    */
   const API_BASE = "COLE_AQUI_SUA_API_BASE"; // ex: https://timp-pay.yourdomain.workers.dev
 
@@ -1660,6 +1855,23 @@ footer{
   const secDados = document.getElementById('secDados');
   const fieldTexto = document.getElementById('fieldTexto');
 
+  // campos questionário (obrigatórios)
+  const genero = document.getElementById('genero');
+  const velocidade = document.getElementById('velocidade');
+  const referencias = document.getElementById('referencias');
+  const emocao = document.getElementById('emocao');
+  const voz = document.getElementById('voz');
+  const tipoVideo = document.getElementById('tipoVideo');
+  const aparecer = document.getElementById('aparecer');
+  const videoSim = document.getElementById('videoSim');
+  const videoNao = document.getElementById('videoNao');
+  const estetica = document.getElementById('estetica');
+  const mensagem = document.getElementById('mensagem');
+  const trecho = document.getElementById('trecho');
+  const publico = document.getElementById('publico');
+  const plataformas = document.getElementById('plataformas');
+  const formatoVideo = document.getElementById('formatoVideo');
+
   function hasOrigem(){
     return !!form.querySelector('input[name="origem"]:checked');
   }
@@ -1675,6 +1887,28 @@ footer{
     return nome && nasc && end && cid && est && cep && wha && eml;
   }
 
+  function quizOk(){
+    // mínimos obrigatórios do questionário
+    const ok =
+      !!(genero && genero.value) &&
+      !!(velocidade && velocidade.value) &&
+      ((referencias && (referencias.value||"").trim().length) > 0) &&
+      !!(emocao && emocao.value) &&
+      !!(voz && voz.value) &&
+      !!(tipoVideo && tipoVideo.value) &&
+      !!(aparecer && aparecer.value) &&
+      ((videoSim && (videoSim.value||"").trim().length) > 0) &&
+      ((videoNao && (videoNao.value||"").trim().length) > 0) &&
+      !!(estetica && estetica.value) &&
+      ((mensagem && (mensagem.value||"").trim().length) > 0) &&
+      ((trecho && (trecho.value||"").trim().length) > 0) &&
+      ((publico && (publico.value||"").trim().length) > 0) &&
+      !!(plataformas && plataformas.value) &&
+      !!(formatoVideo && formatoVideo.value);
+
+    return !!ok;
+  }
+
   function updateSteps(){
     const ok1 = !!packSelect.value;
     s1.classList.toggle('done', ok1);
@@ -1686,7 +1920,9 @@ footer{
 
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
-    const ok3 = hasText || hasFile;
+    const contentOk = hasText || hasFile;
+
+    const ok3 = contentOk && quizOk();
     s3.classList.toggle('done', ok3);
     s3.classList.toggle('active', ok1 && ok2 && !ok3);
 
@@ -1756,7 +1992,6 @@ footer{
   function showPaymentStatus(){
     const qs = parseQS();
 
-    // Mercado Pago pode voltar com status/collection_status etc dependendo do modo
     const status =
       qs.status ||
       qs.collection_status ||
@@ -1767,7 +2002,6 @@ footer{
 
     let txt = status;
 
-    // mensagens amigáveis
     const s = String(status).toLowerCase();
     if(s.includes("approved") || s.includes("aprovado")){
       txt = "Pagamento aprovado ✅ Você receberá a confirmação por e-mail/WhatsApp.";
@@ -1780,7 +2014,6 @@ footer{
     paymentStatusText.textContent = txt;
     paymentStatus.style.display = "block";
 
-    // se pagou, já leva a pessoa pra seção de contato
     if(location.hash !== "#contato"){
       location.hash = "#contato";
     }
@@ -1799,6 +2032,8 @@ footer{
   function buildWhatsMsg(payload){
     return `Olá TIMP! Quero iniciar meu projeto.
 • Pacote: ${payload.pacote}
+• Gênero: ${payload.genero}
+• Tipo de vídeo: ${payload.tipoVideo}
 • Eu já tenho: ${payload.origem}
 • Nome: ${payload.nome}
 • Cidade/UF: ${payload.cidade}/${payload.estado}
@@ -1807,10 +2042,6 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
   }
 
   async function createCheckout(payload){
-    // endpoint esperado:
-    // POST {API_BASE}/api/checkout
-    // body json payload
-    // resposta: { checkoutUrl, orderId }
     const url = API_BASE.replace(/\/+$/,'') + "/api/checkout";
     const res = await fetch(url, {
       method: "POST",
@@ -1846,6 +2077,33 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       return;
     }
 
+    // valida questionário (obrigatório)
+    if(!quizOk()){
+      e.preventDefault();
+      formError.classList.add('show');
+      secConteudo.classList.add('section-error');
+
+      // marca campos obrigatórios do quiz que faltarem e leva para o primeiro
+      const quizRequired = [genero, velocidade, referencias, emocao, voz, tipoVideo, aparecer, videoSim, videoNao, estetica, mensagem, trecho, publico, plataformas, formatoVideo];
+      let firstMissingQuiz = null;
+
+      quizRequired.forEach(el=>{
+        if(!el) return;
+        const val = (el.value || "").trim();
+        if(!val){
+          if(!firstMissingQuiz) firstMissingQuiz = el;
+          markFieldError(el);
+        }
+      });
+
+      if(firstMissingQuiz){
+        scrollToEl(firstMissingQuiz);
+      }else{
+        scrollToEl(secConteudo);
+      }
+      return;
+    }
+
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     if(!hasText && !hasFile){
@@ -1871,7 +2129,14 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
     if(firstMissing){
       e.preventDefault();
       formError.classList.add('show');
-      secDados.classList.add('section-error');
+
+      // decide em qual seção está faltando
+      const isInConteudo = !!firstMissing.closest('#secConteudo');
+      const isInDados = !!firstMissing.closest('#secDados');
+
+      if(isInConteudo) secConteudo.classList.add('section-error');
+      if(isInDados) secDados.classList.add('section-error');
+
       scrollToEl(firstMissing);
       return;
     }
@@ -1889,11 +2154,39 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       pacote: packSelect.value,
       pacote_num: packNum,
       origem,
+
+      // QUESTIONÁRIO
+      genero: (genero.value || '').trim(),
+      velocidade: (velocidade.value || '').trim(),
+      referencias: (referencias.value || '').trim(),
+      emocao: (emocao.value || '').trim(),
+      voz: (voz.value || '').trim(),
+      instrumentosSim: (document.getElementById('instrumentosSim').value || '').trim(),
+      instrumentosNao: (document.getElementById('instrumentosNao').value || '').trim(),
+      tipoVideo: (tipoVideo.value || '').trim(),
+      aparecer: (aparecer.value || '').trim(),
+      videoSim: (videoSim.value || '').trim(),
+      videoNao: (videoNao.value || '').trim(),
+      estetica: (estetica.value || '').trim(),
+      cores: (document.getElementById('cores').value || '').trim(),
+      mensagem: (mensagem.value || '').trim(),
+      trecho: (trecho.value || '').trim(),
+      publico: (publico.value || '').trim(),
+      historiaReal: (document.getElementById('historiaReal').value || '').trim(),
+      plataformas: (plataformas.value || '').trim(),
+      formatoVideo: (formatoVideo.value || '').trim(),
+      duracao: (document.getElementById('duracao').value || '').trim(),
+      prazo: (document.getElementById('prazo').value || '').trim(),
+
+      // CONTEÚDO
       texto: (texto.value || "").trim(),
+
       // arquivos/imagem: em site estático, enviar arquivo direto exige backend com upload.
       // por enquanto vamos enviar só os nomes (o backend pode instruir o cliente depois).
       arquivo_nome: (arquivoInput.files && arquivoInput.files[0]) ? arquivoInput.files[0].name : "",
       imagem_nome: (imagemInput.files && imagemInput.files[0]) ? imagemInput.files[0].name : "",
+
+      // DADOS
       nome: (document.getElementById('nome').value || '').trim(),
       nascimento: (document.getElementById('nascimento').value || '').trim(),
       endereco: (document.getElementById('endereco').value || '').trim(),
@@ -1902,6 +2195,7 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       cep: (document.getElementById('cep').value || '').trim(),
       whats: (document.getElementById('whats').value || '').trim(),
       email: (document.getElementById('email').value || '').trim(),
+
       owner_email: OWNER_EMAIL,
       return_url: location.origin + location.pathname + "#contato"
     };
@@ -1917,7 +2211,6 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
 
     try{
       if(!hasApi()){
-        // backend ainda não configurado: mostra fallback
         btnSend.textContent = "Pedido enviado ✅";
         paySheet.classList.add('show');
         paySheet.scrollIntoView({behavior:"smooth", block:"center"});
@@ -1929,7 +2222,6 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       const data = await createCheckout(payload);
 
       if(data && data.checkoutUrl){
-        // redireciona
         window.location.href = data.checkoutUrl;
         return;
       }
@@ -1940,14 +2232,12 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       btnSend.textContent = "Pedido enviado ✅";
       paySheet.classList.add('show');
 
-      // mostra aviso que backend falhou
       paymentStatusText.textContent = "Não foi possível redirecionar automaticamente. Use os botões abaixo para pagar e/ou falar no WhatsApp.";
       paymentStatus.style.display = "block";
 
       paySheet.scrollIntoView({behavior:"smooth", block:"center"});
     }finally{
-      // mantém disabled pra evitar duplicar pedido; se quiser liberar, descomente:
-      // btnSend.disabled = false;
+      // mantém disabled pra evitar duplicar pedido
     }
   });
 
