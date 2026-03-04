@@ -7,17 +7,22 @@
 <meta name="description" content="TIMP Studio Premium — Produção audiovisual com presença, credibilidade e atendimento direto em todo o Brasil." />
 
 <style>
+/* =========================
+   BASE / RESET
+========================= */
 :root{
   --bg:#0b0b0b;
   --bg2:#060606;
   --text:#f5f5f5;
   --muted:#bdbdbd;
+  --line:rgba(255,255,255,.10);
   --glass:rgba(0,0,0,.65);
   --card:rgba(255,255,255,.06);
   --border:rgba(255,255,255,.12);
   --radius:24px;
   --shadow: 0 25px 60px rgba(0,0,0,.65);
 }
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -26,86 +31,191 @@ body{
   color: var(--text);
   overflow-x:hidden;
 }
+
+/* melhorar “pulo” ao clicar nos atalhos com header fixo */
 #inicio, #sobre, #servicos, #pacotes, #portfolio, #depoimentos, #contato{
   scroll-margin-top: 96px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 header{
-  position: fixed; top:0; left:0;
-  width:100%; z-index:100;
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:100;
   background: var(--glass);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
+
 .header-container{
   max-width: 1400px;
   margin: 0 auto;
   padding: 14px 18px;
-  display:flex; align-items:center; justify-content: space-between;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
   gap:14px;
 }
-.brand{display:flex; align-items:center; gap:12px; min-width:0;}
-.brand img{width:34px;height:34px;object-fit:contain;display:block;opacity:.95;}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.brand img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  display:block;
+  opacity:.95;
+}
 .brand .title{
-  font-weight: 800; letter-spacing: .2px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-weight: 800;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 44vw;
 }
-.brand .title small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:2px;}
+.brand .title small{
+  display:block;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
 
-nav.nav-desktop{display:flex;align-items:center;gap:26px;}
+nav.nav-desktop{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
 nav.nav-desktop a{
-  color:#cfcfcf;text-decoration:none;font-size:14px;font-weight:600;
-  position:relative;padding:6px 0;
+  color: #cfcfcf;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+  position:relative;
+  padding:6px 0;
 }
 nav.nav-desktop a:hover{color:#fff}
 nav.nav-desktop a.active{color:#fff}
 nav.nav-desktop a.active::after{
-  content:"";position:absolute;left:0;bottom:-6px;width:100%;height:2px;background:#fff;border-radius:2px;
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:2px;
+  background:#fff;
+  border-radius:2px;
 }
 
-.header-cta{display:flex;gap:10px;align-items:center;}
+/* CTA do header */
+.header-cta{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 .btn-mini{
-  padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);color:#fff;text-decoration:none;font-weight:800;font-size:13px;transition:.2s;
+  padding:10px 14px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  font-size:13px;
+  transition:.2s;
 }
 .btn-mini:hover{background: rgba(255,255,255,.12); transform: translateY(-1px);}
 
-/* MENU MOBILE */
+/* =========================
+   MENU MOBILE (HAMBURGUER)
+========================= */
 .menu-btn{
-  display:none;width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);cursor:pointer;align-items:center;justify-content:center;
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
 }
 .menu-btn:active{transform:scale(.98)}
-.menu-icon{width:20px;height:14px;position:relative;}
+.menu-icon{
+  width:20px; height:14px;
+  position:relative;
+}
 .menu-icon span{
-  position:absolute;left:0;right:0;height:2px;background:#fff;border-radius:2px;transition:.2s;
+  position:absolute;
+  left:0; right:0;
+  height:2px;
+  background:#fff;
+  border-radius: 2px;
+  transition:.2s;
 }
 .menu-icon span:nth-child(1){top:0}
 .menu-icon span:nth-child(2){top:6px; opacity:1}
 .menu-icon span:nth-child(3){top:12px}
 
 .mobile-panel{
-  display:none;background: rgba(0,0,0,.78);backdrop-filter: blur(12px);
+  display:none;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(12px);
   border-top:1px solid rgba(255,255,255,.06);
 }
-.mobile-panel .inner{max-width:1400px;margin:0 auto;padding:10px 14px 16px;}
+.mobile-panel .inner{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 14px 16px;
+}
 .mobile-panel a{
-  display:flex;justify-content:space-between;align-items:center;
-  padding: 12px 12px;border-radius:14px;color:#eaeaea;text-decoration:none;font-weight:900;letter-spacing:.2px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 12px 12px;
+  border-radius: 14px;
+  color:#eaeaea;
+  text-decoration:none;
+  font-weight: 900;
+  letter-spacing:.2px;
 }
 .mobile-panel a:hover{background: rgba(255,255,255,.07);}
-.mobile-panel a.active{background: rgba(255,255,255,.10);border: 1px solid rgba(255,255,255,.12);}
-.mobile-panel .cta-row{margin-top:10px;display:flex;gap:10px;}
-.mobile-panel .cta-row a{
-  flex:1;justify-content:center;background: rgba(255,255,255,.06);border: 1px solid rgba(255,255,255,.12);
+.mobile-panel a.active{
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
 }
-.mobile-panel .cta-row a:hover{background: rgba(255,255,255,.12);}
+.mobile-panel .cta-row{
+  margin-top: 10px;
+  display:flex;
+  gap:10px;
+}
+.mobile-panel .cta-row a{
+  flex:1;
+  justify-content:center;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.mobile-panel .cta-row a:hover{
+  background: rgba(255,255,255,.12);
+}
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 .hero{
-  height:100vh;display:flex;align-items:center;justify-content:center;padding-top:84px;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top: 84px;
   background:
     radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 58%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
@@ -113,265 +223,725 @@ nav.nav-desktop a.active::after{
 .hero img{
   width: min(86vw, 980px);
   height:auto;
-  filter: drop-shadow(0 25px 60px rgba(0,0,0,.9)) drop-shadow(0 0 90px rgba(255,255,255,.08));
+  filter:
+    drop-shadow(0 25px 60px rgba(0,0,0,.9))
+    drop-shadow(0 0 90px rgba(255,255,255,.08));
 }
 
-/* SEÇÕES */
-section{padding: 110px 18px;border-top: 1px solid rgba(255,255,255,.06);}
-.container{max-width:1200px;margin:0 auto;}
-.kicker{color:#cfcfcf;letter-spacing:.28em;font-size:12px;text-transform:uppercase;margin-bottom:10px;opacity:.85;}
-h2{font-size:48px;margin-bottom:18px;}
-p{color:var(--muted);font-size:18px;line-height:1.7;max-width:900px;}
+/* =========================
+   SEÇÕES
+========================= */
+section{
+  padding: 110px 18px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.kicker{
+  color:#cfcfcf;
+  letter-spacing: .28em;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity:.85;
+}
+h2{
+  font-size: 48px;
+  margin-bottom: 18px;
+}
+p{
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 900px;
+}
 p + p{ margin-top: 14px; }
 
-.grid{display:grid;grid-template-columns: repeat(3, 1fr);gap:22px;margin-top:34px;}
+/* cards / grid */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
 .card{
-  background: var(--card);border: 1px solid var(--border);
-  border-radius: var(--radius);padding:24px;box-shadow: 0 8px 30px rgba(0,0,0,.20);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.20);
 }
 
-/* BOTÕES */
-.buttons{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
+/* =========================
+   BOTÕES
+========================= */
+.buttons{
+  margin-top: 28px;
+  display:flex;
+  gap:14px;
+  flex-wrap: wrap;
+}
 .btn{
-  padding: 14px 22px;border-radius:999px;border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.08);color:#fff;text-decoration:none;font-weight:900;transition:.22s;
-  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color:#fff;
+  text-decoration:none;
+  font-weight: 900;
+  transition: .22s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
 }
 .btn:hover{background: rgba(255,255,255,.16); transform: translateY(-2px);}
-.btn-outline{background: rgba(255,255,255,.04);}
+
+.btn-outline{
+  background: rgba(255,255,255,.04);
+}
 .btn-outline:hover{background: rgba(255,255,255,.10);}
 
-/* PORTFÓLIO */
-.portfolio-grid{display:grid;grid-template-columns: repeat(3, 1fr);gap:22px;margin-top:34px;}
+/* =========================
+   PORTFÓLIO
+========================= */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
 .video-card{
-  background: var(--card);border: 1px solid var(--border);border-radius: var(--radius);
-  overflow:hidden;box-shadow: var(--shadow);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
 }
-.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;}
-.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-.video-meta{padding: 18px 18px 20px;}
-.video-title{font-weight:900;font-size:16px;margin-bottom:6px;}
-.video-sub{color:var(--muted);font-size:13px;line-height:1.5;}
-.video-actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
-.video-actions a{flex:1;min-width:140px;}
+.video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio: 16/9;
+  background:#000;
+}
+.video-frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+.video-meta{
+  padding: 18px 18px 20px;
+}
+.video-title{
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.video-sub{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.video-actions{
+  margin-top: 14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.video-actions a{
+  flex: 1;
+  min-width: 140px;
+}
 
-/* PACOTES */
-.price-card{position:relative;display:flex;flex-direction:column;gap:14px;}
-.price-badge{
-  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);background: rgba(255,255,255,.06);
-  font-weight:900;font-size:12px;width:fit-content;
+/* CTA fim do portfólio */
+.portfolio-cta{
+  margin-top: 26px;
+  padding: 22px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
 }
-.price{font-size:34px;font-weight:900;letter-spacing:.3px;}
-.price small{display:block;font-size:13px;color:var(--muted);font-weight:700;margin-top:6px;}
-.features{margin-top:2px;display:flex;flex-direction:column;gap:8px;color:#d7d7d7;font-size:14px;line-height:1.4;}
-.select-btn{margin-top:auto;width:100%;}
+.portfolio-cta strong{
+  font-size: 18px;
+}
+.portfolio-cta span{
+  color: var(--muted);
+  display:block;
+  margin-top:6px;
+  font-size:14px;
+}
+
+/* =========================
+   PACOTES
+========================= */
+.price-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.price-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  font-weight:900;
+  font-size:12px;
+  width: fit-content;
+}
+.price{
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: .3px;
+}
+.price small{
+  display:block;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: 6px;
+}
+.features{
+  margin-top: 2px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  color:#d7d7d7;
+  font-size:14px;
+  line-height:1.4;
+}
+.features span{opacity:.95;}
+.select-btn{margin-top:auto; width:100%;}
 .featured{
   border: 1px solid rgba(255,255,255,.22);
   background: rgba(255,255,255,.08);
   box-shadow: 0 18px 70px rgba(0,0,0,.50);
 }
 .featured::before{
-  content:"Mais vendido";position:absolute;top:14px;right:14px;padding:8px 12px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.16);background: rgba(0,0,0,.45);font-weight:900;font-size:12px;color:#fff;
+  content:"Mais vendido";
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.45);
+  font-weight:900;
+  font-size:12px;
+  color:#fff;
 }
-.pay-row{display:flex;gap:10px;flex-wrap:wrap;}
-.pay-row a{flex:1;min-width:160px;}
+.pay-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.pay-row a{flex:1; min-width: 160px;}
 
-/* FORM */
-.small-muted{color:var(--muted);font-size:13px;line-height:1.5;}
+/* =========================
+   FORMULÁRIO (UPGRADE PREMIUM)
+========================= */
+.small-muted{
+  color: var(--muted);
+  font-size: 13px;
+  line-height:1.5;
+}
+
 .form-wrap{
-  margin-top:22px;background: rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);
-  border-radius: var(--radius);padding:22px;box-shadow: 0 10px 30px rgba(0,0,0,.28);
+  margin-top: 22px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
 }
-.form-topbar{
-  display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;
-  padding:14px;border-radius:18px;border:1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.35);margin-bottom:16px;
-}
-.form-topbar strong{display:block;font-size:14px;letter-spacing:.2px;}
-.form-topbar span{display:block;color:var(--muted);font-size:13px;margin-top:6px;line-height:1.45;}
 
-.steps{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-.step{
-  display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.05);
-  font-weight:900;font-size:12px;color:#eaeaea;opacity:.92;
+/* ===== TOPBAR + PROGRESS ===== */
+.form-topbar{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:space-between;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  margin-bottom: 16px;
 }
-.step .dot{width:10px;height:10px;border-radius:999px;background: rgba(255,255,255,.28);box-shadow: 0 0 0 4px rgba(255,255,255,.06);}
+.form-topbar strong{
+  display:block;
+  font-size: 14px;
+  letter-spacing:.2px;
+}
+.form-topbar span{
+  display:block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+  line-height:1.45;
+}
+
+.steps{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-end;
+}
+.step{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  font-weight:900;
+  font-size: 12px;
+  color:#eaeaea;
+  opacity:.92;
+  cursor:pointer;
+  user-select:none;
+}
+.step .dot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.28);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+}
 .step.done .dot{ background: rgba(255,255,255,.85); }
-.step.active{background: rgba(255,255,255,.09);border-color: rgba(255,255,255,.18);}
+.step.active{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.18);
+}
 .step.active .dot{ background: rgba(255,255,255,.95); }
 
+/* barra de progresso */
+.progress-wrap{
+  margin-top:10px;
+  width:100%;
+  height:10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+}
+.progress-bar{
+  height:100%;
+  width:0%;
+  background: rgba(255,255,255,.92);
+  border-radius:999px;
+  transition: width .25s ease;
+}
+
+/* seções */
 .form-section{
-  margin-top:14px;padding:16px;border-radius:18px;border:1px solid rgba(255,255,255,.10);
+  margin-top: 14px;
+  padding: 16px 16px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
 }
-.form-section h3{font-size:16px;margin-bottom:6px;}
-.form-section p{margin:0;max-width:none;font-size:14px;color:var(--muted);}
+.form-section h3{
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.form-section p{
+  margin: 0;
+  max-width: none;
+  font-size: 14px;
+  color: var(--muted);
+}
 
-.req{display:inline-flex;align-items:center;gap:6px;font-weight:900;}
+.req{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:900;
+}
 .req::after{
-  content:"Obrigatório";font-size:11px;font-weight:900;padding:4px 8px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.06);color:#eaeaea;opacity:.9;
+  content:"Obrigatório";
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:#eaeaea;
+  opacity:.9;
 }
 
-.field{ margin-top:12px; }
+.field{ margin-top: 12px; }
 .field label{
-  display:flex;gap:10px;align-items:center;justify-content:space-between;
-  font-weight:900;font-size:13px;color:#eaeaea;letter-spacing:.2px;margin-bottom:8px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  font-weight: 900;
+  font-size: 13px;
+  color:#eaeaea;
+  letter-spacing:.2px;
+  margin-bottom: 8px;
 }
-.helper{color: rgba(255,255,255,.55);font-weight:700;font-size:12px;}
-.field input,.field textarea,.field select{
-  width:100%;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.40);color:#fff;outline:none;transition:.15s ease;
+.helper{
+  color: rgba(255,255,255,.55);
+  font-weight: 700;
+  font-size: 12px;
 }
-.field input:focus,.field textarea:focus,.field select:focus{border-color: rgba(255,255,255,.22);background: rgba(0,0,0,.52);}
-.field input::placeholder,.field textarea::placeholder{ color: rgba(255,255,255,.45); }
-.field textarea{min-height:150px;resize:vertical;}
 
+/* =============================
+   CAMPOS DO FORMULÁRIO - BRANCOS
+============================= */
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid #d8d8d8;
+  background:#ffffff;
+  color:#111;
+  font-size:15px;
+  outline:none;
+  transition:all .2s ease;
+}
+
+.field input::placeholder,
+.field textarea::placeholder{
+  color:#777;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:#888;
+  box-shadow:0 0 0 3px rgba(0,0,0,0.06);
+}
+
+.field textarea{ min-height: 150px; resize: vertical; }
+
+.field input:disabled,
+.field textarea:disabled,
+.field select:disabled,
+.field input[readonly],
+.field textarea[readonly]{
+  background:#f2f2f2;
+  color:#444;
+  cursor:not-allowed;
+}
+
+/* mensagens de erro */
 .error{
-  display:none;margin-top:10px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);color:#fff;font-size:13px;line-height:1.45;
+  display:none;
+  margin-top: 10px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  font-size: 13px;
+  line-height: 1.45;
 }
-.error.show{display:block;}
+.error.show{ display:block; }
 
-.form-grid{display:grid;grid-template-columns: 1fr 1fr;gap:14px;margin-top:12px;}
-.form-grid .full{grid-column: 1 / -1;}
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+.form-grid .full{ grid-column: 1 / -1; }
 
-.radio-row{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+/* radios */
+.radio-row{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top: 12px;
+}
 .radio-item{
-  display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);cursor:pointer;transition:.15s ease;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  cursor:pointer;
+  transition: .15s ease;
 }
-.radio-item:hover{background: rgba(255,255,255,.06);border-color: rgba(255,255,255,.14);}
-.radio-item input{margin-top:3px;transform:scale(1.05);}
-.radio-item strong{display:block;font-size:14px;}
-.radio-item span{display:block;color:var(--muted);font-size:13px;margin-top:4px;line-height:1.4;}
+.radio-item:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+}
+.radio-item input{ margin-top: 3px; transform: scale(1.05); }
+.radio-item strong{ display:block; font-size: 14px; }
+.radio-item span{ display:block; color: var(--muted); font-size: 13px; margin-top: 4px; line-height:1.4; }
 
 .notice{
-  margin-top:12px;padding:14px;border-radius:16px;border:1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.35);color:#d9d9d9;font-size:13px;line-height:1.5;
+  margin-top: 12px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  color:#d9d9d9;
+  font-size: 13px;
+  line-height: 1.5;
 }
-.notice b{color:#fff;}
+.notice b{ color:#fff; }
 
+/* UPLOAD PREMIUM (agora claro também) */
 .file-ui{
-  display:flex;gap:10px;align-items:center;width:100%;padding:12px;border-radius:16px;
-  border:1px dashed rgba(255,255,255,.18);background: rgba(0,0,0,.30);
+  display:flex;
+  gap:10px;
+  align-items:center;
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border:1px dashed rgba(0,0,0,.18);
+  background: #ffffff;
 }
-.file-ui .meta{min-width:240px;flex:1;}
-.file-ui .meta span{display:block;color: rgba(255,255,255,.60);font-size:12px;margin-top:4px;}
+.file-ui strong{ font-size: 13px; color:#111; }
+.file-ui .meta{ min-width: 240px; flex:1; }
+.file-ui .meta span{
+  display:block;
+  color: rgba(0,0,0,.60);
+  font-size: 12px;
+  margin-top: 4px;
+}
 .file-ui .name{
-  color:#fff;font-weight:900;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:62ch;
+  color:#111;
+  font-weight: 900;
+  font-size: 13px;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 62ch;
 }
-.file-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+
+.file-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
 .btn-soft{
-  padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);color:#fff;font-weight:900;font-size:13px;cursor:pointer;transition:.18s;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.18);
+  background: #111;
+  color:#fff;
+  font-weight: 900;
+  font-size: 13px;
+  cursor:pointer;
+  transition: .18s;
 }
-.btn-soft:hover{ background: rgba(255,255,255,.12); transform: translateY(-1px); }
-.btn-danger{ background: rgba(255,255,255,.03); }
-.btn-danger:hover{ background: rgba(255,255,255,.10); }
-.hidden-file{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.btn-soft:hover{ background: #222; transform: translateY(-1px); }
+.btn-danger{ background: #f2f2f2; color:#111; }
+.btn-danger:hover{ background: #e6e6e6; }
 
-.form-actions{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;}
-.form-actions .btn{flex:1;min-width:240px;}
+.hidden-file{
+  position:absolute;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  opacity:0;
+}
 
+.form-actions{
+  margin-top: 16px;
+  display:flex;
+  gap: 12px;
+  flex-wrap:wrap;
+}
+.form-actions .btn{
+  flex:1;
+  min-width: 240px;
+}
+
+/* MINI CHECKOUT APÓS ENVIO */
 .pay-sheet{
-  display:none;margin-top:14px;padding:16px;border-radius:18px;border:1px solid rgba(255,255,255,.12);
+  display:none;
+  margin-top: 14px;
+  padding: 16px 16px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.05);
 }
-.pay-sheet.show{display:block;}
-.pay-sheet h4{font-size:16px;margin-bottom:8px;}
-.pay-sheet p{margin:0;max-width:none;font-size:14px;color:var(--muted);}
-.pay-sheet .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
-.pay-sheet .row a{flex:1;min-width:210px;}
+.pay-sheet.show{ display:block; }
+.pay-sheet h4{
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.pay-sheet p{
+  margin:0;
+  max-width:none;
+  font-size: 14px;
+  color: var(--muted);
+}
+.pay-sheet .row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 12px;
+}
+.pay-sheet .row a{ flex:1; min-width: 210px; }
 
-.btn[disabled]{opacity:.55;cursor:not-allowed;transform:none !important;}
+.btn[disabled]{
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none !important;
+}
 
-.field.field-error input,.field.field-error select,.field.field-error textarea{
+/* DESTAQUE VISUAL DE ERROS */
+.field.field-error input,
+.field.field-error select,
+.field.field-error textarea{
   border-color: rgba(255,77,77,.95) !important;
   background: rgba(255,0,0,.10) !important;
   box-shadow: 0 0 0 3px rgba(255,77,77,.18);
 }
+
 .section-error{
   border-color: rgba(255,77,77,.65) !important;
   background: rgba(255,0,0,.05) !important;
   box-shadow: 0 0 0 3px rgba(255,77,77,.10);
 }
-.field.field-error label{color: rgba(255,210,210,.98) !important;}
 
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;will-change:opacity, transform;}
-.reveal.show{opacity:1;transform:translateY(0);}
-
-/* MODAL CONTRATO */
-.modal{
-  position: fixed; inset: 0;
-  display:none; align-items:center; justify-content:center;
-  padding:18px; background: rgba(0,0,0,.82); z-index:9999;
+.field.field-error label{
+  color: rgba(255,210,210,.98) !important;
 }
-.modal.show{display:flex;}
-.modal-card{
+
+/* ANIMAÇÕES SUAVES (SCROLL REVEAL) */
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+  will-change: opacity, transform;
+}
+.reveal.show{ opacity: 1; transform: translateY(0); }
+
+/* =========================
+   CONTRATO: MODAL
+========================= */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(8px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+  z-index: 9999;
+}
+.modal-backdrop.show{ display:flex; }
+.modal{
   width: min(980px, 96vw);
   max-height: 86vh;
   overflow:hidden;
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(10,10,10,.92);
-  box-shadow: 0 25px 80px rgba(0,0,0,.65);
-  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(15,15,15,.98);
+  box-shadow: 0 30px 90px rgba(0,0,0,.7);
 }
 .modal-head{
-  padding:14px 16px;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.10);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
   background: rgba(0,0,0,.35);
 }
-.modal-head strong{font-size:14px;letter-spacing:.2px;}
-.modal-head .muted{color: rgba(255,255,255,.55);font-weight:700;font-size:12px;margin-top:4px;}
-.modal-close{
-  border:1px solid rgba(255,255,255,.14);background: rgba(255,255,255,.06);color:#fff;
-  border-radius:12px;padding:10px 12px;cursor:pointer;font-weight:900;
+.modal-head strong{ font-size: 14px; }
+.modal-head .x{
+  width:42px; height:42px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  cursor:pointer;
+  font-weight:900;
 }
-.modal-close:hover{background: rgba(255,255,255,.12);}
-.modal-body{padding:14px 16px;overflow:auto;max-height: calc(86vh - 140px);}
-.contract{font-size:13px;line-height:1.55;color: rgba(255,255,255,.88);}
-.contract h4{font-size:14px;margin:14px 0 8px;}
-.contract p{color: rgba(255,255,255,.70);font-size:13px;max-width:none;}
-.contract ul{margin:8px 0 0 18px;color: rgba(255,255,255,.72);}
-.contract li{margin:6px 0;}
-.modal-foot{
-  padding:14px 16px;border-top:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.35);
-  display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;align-items:center;
+.modal-body{
+  padding: 14px 14px 18px;
+  overflow:auto;
+  max-height: calc(86vh - 64px);
 }
-.modal-foot .btn{padding:12px 16px;}
-.btn-ghost{background: rgba(255,255,255,.05);}
-.btn-ghost:hover{background: rgba(255,255,255,.10);}
+.contract-box{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+  padding: 14px;
+  line-height: 1.6;
+  color:#eaeaea;
+  font-size: 13px;
+}
+.contract-box h4{
+  font-size: 14px;
+  margin: 10px 0 6px;
+}
+.contract-box p{ color:#d6d6d6; font-size: 13px; max-width:none; }
+.contract-box ul{ margin: 8px 0 10px 18px; }
+.contract-box li{ margin: 4px 0; }
+
+.contract-actions{
+  margin-top: 12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
 .contract-link{
-  display:inline-flex;gap:8px;align-items:center;font-weight:900;font-size:13px;color: rgba(255,255,255,.82);
-  text-decoration: underline; cursor:pointer; margin-top:10px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  border-bottom: 1px dashed rgba(255,255,255,.55);
 }
-.contract-link:hover{color:#fff;}
+.contract-link:hover{ opacity:.85; }
 
+/* =========================
+   FOOTER
+========================= */
 footer{
-  padding:44px 18px;text-align:center;color:#777;background:#050505;
-  border-top: 1px solid rgba(255,255,255,.06);font-size:14px;
+  padding: 44px 18px;
+  text-align:center;
+  color:#777;
+  background:#050505;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: 14px;
 }
 
-/* NOVO: esconder blocos de briefing */
-.hidden-block{ display:none !important; }
-
+/* =========================
+   RESPONSIVO
+========================= */
 @media(max-width: 980px){
   nav.nav-desktop{display:none}
   .menu-btn{display:flex}
   .header-cta{display:none}
-  h2{font-size:36px}
+  h2{font-size: 36px}
   .grid{grid-template-columns: 1fr}
   .portfolio-grid{grid-template-columns: 1fr}
-  .hero{padding-top:92px}
-  .brand .title{max-width:55vw}
+  .hero{padding-top: 92px}
+  .brand .title{max-width: 55vw}
   .form-grid{grid-template-columns: 1fr}
-  .file-ui .name{max-width:42ch}
+  .file-ui .name{max-width: 42ch}
+  .steps{justify-content:flex-start}
 }
 </style>
 </head>
@@ -428,31 +998,38 @@ footer{
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="inicio">
   <img src="logo-timp.png" alt="TIMP Studio Premium">
 </section>
 
+<!-- SOBRE -->
 <section id="sobre">
   <div class="container reveal">
     <div class="kicker">SOBRE</div>
     <h2>Quem somos</h2>
+
     <p>
       A TIMP Studio Premium é um estúdio audiovisual especializado em transformar letras em músicas reais e músicas em videoclipes profissionais.
       Através de tecnologia avançada de IA, conectamos criação musical e produção visual para entregar obras completas, prontas para emocionar e impactar o público.
     </p>
+
     <p>
       Somos movidos pela criação artística com estratégia.
       Transformamos ideias, sentimentos e palavras em videoclipes e narrativas audiovisuais com identidade forte.
     </p>
+
     <p>
       Da composição à produção musical, da gravação ao vídeo final, entregamos projetos com excelência estética, clareza criativa e foco em resultado.
     </p>
+
     <p>
       Tudo pronto para você divulgar em canais digitais como: YouTube, Instagram, Facebook, WhatsApp, TikTok, etc.
     </p>
   </div>
 </section>
 
+<!-- SERVIÇOS -->
 <section id="servicos">
   <div class="container reveal">
     <div class="kicker">SERVIÇOS</div>
@@ -460,11 +1037,12 @@ footer{
     <div class="grid">
       <div class="card">Você nos envia uma letra de música e nós criamos a melodia e o videoclipe.</div>
       <div class="card">Você compartilha uma história e nós a transformamos em letra de música, melodia e videoclipe.</div>
-      <div class="card">Criamos do zero, Você traz apenas uma ideia e nós damos vida a ela, criando letra de música, melodia e videoclipe.</div>
+      <div class="card">Criamos do zero: você traz apenas uma ideia e nós damos vida a ela, criando letra, melodia e videoclipe.</div>
     </div>
   </div>
 </section>
 
+<!-- PACOTES / PREÇOS -->
 <section id="pacotes">
   <div class="container reveal">
     <div class="kicker">PACOTES</div>
@@ -472,6 +1050,7 @@ footer{
     <p>Você escolhe o nível de criação — nós transformamos em música de verdade.</p>
 
     <div class="grid" style="margin-top:34px;">
+      <!-- PACOTE 1 -->
       <div class="card price-card">
         <div class="price-badge">🥉 Pacote 1 • Entrada</div>
         <div class="price">R$ 697 <small>Já tenho a letra — quero melodia e base</small></div>
@@ -479,14 +1058,16 @@ footer{
           <span>• Criação de melodia original</span>
           <span>• Estrutura musical (verso/refrão/ponte)</span>
           <span>• Base instrumental personalizada</span>
-          <span>• sem revisão</span>
+          <span>• Sem revisão</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
+
         <div class="pay-row">
           <a class="btn select-btn" href="#contato" data-pack="1" data-packname="Pacote 1" data-price="697">Quero esse</a>
         </div>
       </div>
 
+      <!-- PACOTE 2 -->
       <div class="card price-card featured">
         <div class="price-badge">🥈 Pacote 2 • Intermediário</div>
         <div class="price">R$ 997 <small>Tenho a história — quero letra + música</small></div>
@@ -497,11 +1078,13 @@ footer{
           <span>• 1 revisão</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
+
         <div class="pay-row">
           <a class="btn select-btn" href="#contato" data-pack="2" data-packname="Pacote 2" data-price="997">Quero esse</a>
         </div>
       </div>
 
+      <!-- PACOTE 3 -->
       <div class="card price-card">
         <div class="price-badge">🥇 Pacote 3 • Completo</div>
         <div class="price">R$ 1.497 <small>Tenho uma ideia — quero projeto do zero</small></div>
@@ -513,22 +1096,20 @@ footer{
           <span>• Capa digital (imagem)</span>
           <span>• Entrega MP3 + Vídeo Clipe</span>
         </div>
+
         <div class="pay-row">
           <a class="btn select-btn" href="#contato" data-pack="3" data-packname="Pacote 3" data-price="1497">Quero esse</a>
         </div>
       </div>
     </div>
 
-    <div class="card" style="margin-top:26px; border-radius: var(--radius); background: rgba(255,255,255,.05);">
-      <strong style="font-size:18px;">Dica:</strong>
-      <span style="display:block; margin-top:6px; color: var(--muted); font-size:14px; line-height:1.5;">
-        Ao escolher um pacote, o formulário abaixo adapta automaticamente as perguntas ao seu caso.
-      </span>
+    <div class="portfolio-cta" style="margin-top:26px;">
+      <div></div>
     </div>
   </div>
 </section>
 
-<!-- PORTFÓLIO COM VÍDEOS REAIS -->
+<!-- PORTFÓLIO COM 10 VÍDEOS -->
 <section id="portfolio">
   <div class="container reveal">
     <div class="kicker">PORTFÓLIO</div>
@@ -543,8 +1124,7 @@ footer{
             title="Institucional — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Institucional</div>
@@ -562,8 +1142,7 @@ footer{
             title="Comercial — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -581,8 +1160,7 @@ footer{
             title="Reels/Social — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -600,8 +1178,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -619,8 +1196,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -638,8 +1214,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -657,8 +1232,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -676,8 +1250,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -695,8 +1268,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -714,8 +1286,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -733,8 +1304,7 @@ footer{
             title="Letra / Música / Clipe — TIMP Studio Premium"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
         <div class="video-meta">
           <div class="video-title">Letra / Música / Clipe</div>
@@ -748,21 +1318,23 @@ footer{
   </div>
 </section>
 
+<!-- DEPOIMENTOS -->
 <section id="depoimentos">
   <div class="container reveal">
     <div class="kicker">DEPOIMENTOS</div>
     <h2>O que falam</h2>
     <div class="grid">
-      <div class="card">“Fui Muito bem atendido, visual impecável e atendimento rápido.”Carlos Braga-SP</div>
-      <div class="card">“A Produção foi premium do início ao fim.” Simone K. Silva-ES</div>
-      <div class="card">“Experiência profissional acima da média.” Maria Apa Cardoso-SP</div>
-      <div class="card">“Parabens aos idealizadores, fiquei encantada.” Ana Castela-SP</div>
-      <div class="card">“Vocês são bons d+ e rápidos.” Pedro e Thiago-GO</div>
-      <div class="card">“Tudo que pedimos recebemos, muito gratos.” Irmãos Zuliean-PR</div>
+      <div class="card">“Fui muito bem atendido, visual impecável e atendimento rápido.” Carlos Braga — SP</div>
+      <div class="card">“A produção foi premium do início ao fim.” Simone K. Silva — ES</div>
+      <div class="card">“Experiência profissional acima da média.” Maria Apa Cardoso — SP</div>
+      <div class="card">“Parabéns aos idealizadores, fiquei encantada.” Ana Castela — SP</div>
+      <div class="card">“Vocês são bons d+ e rápidos.” Pedro e Thiago — GO</div>
+      <div class="card">“Tudo que pedimos recebemos, muito gratos.” Irmãos Zuliean — PR</div>
     </div>
   </div>
 </section>
 
+<!-- CONTATO + FORMULÁRIO -->
 <section id="contato">
   <div class="container reveal">
     <div class="kicker">CONTATO</div>
@@ -773,6 +1345,7 @@ footer{
       <br>WhatsApp: (14) 99185-6520 • E-mail: timpdobrasil@gmail.com • Bauru - SP
     </p>
 
+    <!-- status do pagamento (Mercado Pago retorna aqui com querystring) -->
     <div class="notice" id="paymentStatus" style="display:none; margin-top:14px;">
       <b>Status:</b> <span id="paymentStatusText">—</span>
     </div>
@@ -783,13 +1356,18 @@ footer{
         <div class="form-topbar">
           <div>
             <strong>Envio do projeto (rápido e guiado)</strong>
-            <span>Escolha um pacote, responda o questionário (inteligente) e envie seu conteúdo. Depois, você será direcionado para o pagamento via Mercado Pago.</span>
+            <span>Escolha um pacote, responda o briefing (questionário), envie seu conteúdo e aceite o contrato. Depois, você será direcionado para o pagamento via Mercado Pago.</span>
+            <div class="progress-wrap" aria-label="Progresso do formulário">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
           </div>
+
           <div class="steps" aria-label="Etapas do formulário">
-            <div class="step active" id="s1"><span class="dot"></span>1) Pacote</div>
-            <div class="step" id="s2"><span class="dot"></span>2) Você já tem</div>
-            <div class="step" id="s3"><span class="dot"></span>3) Conteúdo</div>
-            <div class="step" id="s4"><span class="dot"></span>4) Seus dados</div>
+            <div class="step active" id="s1" data-jump="#secPacote"><span class="dot"></span>1) Pacote</div>
+            <div class="step" id="s2" data-jump="#secBriefing"><span class="dot"></span>2) Briefing</div>
+            <div class="step" id="s3" data-jump="#secConteudo"><span class="dot"></span>3) Conteúdo</div>
+            <div class="step" id="s4" data-jump="#secDados"><span class="dot"></span>4) Seus dados</div>
+            <div class="step" id="s5" data-jump="#secContrato"><span class="dot"></span>5) Contrato</div>
           </div>
         </div>
 
@@ -820,35 +1398,89 @@ footer{
           </div>
         </div>
 
-        <!-- 2) ORIGEM -->
-        <div class="form-section" id="secOrigem">
-          <h3 class="req">2) O que você já tem?</h3>
-          <p>Isso ajuda a TIMP a começar do ponto certo e adaptar o questionário automaticamente.</p>
+        <!-- 2) BRIEFING (QUESTIONÁRIO) -->
+        <div class="form-section" id="secBriefing">
+          <h3 class="req">2) Briefing criativo (o que você espera)</h3>
+          <p>Responda para a TIMP acertar em cheio no estilo da música e no visual do clipe.</p>
 
-          <div class="radio-row">
-            <label class="radio-item">
-              <input type="radio" name="origem" value="1) Já tenho a letra, mas ainda não tenho a melodia" required>
-              <div>
-                <strong>1) Já tenho a letra, mas ainda não tenho a melodia</strong>
-                <span>Você manda a letra e nós criamos a melodia + base.</span>
-              </div>
-            </label>
+          <div class="form-grid">
+            <div class="field">
+              <label for="genero">Gênero musical <span class="helper">Obrigatório</span></label>
+              <select id="genero" name="genero" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Sertanejo</option>
+                <option>Rock</option>
+                <option>Pop</option>
+                <option>MPB</option>
+                <option>Pagode / Samba</option>
+                <option>Gospel</option>
+                <option>Funk</option>
+                <option>Rap / Trap</option>
+                <option>Eletrônica</option>
+                <option>Forró / Piseiro</option>
+                <option>Outro</option>
+              </select>
+            </div>
 
-            <label class="radio-item">
-              <input type="radio" name="origem" value="2) Tenho uma história e quero transformá-la em letra musical" required>
-              <div>
-                <strong>2) Tenho uma história e quero transformar em letra musical</strong>
-                <span>Você manda a história e nós viramos letra + música.</span>
-              </div>
-            </label>
+            <div class="field">
+              <label for="subgenero">Referência de artista (opcional) <span class="helper">Ex: Gusttavo Lima</span></label>
+              <input id="subgenero" name="subgenero" type="text" placeholder="Cite 1 a 3 artistas/músicas de referência">
+            </div>
 
-            <label class="radio-item">
-              <input type="radio" name="origem" value="3) Não tenho história nem letra, mas tenho uma ideia" required>
-              <div>
-                <strong>3) Não tenho história nem letra, mas tenho uma ideia</strong>
-                <span>Você manda a ideia e nós criamos tudo do zero.</span>
-              </div>
-            </label>
+            <div class="field">
+              <label for="vibe">Clima da música <span class="helper">Obrigatório</span></label>
+              <select id="vibe" name="vibe" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Romântica</option>
+                <option>Triste / Sofrência</option>
+                <option>Feliz / Alto astral</option>
+                <option>Motivacional</option>
+                <option>Dançante</option>
+                <option>Épica / Cinematográfica</option>
+                <option>Engraçada</option>
+                <option>Outro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="voz">Tipo de voz desejada <span class="helper">Obrigatório</span></label>
+              <select id="voz" name="voz" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Masculina</option>
+                <option>Feminina</option>
+                <option>Dueto (masc + fem)</option>
+                <option>Indiferente</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="tema">Tema da música <span class="helper">Obrigatório</span></label>
+              <input id="tema" name="tema" type="text" required placeholder="Ex: amor, superação, saudade, conquista, fé, amizade...">
+            </div>
+
+            <div class="field">
+              <label for="tempo">Andamento <span class="helper">Opcional</span></label>
+              <select id="tempo" name="tempo">
+                <option value="" selected>Indiferente</option>
+                <option>Lenta</option>
+                <option>Média</option>
+                <option>Rápida</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="instrumentos">Instrumentos que quer <span class="helper">Opcional</span></label>
+              <input id="instrumentos" name="instrumentos" type="text" placeholder="Ex: violão, sanfona, guitarra, piano...">
+            </div>
+
+            <div class="field full">
+              <label for="naoquer">O que NÃO pode ter <span class="helper">Opcional</span></label>
+              <input id="naoquer" name="naoquer" type="text" placeholder="Ex: palavrões, cenas específicas, temas sensíveis...">
+            </div>
+          </div>
+
+          <div class="notice" style="margin-top:12px;">
+            <b>Dica:</b> quanto mais claro for o briefing, mais rápido e certeiro fica o resultado.
           </div>
         </div>
 
@@ -897,7 +1529,7 @@ footer{
 
             <input class="hidden-file" id="imagem" name="imagem" type="file" accept="image/*">
 
-            <div class="file-ui" id="imagemUI" style="border-style: solid; border-color: rgba(255,255,255,.12);">
+            <div class="file-ui" id="imagemUI" style="border-style: solid; border-color: rgba(0,0,0,.10);">
               <div class="meta">
                 <div class="name" id="imagemName">Nenhuma imagem selecionada</div>
                 <span>Opcional. Se anexar, facilita na direção visual do clipe/capa.</span>
@@ -913,149 +1545,40 @@ footer{
           <div class="notice" id="contentNotice">
             <b>Atenção:</b> para enviar, você precisa <b>colar o texto</b> (letra/história/ideia) <b>ou anexar o arquivo</b>. Pode fazer os dois também.
           </div>
-        </div>
 
-        <!-- 3B) QUESTIONÁRIO INTELIGENTE -->
-        <div class="form-section" id="secBriefing">
-          <h3 class="req">3B) Questionário de expectativa (Briefing)</h3>
-          <p>As perguntas se ajustam automaticamente ao pacote/origem escolhidos.</p>
+          <!-- Perguntas do vídeo -->
+          <div class="form-grid" style="margin-top:12px;">
+            <div class="field full">
+              <label for="video_ideia">O que você gostaria que tivesse no vídeo? <span class="helper">Opcional</span></label>
+              <textarea id="video_ideia" name="video_ideia" placeholder="Ex: cenário, história, estilo, objetos, cenas, sentimentos..."></textarea>
+            </div>
 
-          <div class="notice" id="briefingHint" style="margin-top:12px;">
-            <b>Selecione o pacote e “o que você já tem”</b> para adaptar o briefing. Se preferir, responda o máximo que puder.
-          </div>
-
-          <div class="form-grid">
-
-            <div class="field" data-brief="always">
-              <label for="genero">Gênero musical <span class="helper">Obrigatório</span></label>
-              <select id="genero" name="genero" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Sertanejo</option>
-                <option>Rock</option>
-                <option>Pop</option>
-                <option>MPB</option>
-                <option>Pagode / Samba</option>
-                <option>Gospel</option>
-                <option>Rap / Trap</option>
-                <option>Funk</option>
-                <option>Forró</option>
-                <option>Eletrônica</option>
-                <option>Reggae</option>
-                <option>Outro</option>
+            <div class="field">
+              <label for="video_estilo">Estilo do clipe <span class="helper">Opcional</span></label>
+              <select id="video_estilo" name="video_estilo">
+                <option value="" selected>Indiferente</option>
+                <option>Cinematográfico</option>
+                <option>Clipe performance (cantor/cantora)</option>
+                <option>Narrativo (com história)</option>
+                <option>Lyric video (letra na tela)</option>
+                <option>Reels/Vertical</option>
               </select>
             </div>
 
-            <div class="field" data-brief="always">
-              <label for="vibe">Vibe / emoção principal <span class="helper">Obrigatório</span></label>
-              <select id="vibe" name="vibe" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Romântica</option>
-                <option>Animada / Festa</option>
-                <option>Motivacional</option>
-                <option>Triste / Saudade</option>
-                <option>Superação</option>
-                <option>Engraçada</option>
-                <option>Épica / Cinemática</option>
-                <option>Calma / Relax</option>
+            <div class="field">
+              <label for="aspecto">Formato do vídeo <span class="helper">Opcional</span></label>
+              <select id="aspecto" name="aspecto">
+                <option value="" selected>Indiferente</option>
+                <option>Horizontal (YouTube 16:9)</option>
+                <option>Vertical (Reels/TikTok 9:16)</option>
+                <option>Quadrado (1:1)</option>
               </select>
             </div>
 
-            <div class="field" data-brief="music">
-              <label for="subgenero">Subgênero / referência <span class="helper">Opcional</span></label>
-              <input id="subgenero" name="subgenero" type="text" placeholder="Ex: sertanejo universitário, rock anos 80, pop acústico...">
+            <div class="field full">
+              <label for="refs">Links de referência (opcional) <span class="helper">YouTube/Instagram</span></label>
+              <input id="refs" name="refs" type="text" placeholder="Cole aqui links de referência (se tiver)">
             </div>
-
-            <div class="field" data-brief="music">
-              <label for="voz">Tipo de voz (preferência) <span class="helper">Opcional</span></label>
-              <select id="voz" name="voz">
-                <option value="" selected>Sem preferência</option>
-                <option>Masculina</option>
-                <option>Feminina</option>
-                <option>Dueto</option>
-                <option>Coral</option>
-              </select>
-            </div>
-
-            <div class="field" data-brief="music">
-              <label for="duracao">Duração desejada <span class="helper">Opcional</span></label>
-              <select id="duracao" name="duracao">
-                <option value="" selected>Sem preferência</option>
-                <option>~2:00</option>
-                <option>~2:30</option>
-                <option>~3:00</option>
-                <option>~3:30</option>
-                <option>~4:00</option>
-              </select>
-            </div>
-
-            <div class="field" data-brief="always">
-              <label for="conteudo18">Linguagem explícita? <span class="helper">Obrigatório</span></label>
-              <select id="conteudo18" name="conteudo18" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Não (sem palavrões)</option>
-                <option>Sim (pode ter palavrões)</option>
-              </select>
-            </div>
-
-            <!-- APARECE MAIS EM PACOTE 2/3 (história/ideia) -->
-            <div class="field full" id="fieldTema" data-brief="theme" data-required-on="p2,p3">
-              <label for="tema">Tema / mensagem principal <span class="helper">Obrigatório (quando aplicável)</span></label>
-              <textarea id="tema" name="tema" placeholder="Sobre o que é a música? Qual recado você quer passar?"></textarea>
-            </div>
-
-            <div class="field full" id="fieldReferencias" data-brief="refs">
-              <label for="referencias">Artistas/músicas de referência <span class="helper">Opcional</span></label>
-              <textarea id="referencias" name="referencias" placeholder="Ex: ‘quero uma vibe parecida com...’ + links do YouTube/Spotify se tiver"></textarea>
-            </div>
-
-            <!-- VÍDEO SEMPRE -->
-            <div class="field" data-brief="video" data-required="true">
-              <label for="estiloVideo">Estilo do videoclipe <span class="helper">Obrigatório</span></label>
-              <select id="estiloVideo" name="estiloVideo" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Cinemático (filme)</option>
-                <option>Story / Narrativo (história)</option>
-                <option>Performance (cantando)</option>
-                <option>Lyric Video (letra na tela)</option>
-                <option>Reels / TikTok (dinâmico)</option>
-                <option>Minimalista</option>
-              </select>
-            </div>
-
-            <div class="field" data-brief="video">
-              <label for="presencaArtista">Você quer aparecer no vídeo? <span class="helper">Opcional</span></label>
-              <select id="presencaArtista" name="presencaArtista">
-                <option value="" selected>Sem preferência</option>
-                <option>Sim (quero aparecer)</option>
-                <option>Não (não quero aparecer)</option>
-                <option>Podem ser atores/personagens</option>
-              </select>
-            </div>
-
-            <div class="field full" id="fieldElementos" data-brief="video" data-required="true">
-              <label for="elementosVideo">O que você gostaria que tivesse no vídeo? <span class="helper">Obrigatório</span></label>
-              <textarea id="elementosVideo" name="elementosVideo" required placeholder="Ex: praia, carro, casal, cidade, natureza, balada, estética neon, cenas da infância..."></textarea>
-            </div>
-
-            <div class="field full" data-brief="video">
-              <label for="naoQuero">O que você NÃO quer de jeito nenhum? <span class="helper">Opcional</span></label>
-              <textarea id="naoQuero" name="naoQuero" placeholder="Ex: sem armas, sem bebida, sem cenas sensuais, sem violência..."></textarea>
-            </div>
-
-            <div class="field full" data-brief="video">
-              <label for="links">Links / referências de vídeo <span class="helper">Opcional</span></label>
-              <textarea id="links" name="links" placeholder="Cole links do YouTube/Instagram/TikTok que você gosta como referência"></textarea>
-            </div>
-
-            <div class="field full" data-brief="video">
-              <label for="obs">Observações finais <span class="helper">Opcional</span></label>
-              <textarea id="obs" name="obs" placeholder="Qualquer detalhe que ajude a TIMP a acertar na primeira entrega."></textarea>
-            </div>
-
-          </div>
-
-          <div class="notice">
-            <b>Dica:</b> o briefing certo reduz revisões e acelera a entrega.
           </div>
         </div>
 
@@ -1105,32 +1628,40 @@ footer{
               <input id="email" name="email" type="email" placeholder="email@exemplo.com" required>
             </div>
 
-            <div class="field full" id="fieldCpfCnpj">
+            <div class="field full">
               <label for="cpfcnpj">CPF ou CNPJ <span class="helper">Obrigatório</span></label>
               <input id="cpfcnpj" name="cpfcnpj" type="text" placeholder="Digite seu CPF ou CNPJ" required>
             </div>
           </div>
 
-          <div class="notice" style="margin-top:14px;">
-            <b>Contrato:</b> antes de continuar, leia o contrato e aceite para liberar o pagamento.
-            <div class="contract-link" id="openContract">🔎 Ler contrato completo</div>
+          <p class="small-muted" style="margin-top:12px;">
+            *Após o pagamento confirmado, você e a TIMP receberão confirmação por e-mail/WhatsApp (quando o webhook estiver configurado).
+          </p>
+        </div>
 
-            <div class="field" style="margin-top:10px;" id="fieldContractCheck">
-              <label style="justify-content:flex-start; gap:10px; align-items:center;">
-                <input id="aceiteContrato" name="aceiteContrato" type="checkbox" required style="width:auto; transform:scale(1.1);">
-                Li e aceito o contrato de participação (obrigatório)
-              </label>
-              <div class="small-muted" id="contractMeta" style="margin-top:8px;">
-                Versão do contrato: <b id="contractVersionLabel">TIMP-PARTICIPACAO-v1.0</b>
-                <span style="display:block; margin-top:4px; opacity:.9;">Ao aceitar, registraremos data/hora e seu aceite para liberar o pagamento.</span>
-              </div>
-            </div>
+        <!-- 5) CONTRATO -->
+        <div class="form-section" id="secContrato">
+          <h3 class="req">5) Contrato de participação e direitos</h3>
+          <p>Para continuar, é necessário ler e aceitar o contrato.</p>
+
+          <div class="notice" style="margin-top:12px;">
+            <b>Importante:</b> o contrato protege as duas partes e define participação em direitos autorais/fonográficos quando houver coautoria e/ou produção.
+          </div>
+
+          <div class="contract-actions">
+            <a href="#" class="contract-link" id="openContract">📄 Ler o contrato completo</a>
+
+            <label class="checkbox-wrap" style="margin-left:auto;">
+              <input type="checkbox" id="aceiteContrato" name="aceiteContrato" required>
+              <span><b>Li e aceito o contrato</b></span>
+            </label>
           </div>
 
           <div class="form-actions">
             <button type="submit" class="btn" id="btnSend">Enviar e ir para o pagamento</button>
           </div>
 
+          <!-- MINI CHECKOUT (fallback se backend falhar) -->
           <div class="pay-sheet" id="paySheet">
             <h4>Pronto ✅ Agora finalize o pagamento</h4>
             <p>Se o redirecionamento automático falhar, use os botões abaixo.</p>
@@ -1141,7 +1672,8 @@ footer{
           </div>
 
           <p class="small-muted" style="margin-top:12px;">
-            *Após o pagamento confirmado, você e a TIMP receberão confirmação por e-mail/WhatsApp (quando o webhook estiver configurado).
+            🔐 O registro do aceite pode incluir data/hora e, quando o backend estiver ativo, IP (via servidor). <br>
+            📄 PDF automático do contrato preenchido e travamento do pagamento por backend ficam disponíveis quando o endpoint estiver configurado.
           </p>
         </div>
 
@@ -1160,20 +1692,14 @@ footer{
 </footer>
 
 <!-- MODAL CONTRATO -->
-<div class="modal" id="contractModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contractTitle">
+<div class="modal-backdrop" id="contractModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contractTitle">
     <div class="modal-head">
-      <div>
-        <strong id="contractTitle">Contrato de Participação — TIMP Studio Premium</strong>
-        <div class="muted">Leia com atenção. Para continuar a compra, é necessário aceitar.</div>
-      </div>
-      <button class="modal-close" type="button" id="closeContract">Fechar</button>
+      <strong id="contractTitle">Contrato TIMP — Participação / Direitos / Receitas</strong>
+      <button class="x" type="button" id="closeContract" aria-label="Fechar">✕</button>
     </div>
-
     <div class="modal-body">
-      <div class="contract">
-        <p><b>Versão:</b> <span id="contractVersionText">TIMP-PARTICIPACAO-v1.0</span></p>
-
+      <div class="contract-box" id="contractText">
         <h4>CLÁUSULA 1 – OBJETO</h4>
         <p>1.1 O presente contrato tem por objeto a prestação de serviços artísticos pela CONTRATADA, podendo incluir:</p>
         <ul>
@@ -1219,15 +1745,15 @@ footer{
         <p>5.3 Os valores devidos deverão ser pagos em até 15 dias após o envio do relatório.</p>
 
         <h4>CLÁUSULA 6 – BÔNUS DE SUCESSO (OPCIONAL)</h4>
-        <p>6.1 Caso a obra atinja:</p>
+        <p>6.1 Caso a obra atinja qualquer dos seguintes marcos:</p>
         <ul>
-          <li>1.000.000 de streams acumulados; ou</li>
-          <li>Receita superior a R$ 50.000</li>
+          <li>1.000.000 de streams acumulados</li>
+          <li>ou Receita superior a R$ 50.000</li>
         </ul>
         <p>Será devido à CONTRATADA bônus adicional equivalente a 10% da receita líquida apurada até o marco.</p>
 
         <h4>CLÁUSULA 7 – CRÉDITOS OBRIGATÓRIOS</h4>
-        <p>7.1 Em toda publicação da obra deverá constar: <b>“Produzido por TIMP Studio Premium”</b>.</p>
+        <p>7.1 Em toda publicação da obra deverá constar: “Produzido por TIMP Studio Premium”.</p>
         <p>7.2 A omissão de crédito configura descumprimento contratual.</p>
 
         <h4>CLÁUSULA 8 – PROIBIÇÃO DE OCULTAÇÃO</h4>
@@ -1244,23 +1770,33 @@ footer{
         <h4>CLÁUSULA 11 – FORO</h4>
         <p>Fica eleito o foro da comarca de Bauru/SP para dirimir eventuais controvérsias.</p>
 
-        <p style="margin-top:14px; color: rgba(255,255,255,.78);">
-          Ao clicar em <b>“Li e Aceito”</b>, você declara que leu integralmente e concorda com os termos.
+        <p style="margin-top:12px;">
+          Assinam eletronicamente: <br>
+          <b>CONTRATANTE</b> <br>
+          <b>TIMP STUDIO PREMIUM</b> <br>
+          Data: ___ / ___ / ______
         </p>
       </div>
-    </div>
-
-    <div class="modal-foot">
-      <button type="button" class="btn btn-ghost" id="modalOnlyClose">Fechar</button>
-      <button type="button" class="btn" id="modalAccept">Li e Aceito</button>
     </div>
   </div>
 </div>
 
 <script>
 (function(){
-  const API_BASE = "COLE_AQUI_SUA_API_BASE";
+  /**
+   * =========================
+   * CONFIG (VOCÊ VAI EDITAR ISSO)
+   * =========================
+   * Este site é estático. Para ter:
+   * - registro do pedido
+   * - redirecionamento automático para Mercado Pago
+   * - confirmação automática (webhook) + e-mail + WhatsApp
+   * - registro de IP + PDF de contrato preenchido + travar pagamento no backend
+   * você precisa de um endpoint (back-end).
+   */
+  const API_BASE = "COLE_AQUI_SUA_API_BASE"; // ex: https://timp-pay.yourdomain.workers.dev
 
+  // fallback: seus links mpago.li (caso o backend falhe)
   const MP_LINKS = {
     1: "https://mpago.li/2DrujAy",
     2: "https://mpago.li/2za2eDc",
@@ -1269,35 +1805,36 @@ footer{
 
   const WHATS_NUMBER = "5514991856520";
   const OWNER_EMAIL = "timpdobrasil@gmail.com";
+  const CONTRACT_VERSION = "v1.0";
 
-  const CONTRACT_VERSION = "TIMP-PARTICIPACAO-v1.0";
-
-  function hasApi(){ return typeof API_BASE === "string" && API_BASE.startsWith("http"); }
-  function isValidMpLink(url){ return typeof url === "string" && url.startsWith("http"); }
+  function hasApi(){
+    return typeof API_BASE === "string" && API_BASE.startsWith("http");
+  }
+  function isValidMpLink(url){
+    return typeof url === "string" && url.startsWith("http");
+  }
   function getMpLinkByPack(pack){
     const p = Number(pack);
     const link = MP_LINKS[p];
     return isValidMpLink(link) ? link : "";
   }
 
-  // MENU MOBILE
+  // ===== MENU MOBILE =====
   const menuBtn = document.getElementById('menuBtn');
   const panel = document.getElementById('mobilePanel');
   const desktopLinks = Array.from(document.querySelectorAll('nav.nav-desktop a'));
-  const mobileLinks  = panel ? Array.from(panel.querySelectorAll('.inner > a')) : [];
+  const mobileLinks  = Array.from(panel.querySelectorAll('.inner > a'));
 
   function setActive(hash){
     const all = desktopLinks.concat(mobileLinks);
     all.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
   }
   function closeMenu(){
-    if(!panel) return;
     panel.style.display = 'none';
     menuBtn.setAttribute('aria-expanded','false');
     menuBtn.setAttribute('aria-label','Abrir menu');
   }
   function toggleMenu(){
-    if(!panel) return;
     const open = panel.style.display === 'block';
     if(open) closeMenu();
     else{
@@ -1306,14 +1843,25 @@ footer{
       menuBtn.setAttribute('aria-label','Fechar menu');
     }
   }
-  if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
-  mobileLinks.forEach(a=> a.addEventListener('click', ()=>{ setActive(a.getAttribute('href')); closeMenu(); }));
-  desktopLinks.forEach(a=> a.addEventListener('click', ()=> setActive(a.getAttribute('href'))));
-  window.addEventListener('scroll', ()=>{ if(panel && panel.style.display === 'block') closeMenu(); }, {passive:true});
-  window.addEventListener('resize', ()=>{ if(window.innerWidth > 980) closeMenu(); });
+  menuBtn.addEventListener('click', toggleMenu);
+  mobileLinks.forEach(a=>{
+    a.addEventListener('click', ()=>{
+      setActive(a.getAttribute('href'));
+      closeMenu();
+    });
+  });
+  desktopLinks.forEach(a=>{
+    a.addEventListener('click', ()=> setActive(a.getAttribute('href')));
+  });
+  window.addEventListener('scroll', ()=>{
+    if(panel.style.display === 'block') closeMenu();
+  }, {passive:true});
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 980) closeMenu();
+  });
   if(location.hash){ setActive(location.hash); }
 
-  // REVEAL
+  // ===== ANIMAÇÕES SUAVES (SCROLL REVEAL) =====
   const items = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -1325,16 +1873,22 @@ footer{
   }, {threshold: 0.12});
   items.forEach(el=> io.observe(el));
 
-  // ATIVO NO MENU PELO SCROLL
+  // ===== ATIVO NO MENU PELO SCROLL =====
   const sectionIds = ['inicio','sobre','servicos','pacotes','portfolio','depoimentos','contato'];
   const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
   const navIO = new IntersectionObserver((entries)=>{
-    const visible = entries.filter(e => e.isIntersecting).sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
-    if(visible && visible.target && visible.target.id) setActive('#' + visible.target.id);
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+
+    if(visible && visible.target && visible.target.id){
+      setActive('#' + visible.target.id);
+    }
   }, {threshold: [0.25, 0.35, 0.5, 0.65]});
   sections.forEach(s => navIO.observe(s));
 
-  // PACOTES -> FORM
+  // ===== PACOTES -> FORMULÁRIO =====
   const packSummary = document.getElementById('packSummary');
   const packSelect  = document.getElementById('pacote');
   const btns = Array.from(document.querySelectorAll('[data-pack]'));
@@ -1344,10 +1898,25 @@ footer{
     return n.toLocaleString('pt-BR', {minimumFractionDigits: 0});
   }
   function updateSummary(html){
-    if(packSummary) packSummary.innerHTML = html;
+    packSummary.innerHTML = html;
   }
 
-  // UPLOAD UI
+  btns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const pack = b.getAttribute('data-pack');
+      const name = b.getAttribute('data-packname');
+      const price = b.getAttribute('data-price');
+
+      if(pack === "1") packSelect.value = "Pacote 1 - R$ 697";
+      if(pack === "2") packSelect.value = "Pacote 2 - R$ 997";
+      if(pack === "3") packSelect.value = "Pacote 3 - R$ 1.497";
+
+      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${formatBRL(price)}</b>. Agora complete as etapas abaixo e envie seu pedido.`);
+      updateSteps();
+    });
+  });
+
+  // ===== UPLOAD UI (arquivo + remover) =====
   const arquivoInput = document.getElementById('arquivo');
   const arquivoPick  = document.getElementById('arquivoPick');
   const arquivoClear = document.getElementById('arquivoClear');
@@ -1370,23 +1939,31 @@ footer{
     updateSteps();
   }
 
-  if(arquivoPick) arquivoPick.addEventListener('click', ()=> arquivoInput.click());
-  if(arquivoInput) arquivoInput.addEventListener('change', ()=> setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado'));
-  if(arquivoClear) arquivoClear.addEventListener('click', ()=>{ arquivoInput.value=''; setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado'); });
+  arquivoPick.addEventListener('click', ()=> arquivoInput.click());
+  arquivoInput.addEventListener('change', ()=> setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado'));
+  arquivoClear.addEventListener('click', ()=>{
+    arquivoInput.value = '';
+    setFileState(arquivoInput, arquivoName, arquivoClear, 'Nenhum arquivo selecionado');
+  });
 
-  if(imagemPick) imagemPick.addEventListener('click', ()=> imagemInput.click());
-  if(imagemInput) imagemInput.addEventListener('change', ()=> setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada'));
-  if(imagemClear) imagemClear.addEventListener('click', ()=>{ imagemInput.value=''; setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada'); });
+  imagemPick.addEventListener('click', ()=> imagemInput.click());
+  imagemInput.addEventListener('change', ()=> setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada'));
+  imagemClear.addEventListener('click', ()=>{
+    imagemInput.value = '';
+    setFileState(imagemInput, imagemName, imagemClear, 'Nenhuma imagem selecionada');
+  });
 
-  // FORM / STEPS
-  const form = document.getElementById('timpForm');
-  const texto = document.getElementById('texto');
-  const formError = document.getElementById('formError');
-
+  // ===== ETAPAS (visual + progress bar) =====
   const s1 = document.getElementById('s1');
   const s2 = document.getElementById('s2');
   const s3 = document.getElementById('s3');
   const s4 = document.getElementById('s4');
+  const s5 = document.getElementById('s5');
+  const progressBar = document.getElementById('progressBar');
+
+  const form = document.getElementById('timpForm');
+  const texto = document.getElementById('texto');
+  const formError = document.getElementById('formError');
 
   const paySheet = document.getElementById('paySheet');
   const payNowBtn = document.getElementById('payNowBtn');
@@ -1394,25 +1971,109 @@ footer{
   const btnSend = document.getElementById('btnSend');
 
   const secPacote = document.getElementById('secPacote');
-  const secOrigem = document.getElementById('secOrigem');
-  const secConteudo = document.getElementById('secConteudo');
   const secBriefing = document.getElementById('secBriefing');
+  const secConteudo = document.getElementById('secConteudo');
   const secDados = document.getElementById('secDados');
+  const secContrato = document.getElementById('secContrato');
   const fieldTexto = document.getElementById('fieldTexto');
 
-  const cpfcnpj = document.getElementById('cpfcnpj');
   const aceiteContrato = document.getElementById('aceiteContrato');
-  const fieldContractCheck = document.getElementById('fieldContractCheck');
 
-  // STATUS PAGAMENTO
+  function hasBriefingMin(){
+    const genero = (document.getElementById('genero').value || '').trim().length > 0;
+    const vibe   = (document.getElementById('vibe').value || '').trim().length > 0;
+    const voz    = (document.getElementById('voz').value || '').trim().length > 0;
+    const tema   = (document.getElementById('tema').value || '').trim().length > 0;
+    return genero && vibe && voz && tema;
+  }
+
+  function hasDadosMin(){
+    const nome = (document.getElementById('nome').value || '').trim().length > 0;
+    const nasc = (document.getElementById('nascimento').value || '').trim().length > 0;
+    const end  = (document.getElementById('endereco').value || '').trim().length > 0;
+    const cid  = (document.getElementById('cidade').value || '').trim().length > 0;
+    const est  = (document.getElementById('estado').value || '').trim().length > 0;
+    const cep  = (document.getElementById('cep').value || '').trim().length > 0;
+    const wha  = (document.getElementById('whats').value || '').trim().length > 0;
+    const eml  = (document.getElementById('email').value || '').trim().length > 0;
+    const doc  = (document.getElementById('cpfcnpj').value || '').trim().length > 0;
+    return nome && nasc && end && cid && est && cep && wha && eml && doc;
+  }
+
+  function updateSteps(){
+    const ok1 = !!packSelect.value;
+    s1.classList.toggle('done', ok1);
+    s1.classList.toggle('active', !ok1);
+
+    const ok2 = hasBriefingMin();
+    s2.classList.toggle('done', ok2);
+    s2.classList.toggle('active', ok1 && !ok2);
+
+    const hasText = (texto.value || "").trim().length > 0;
+    const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
+    const ok3 = hasText || hasFile;
+    s3.classList.toggle('done', ok3);
+    s3.classList.toggle('active', ok1 && ok2 && !ok3);
+
+    const ok4 = hasDadosMin();
+    s4.classList.toggle('done', ok4);
+    s4.classList.toggle('active', ok1 && ok2 && ok3 && !ok4);
+
+    const ok5 = !!(aceiteContrato && aceiteContrato.checked);
+    s5.classList.toggle('done', ok5);
+    s5.classList.toggle('active', ok1 && ok2 && ok3 && ok4 && !ok5);
+
+    // progress
+    const total = 5;
+    const doneCount = (ok1?1:0)+(ok2?1:0)+(ok3?1:0)+(ok4?1:0)+(ok5?1:0);
+    const pct = Math.round((doneCount/total)*100);
+    if(progressBar) progressBar.style.width = pct + "%";
+  }
+
+  ['change','keyup','blur','input'].forEach(evt=>{
+    form.addEventListener(evt, updateSteps, true);
+  });
+  updateSteps();
+
+  // click nas bolinhas/etapas para pular
+  document.querySelectorAll('.step[data-jump]').forEach(st=>{
+    st.addEventListener('click', ()=>{
+      const sel = st.getAttribute('data-jump');
+      const el = document.querySelector(sel);
+      if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+
+  // ===== helpers de erro (destacar + ir direto) =====
+  function clearErrors(){
+    formError.classList.remove('show');
+    form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+    [secPacote, secBriefing, secConteudo, secDados, secContrato].forEach(sec => sec.classList.remove('section-error'));
+  }
+  function markFieldError(inputEl){
+    if(!inputEl) return;
+    const field = inputEl.closest('.field');
+    if(field) field.classList.add('field-error');
+  }
+  function scrollToEl(el){
+    if(!el) return;
+    el.scrollIntoView({behavior:"smooth", block:"center"});
+    setTimeout(()=>{
+      try{ el.focus({preventScroll:true}); }catch(e){}
+    }, 250);
+  }
+
+  // ===== status do pagamento via querystring =====
   const paymentStatus = document.getElementById('paymentStatus');
   const paymentStatusText = document.getElementById('paymentStatusText');
+
   function parseQS(){
     const p = new URLSearchParams(location.search || "");
     const obj = {};
     p.forEach((v,k)=> obj[k] = v);
     return obj;
   }
+
   function showPaymentStatus(){
     const qs = parseQS();
     const status = qs.status || qs.collection_status || qs.payment_status || "";
@@ -1427,23 +2088,19 @@ footer{
     }else if(s.includes("rejected") || s.includes("cancelled") || s.includes("failure") || s.includes("failed")){
       txt = "Pagamento não concluído ❌ Você pode tentar novamente ou falar com a TIMP no WhatsApp.";
     }
+
     paymentStatusText.textContent = txt;
     paymentStatus.style.display = "block";
-    if(location.hash !== "#contato") location.hash = "#contato";
+    if(location.hash !== "#contato"){
+      location.hash = "#contato";
+    }
   }
   showPaymentStatus();
 
-  // MODAL CONTRATO
+  // ===== contrato modal =====
   const contractModal = document.getElementById('contractModal');
   const openContract = document.getElementById('openContract');
   const closeContract = document.getElementById('closeContract');
-  const modalOnlyClose = document.getElementById('modalOnlyClose');
-  const modalAccept = document.getElementById('modalAccept');
-  const contractVersionLabel = document.getElementById('contractVersionLabel');
-  const contractVersionText = document.getElementById('contractVersionText');
-
-  if(contractVersionLabel) contractVersionLabel.textContent = CONTRACT_VERSION;
-  if(contractVersionText) contractVersionText.textContent = CONTRACT_VERSION;
 
   function openModal(){
     contractModal.classList.add('show');
@@ -1455,26 +2112,50 @@ footer{
     contractModal.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
   }
-  if(openContract) openContract.addEventListener('click', openModal);
-  if(closeContract) closeContract.addEventListener('click', closeModal);
-  if(modalOnlyClose) modalOnlyClose.addEventListener('click', closeModal);
-  if(contractModal) contractModal.addEventListener('click', (e)=>{ if(e.target === contractModal) closeModal(); });
-  if(modalAccept){
-    modalAccept.addEventListener('click', ()=>{
-      aceiteContrato.checked = true;
-      closeModal();
+  openContract.addEventListener('click', (e)=>{
+    e.preventDefault();
+    openModal();
+  });
+  closeContract.addEventListener('click', closeModal);
+  contractModal.addEventListener('click', (e)=>{
+    if(e.target === contractModal) closeModal();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === "Escape" && contractModal.classList.contains('show')) closeModal();
+  });
+
+  // ===== CPF/CNPJ máscara simples (não valida, só melhora leitura) =====
+  const cpfcnpj = document.getElementById('cpfcnpj');
+  function onlyDigits(s){ return (s||"").replace(/\D+/g,''); }
+  function formatCpfCnpj(v){
+    const d = onlyDigits(v);
+    if(d.length <= 11){
+      // CPF: 000.000.000-00
+      return d
+        .replace(/^(\d{3})(\d)/, "$1.$2")
+        .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+        .replace(/\.(\d{3})(\d)/, ".$1-$2")
+        .slice(0, 14);
+    }else{
+      // CNPJ: 00.000.000/0000-00
+      return d
+        .replace(/^(\d{2})(\d)/, "$1.$2")
+        .replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+        .replace(/\.(\d{3})(\d)/, ".$1/$2")
+        .replace(/(\d{4})(\d)/, "$1-$2")
+        .slice(0, 18);
+    }
+  }
+  if(cpfcnpj){
+    cpfcnpj.addEventListener('input', ()=>{
+      const start = cpfcnpj.selectionStart || 0;
+      cpfcnpj.value = formatCpfCnpj(cpfcnpj.value);
+      try{ cpfcnpj.setSelectionRange(start, start); }catch(e){}
       updateSteps();
     });
   }
-  window.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape' && contractModal.classList.contains('show')) closeModal();
-  });
 
-  // ====== BRIEFING INTELIGENTE ======
-  const fieldTema = document.getElementById('fieldTema');
-  const tema = document.getElementById('tema');
-  const briefingHint = document.getElementById('briefingHint');
-
+  // ===== SUBMIT: ENVIA PRO BACKEND E REDIRECIONA PRO CHECKOUT MP =====
   function packNumFromSelect(val){
     if(!val) return 0;
     if(val.includes("Pacote 1")) return 1;
@@ -1483,177 +2164,12 @@ footer{
     return 0;
   }
 
-  function getOrigemNum(){
-    const sel = form.querySelector('input[name="origem"]:checked');
-    if(!sel || !sel.value) return 0;
-    if(sel.value.startsWith("1)")) return 1;
-    if(sel.value.startsWith("2)")) return 2;
-    if(sel.value.startsWith("3)")) return 3;
-    return 0;
-  }
-
-  function setRequired(el, yes){
-    if(!el) return;
-    if(yes) el.setAttribute('required','required');
-    else el.removeAttribute('required');
-  }
-
-  function hideFieldWrapper(wrapperEl, hide){
-    if(!wrapperEl) return;
-    wrapperEl.classList.toggle('hidden-block', !!hide);
-
-    // Quando esconder: remove required de inputs/textarea/select dentro e limpa erro visual
-    const innerControls = Array.from(wrapperEl.querySelectorAll('input, textarea, select'));
-    innerControls.forEach(ctrl=>{
-      if(hide){
-        ctrl.removeAttribute('required');
-        // opcional: limpar valor só de campos que somem
-        // ctrl.value = '';
-      }
-      const field = ctrl.closest('.field');
-      if(field) field.classList.remove('field-error');
-    });
-  }
-
-  function applyBriefingRules(){
-    const pack = packNumFromSelect(packSelect.value);
-    const origem = getOrigemNum();
-
-    // regra final: origem manda mais, mas pacote também define
-    // 1) letra pronta => não precisa tema obrigatório
-    // 2) história => tema obrigatório
-    // 3) ideia => tema obrigatório
-
-    const mode = (origem || pack || 0);
-
-    // Mostra/oculta e required:
-    if(mode === 1){
-      // Pacote 1 / origem 1: foco em música/clipe, tema vira opcional e fica escondido
-      hideFieldWrapper(fieldTema, true);
-      setRequired(tema, false);
-
-      if(briefingHint){
-        briefingHint.innerHTML = "<b>Modo: Já tenho letra</b> — focaremos em estilo musical e direção do videoclipe. O campo de ‘tema/mensagem’ fica oculto.";
-      }
-    }else if(mode === 2){
-      // história: tema obrigatório
-      hideFieldWrapper(fieldTema, false);
-      setRequired(tema, true);
-
-      if(briefingHint){
-        briefingHint.innerHTML = "<b>Modo: Tenho história</b> — o campo ‘tema/mensagem’ é obrigatório para transformar sua história em música e clipe.";
-      }
-    }else if(mode === 3){
-      // do zero: tema obrigatório
-      hideFieldWrapper(fieldTema, false);
-      setRequired(tema, true);
-
-      if(briefingHint){
-        briefingHint.innerHTML = "<b>Modo: Tenho uma ideia</b> — quanto mais detalhes, melhor. O campo ‘tema/mensagem’ é obrigatório.";
-      }
-    }else{
-      // nada selecionado ainda
-      hideFieldWrapper(fieldTema, false);
-      setRequired(tema, false);
-      if(briefingHint){
-        briefingHint.innerHTML = "<b>Selecione o pacote e “o que você já tem”</b> para adaptar o briefing automaticamente.";
-      }
-    }
-
-    updateSteps();
-  }
-
-  // Quando clica nos botões de pacote:
-  btns.forEach(b=>{
-    b.addEventListener('click', ()=>{
-      const pack = b.getAttribute('data-pack');
-      const name = b.getAttribute('data-packname');
-      const price = b.getAttribute('data-price');
-
-      if(pack === "1") packSelect.value = "Pacote 1 - R$ 697";
-      if(pack === "2") packSelect.value = "Pacote 2 - R$ 997";
-      if(pack === "3") packSelect.value = "Pacote 3 - R$ 1.497";
-
-      updateSummary(`<b>${name} selecionado</b> — Valor: <b>R$ ${formatBRL(price)}</b>. Agora complete as etapas abaixo e envie seu pedido.`);
-      applyBriefingRules();
-    });
-  });
-
-  // Se o usuário alterar o select pacote manualmente:
-  packSelect.addEventListener('change', applyBriefingRules);
-
-  // Se o usuário escolher a origem:
-  form.addEventListener('change', (e)=>{
-    if(e.target && e.target.name === 'origem'){
-      applyBriefingRules();
-    }
-  });
-
-  // ===== ETAPAS =====
-  function hasOrigem(){
-    return !!form.querySelector('input[name="origem"]:checked');
-  }
-
-  function hasDadosMin(){
-    const nome = (document.getElementById('nome').value || '').trim().length > 0;
-    const nasc = (document.getElementById('nascimento').value || '').trim().length > 0;
-    const end  = (document.getElementById('endereco').value || '').trim().length > 0;
-    const cid  = (document.getElementById('cidade').value || '').trim().length > 0;
-    const est  = (document.getElementById('estado').value || '').trim().length > 0;
-    const cep  = (document.getElementById('cep').value || '').trim().length > 0;
-    const wha  = (document.getElementById('whats').value || '').trim().length > 0;
-    const eml  = (document.getElementById('email').value || '').trim().length > 0;
-    const doc  = (cpfcnpj.value || '').trim().length > 0;
-    const acc  = !!aceiteContrato.checked;
-    return nome && nasc && end && cid && est && cep && wha && eml && doc && acc;
-  }
-
-  function updateSteps(){
-    const ok1 = !!packSelect.value;
-    s1.classList.toggle('done', ok1);
-    s1.classList.toggle('active', !ok1);
-
-    const ok2 = hasOrigem();
-    s2.classList.toggle('done', ok2);
-    s2.classList.toggle('active', ok1 && !ok2);
-
-    const hasText = (texto.value || "").trim().length > 0;
-    const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
-    const ok3 = hasText || hasFile;
-    s3.classList.toggle('done', ok3);
-    s3.classList.toggle('active', ok1 && ok2 && !ok3);
-
-    const ok4 = hasDadosMin();
-    s4.classList.toggle('done', ok4);
-    s4.classList.toggle('active', ok1 && ok2 && ok3 && !ok4);
-  }
-
-  ['change','keyup','blur'].forEach(evt=>{
-    form.addEventListener(evt, updateSteps, true);
-  });
-
-  // ===== ERROS =====
-  function clearErrors(){
-    formError.classList.remove('show');
-    form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
-    [secPacote, secOrigem, secConteudo, secBriefing, secDados].forEach(sec => sec.classList.remove('section-error'));
-  }
-  function markFieldError(inputEl){
-    if(!inputEl) return;
-    const field = inputEl.closest('.field');
-    if(field) field.classList.add('field-error');
-  }
-  function scrollToEl(el){
-    if(!el) return;
-    el.scrollIntoView({behavior:"smooth", block:"center"});
-    setTimeout(()=>{ try{ el.focus({preventScroll:true}); }catch(e){} }, 250);
-  }
-
-  // ===== SUBMIT =====
   function buildWhatsMsg(payload){
     return `Olá TIMP! Quero iniciar meu projeto.
 • Pacote: ${payload.pacote}
-• Eu já tenho: ${payload.origem}
+• Gênero: ${payload.genero}
+• Clima: ${payload.vibe}
+• Tema: ${payload.tema}
 • Nome: ${payload.nome}
 • Cidade/UF: ${payload.cidade}/${payload.estado}
 
@@ -1661,6 +2177,17 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
   }
 
   async function createCheckout(payload){
+    // endpoint esperado:
+    // POST {API_BASE}/api/checkout
+    // body json payload
+    // resposta: { checkoutUrl, orderId }
+    //
+    // (no backend) você deve travar checkout se:
+    // - contrato_aceito !== true
+    // - cpfcnpj vazio
+    // - etc
+    //
+    // e registrar IP no servidor + gerar PDF do contrato preenchido
     const url = API_BASE.replace(/\/+$/,'') + "/api/checkout";
     const res = await fetch(url, {
       method: "POST",
@@ -1671,12 +2198,14 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       const t = await res.text().catch(()=> "");
       throw new Error("Falha ao criar checkout. " + t);
     }
-    return await res.json();
+    const data = await res.json();
+    return data;
   }
 
   form.addEventListener('submit', async (e)=>{
     clearErrors();
 
+    // 1) pacote
     if(!packSelect.value){
       e.preventDefault();
       formError.classList.add('show');
@@ -1686,15 +2215,19 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       return;
     }
 
-    if(!hasOrigem()){
+    // 2) briefing
+    if(!hasBriefingMin()){
       e.preventDefault();
       formError.classList.add('show');
-      secOrigem.classList.add('section-error');
-      const firstRadio = form.querySelector('input[name="origem"]');
-      scrollToEl(firstRadio || secOrigem);
+      secBriefing.classList.add('section-error');
+
+      const first = document.getElementById('genero');
+      markFieldError(first);
+      scrollToEl(first || secBriefing);
       return;
     }
 
+    // 3) conteúdo
     const hasText = (texto.value || "").trim().length > 0;
     const hasFile = (arquivoInput.files && arquivoInput.files.length > 0);
     if(!hasText && !hasFile){
@@ -1706,13 +2239,12 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       return;
     }
 
-    // valida required (inclui o tema apenas quando estiver required pelo modo)
+    // 4) dados required
     const requiredFields = Array.from(form.querySelectorAll('[required]'));
     let firstMissing = null;
 
     requiredFields.forEach(el=>{
-      if(el.type === 'radio') return;
-      if(el.id === 'aceiteContrato') return; // valida abaixo
+      if(el.type === 'checkbox') return;
       if(!el.value){
         if(!firstMissing) firstMissing = el;
         markFieldError(el);
@@ -1722,66 +2254,53 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
     if(firstMissing){
       e.preventDefault();
       formError.classList.add('show');
-
-      const sec = firstMissing.closest('.form-section');
-      if(sec) sec.classList.add('section-error');
-
+      secDados.classList.add('section-error');
       scrollToEl(firstMissing);
       return;
     }
 
-    if(!(cpfcnpj.value || '').trim()){
-      e.preventDefault();
-      formError.classList.add('show');
-      secDados.classList.add('section-error');
-      markFieldError(cpfcnpj);
-      scrollToEl(cpfcnpj);
-      return;
-    }
-
+    // 5) contrato aceite obrigatório
     if(!aceiteContrato.checked){
       e.preventDefault();
       formError.classList.add('show');
-      secDados.classList.add('section-error');
-      if(fieldContractCheck) fieldContractCheck.classList.add('field-error');
-      openModal();
+      secContrato.classList.add('section-error');
+      scrollToEl(aceiteContrato);
       return;
     }
 
     e.preventDefault();
 
+    // trava botão
     btnSend.disabled = true;
     btnSend.textContent = "Enviando…";
 
-    const origem = (form.querySelector('input[name="origem"]:checked') || {}).value || '';
     const packNum = packNumFromSelect(packSelect.value);
-    const aceiteLocalISO = new Date().toISOString();
 
-    const briefing = {
+    const payload = {
+      // pacote
+      pacote: packSelect.value,
+      pacote_num: packNum,
+
+      // briefing
       genero: (document.getElementById('genero').value || '').trim(),
       subgenero: (document.getElementById('subgenero').value || '').trim(),
       vibe: (document.getElementById('vibe').value || '').trim(),
       voz: (document.getElementById('voz').value || '').trim(),
-      duracao: (document.getElementById('duracao').value || '').trim(),
-      conteudo18: (document.getElementById('conteudo18').value || '').trim(),
-      referencias: (document.getElementById('referencias').value || '').trim(),
       tema: (document.getElementById('tema').value || '').trim(),
-      estiloVideo: (document.getElementById('estiloVideo').value || '').trim(),
-      presencaArtista: (document.getElementById('presencaArtista').value || '').trim(),
-      elementosVideo: (document.getElementById('elementosVideo').value || '').trim(),
-      naoQuero: (document.getElementById('naoQuero').value || '').trim(),
-      links: (document.getElementById('links').value || '').trim(),
-      obs: (document.getElementById('obs').value || '').trim()
-    };
+      tempo: (document.getElementById('tempo').value || '').trim(),
+      instrumentos: (document.getElementById('instrumentos').value || '').trim(),
+      naoquer: (document.getElementById('naoquer').value || '').trim(),
 
-    const payload = {
-      pacote: packSelect.value,
-      pacote_num: packNum,
-      origem,
+      // conteúdo
       texto: (texto.value || "").trim(),
       arquivo_nome: (arquivoInput.files && arquivoInput.files[0]) ? arquivoInput.files[0].name : "",
       imagem_nome: (imagemInput.files && imagemInput.files[0]) ? imagemInput.files[0].name : "",
+      video_ideia: (document.getElementById('video_ideia').value || '').trim(),
+      video_estilo: (document.getElementById('video_estilo').value || '').trim(),
+      aspecto: (document.getElementById('aspecto').value || '').trim(),
+      refs: (document.getElementById('refs').value || '').trim(),
 
+      // dados cliente
       nome: (document.getElementById('nome').value || '').trim(),
       nascimento: (document.getElementById('nascimento').value || '').trim(),
       endereco: (document.getElementById('endereco').value || '').trim(),
@@ -1790,38 +2309,42 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       cep: (document.getElementById('cep').value || '').trim(),
       whats: (document.getElementById('whats').value || '').trim(),
       email: (document.getElementById('email').value || '').trim(),
-      cpf_cnpj: (cpfcnpj.value || '').trim(),
+      cpfcnpj: (document.getElementById('cpfcnpj').value || '').trim(),
 
-      briefing,
-
-      aceite_contrato: true,
+      // contrato
+      contrato_aceito: true,
       contrato_versao: CONTRACT_VERSION,
-      aceite_local_iso: aceiteLocalISO,
+      contrato_aceito_em: new Date().toISOString(),
+      user_agent: navigator.userAgent || "",
 
+      // meta
       owner_email: OWNER_EMAIL,
       return_url: location.origin + location.pathname + "#contato"
     };
 
+    // monta WhatsApp
     const waMsg = buildWhatsMsg(payload);
     const waUrl = "https://wa.me/" + WHATS_NUMBER + "?text=" + encodeURIComponent(waMsg);
     whatsConfirmBtn.href = waUrl;
 
+    // fallback MP direto (se backend não estiver pronto)
     const payLinkFallback = getMpLinkByPack(packNum) || waUrl;
     payNowBtn.href = payLinkFallback;
 
     try{
       if(!hasApi()){
+        // backend ainda não configurado: mostra fallback
         btnSend.textContent = "Pedido enviado ✅";
         paySheet.classList.add('show');
         paySheet.scrollIntoView({behavior:"smooth", block:"center"});
         return;
       }
 
-      btnSend.textContent = "Validando contrato…";
+      // cria checkout no backend e redireciona
+      btnSend.textContent = "Redirecionando pro pagamento…";
       const data = await createCheckout(payload);
 
       if(data && data.checkoutUrl){
-        btnSend.textContent = "Redirecionando pro pagamento…";
         window.location.href = data.checkoutUrl;
         return;
       }
@@ -1836,12 +2359,11 @@ Acabei de enviar os dados pelo site. Podemos confirmar os detalhes?`;
       paymentStatus.style.display = "block";
 
       paySheet.scrollIntoView({behavior:"smooth", block:"center"});
+    }finally{
+      // mantém disabled pra evitar duplicar pedido
     }
   });
 
-  // Inicializa as regras assim que carregar
-  applyBriefingRules();
-  updateSteps();
 })();
 </script>
 
